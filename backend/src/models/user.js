@@ -1,6 +1,6 @@
 'use strict'
 const { Model } = require('sequelize')
-const bcrypt = require('bcrypt')
+const addAuthenticationOn = require('../services/authentication')
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -20,7 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         unique: true,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          isEmail: true
+        }
       },
       password: DataTypes.STRING,
       imageUrl: DataTypes.STRING
@@ -31,16 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   )
 
-  const encryptPassword = user => {
-    if (user.changed('password')) {
-      return bcrypt.hash(user.password, 10).then(hash => {
-        user.password = hash
-      })
-    }
-  }
-
-  User.beforeCreate(encryptPassword)
-  User.beforeUpdate(encryptPassword)
+  addAuthenticationOn(User)
 
   return User
 }
