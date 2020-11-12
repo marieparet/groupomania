@@ -1,5 +1,5 @@
 'use strict'
-const { Model } = require('sequelize')
+const { Model, INTEGER, STRING } = require('sequelize')
 const addAuthenticationOn = require('../services/authentication')
 
 module.exports = (sequelize, DataTypes) => {
