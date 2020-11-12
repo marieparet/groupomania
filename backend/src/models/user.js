@@ -1,5 +1,6 @@
 'use strict'
 const { Model } = require('sequelize')
+const addAuthenticationOn = require('../services/authentication')
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -16,7 +17,14 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
-      email: DataTypes.STRING,
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+        validate: {
+          isEmail: true
+        }
+      },
       password: DataTypes.STRING,
       imageUrl: DataTypes.STRING
     },
@@ -25,5 +33,8 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'User'
     }
   )
+
+  addAuthenticationOn(User)
+
   return User
 }
