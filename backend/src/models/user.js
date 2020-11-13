@@ -1,5 +1,5 @@
 'use strict'
-const { Model } = require('sequelize')
+const { Model, INTEGER, STRING } = require('sequelize')
 const addAuthenticationOn = require('../services/authentication')
 
 module.exports = (sequelize, DataTypes) => {
@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate (models) {
-      // define association here
+      User.hasMany(models.Post)
     }
   }
   User.init(
