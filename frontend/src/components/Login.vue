@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row text-center justify-content-center">
         <div class="col-6 col-md-4">
-          <b-card>
+          <b-card class="border-0 shadow p-3 mb-5 mt-3 bg-white rounded">
             <b-card-text class="h4">Se connecter</b-card-text>
             <div class="card-body pt-sm-3 pt-md-0">
               <b-form>
@@ -33,13 +33,15 @@
                 >
                   Connexion
                 </b-button>
-                <p>{{ errorMessage }}</p>
+                <p class="mx-2">{{ errorMessage }}</p>
               </b-form>
             </div>
 
             <p class="font-small grey-text d-flex justify-content-center">
               Vous n'êtes pas encore inscrit ?
-              <a href="#" class="font-weight-bold ml-1"> Créer un compte</a>
+              <router-link to="/signup" class="font-weight-bold ml-1">
+                Créer un compte</router-link
+              >
             </p>
           </b-card>
         </div>
@@ -49,10 +51,15 @@
 </template>
 
 <script>
+import Signup from './Signup'
 import { apiClient } from '../services/ApiClient'
+import router from '../router/index'
 
 export default {
   name: 'Login',
+  components: {
+    Signup
+  },
   data () {
     return {
       errorMessage: '',
@@ -72,11 +79,11 @@ export default {
               this.errorMessage = 'Mot de passe incorrect'
             } else {
               localStorage.setItem('Usertoken', data.token)
-              //window.location.replace('./secure')
-              apiClient.get('api/posts')
+              router.push('/posts')
             }
           })
           .catch(error => {
+            console.log({ error: error })
             this.errorMessage = 'Problème de connexion'
           })
       } else {
@@ -93,22 +100,19 @@ a {
   color: #2c3e50 !important;
 }
 
-input {
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  :-webkit-autofill {
-    border: 1px solid rgba(235, 202, 225, 0.3);
+#email,
+#password {
+  &:-webkit-autofill {
+    border: 1px solid rgba(225, 83, 97, 0.5);
     -webkit-text-fill-color: #212529;
-    -webkit-box-shadow: 0 0 0px 1000px rgba(235, 202, 225, 0.3) inset;
+    -webkit-box-shadow: 0 0 0px 1000px rgba(225, 83, 97, 0.2) inset;
     transition: background-color 5000s ease-in-out 0s;
   }
-}
-
-input:focus,
-button:focus {
-  border: 1px solid rgb(235, 202, 225);
-  border-radius: 6px;
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(235, 202, 225, 0.5);
+  &:focus {
+    border: 1px solid rgba(209, 37, 55, 0.5);
+    border-radius: 6px;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5);
+  }
 }
 </style>
