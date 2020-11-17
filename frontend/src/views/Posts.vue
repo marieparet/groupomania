@@ -1,9 +1,22 @@
 <template>
   <div id="posts">
-    <h1>Bienvenue sur {{ companyName }}</h1>
-    <p>
-      Voici la liste des publications
-    </p>
+    <h1>Bienvenue sur {{ companyName }} !</h1>
+
+    <b-row class="text-center justify-content-center">
+      <b-col cols="12" v-for="post in posts">
+        <b-card
+          class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
+        >
+          <span class="post justify-content-center">
+            <img class="post__image" :src="post.imageUrl" />
+          </span>
+
+          <b-card-body>
+            <b-card-text>{{ post.content }}</b-card-text>
+          </b-card-body>
+        </b-card>
+      </b-col>
+    </b-row>
 
     <p class="mx-2">{{ errorMessage }}</p>
   </div>
@@ -18,17 +31,18 @@ export default {
   name: 'Posts',
   data () {
     return {
-      errorMessage: ''
+      errorMessage: '',
+      posts: []
     }
   },
-  props: {},
-  methods: {
-    displayPosts () {
-      apiClient.get('api/posts').catch(error => {
+  beforeMount () {
+    apiClient
+      .get('api/posts')
+      .then(response => (this.posts = response.posts))
+      .catch(error => {
         console.log({ error: error })
         this.errorMessage = 'Problème de connexion'
       })
-    }
   },
   computed: {
     ...mapState({
@@ -38,11 +52,18 @@ export default {
 }
 </script>
 
-<style scoped>
-#posts {
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  padding: 20px;
-  margin-top: 10px;
+<style lang="scss">
+h1 {
+  font-size: 1.7rem;
+}
+
+.post {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 300px;
+  &__image {
+    max-width: 200px;
+  }
 }
 </style>
