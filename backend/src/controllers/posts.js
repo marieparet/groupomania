@@ -46,22 +46,30 @@ exports.modifyPost = (req, res, next) => {
         }`
       }
     : { ...req.body }
-  Post.update(
-    { ...postObject, id: req.params.id },
-    { where: { id: req.params.id } }
-  )
-    .then(() => res.status(200).json({ message: 'Publication modifiée !' }))
-    .catch(error => res.status(400).json({ error }))
+  Post.findOne({
+    where: { id: req.params.id, userId: req.user.id }
+  }).then(post => {
+    if (!post) {
+      res.status(400).json({ error: "Vous n'avez pas l'autorisation" })
+    } else {
+      post
+        .update(postObject)
+        .then(() => res.status(200).json({ message: 'Publication modifiée !' }))
+    }
+  })
 }
 
 exports.deletePost = (req, res, next) => {
-  Post.findOne({ where: { id: req.params.id } })
+  Post.findOne({ where: { id: req.params.id, userId: req.user.id } })
     .then(post => {
-      if (post.imageUrl) {
+      if (!post) {
+        res.status(400).json({ error: "Vous n'avez pas l'autorisation" })
+      } else if (post.imageUrl) {
         const filename = post.imageUrl.split('/public/')[1]
-        fs.unlink(`public/${filename}`)
+        fs.unlink(`public/${filename}`, () => {})
       }
-      Post.destroy({ where: { id: req.params.id } })
+      post
+        .destroy()
         .then(() =>
           res.status(200).json({ message: 'Publication supprimée !' })
         )
