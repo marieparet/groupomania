@@ -46,6 +46,7 @@ exports.modifyPost = (req, res, next) => {
         }`
       }
     : { ...req.body }
+
   Post.findOne({
     where: { id: req.params.id, userId: req.user.id }
   }).then(post => {
