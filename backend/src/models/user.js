@@ -1,6 +1,9 @@
 'use strict'
 const { Model, INTEGER, STRING } = require('sequelize')
-const addAuthenticationOn = require('../services/authentication')
+const {
+  ensurePasswordIsStrongEnough,
+  addAuthenticationOn
+} = require('../services/authentication')
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -15,8 +18,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      firstName: DataTypes.STRING,
-      lastName: DataTypes.STRING,
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       email: {
         type: DataTypes.STRING,
         unique: true,
@@ -25,7 +34,13 @@ module.exports = (sequelize, DataTypes) => {
           isEmail: true
         }
       },
-      password: DataTypes.STRING,
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          ensurePasswordIsStrongEnough
+        }
+      },
       imageUrl: DataTypes.STRING
     },
     {

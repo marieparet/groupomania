@@ -7,7 +7,7 @@ class ApiClient {
     return fetch(this.baseUrl + path, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('Usertoken')
+        Authorization: 'Bearer ' + localStorage.getItem('userToken')
       }
     })
       .then(response => response.json())
@@ -20,7 +20,17 @@ class ApiClient {
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('Usertoken')
+        Authorization: 'Bearer ' + localStorage.getItem('userToken')
+      }
+    }).then(response => response.json())
+  }
+
+  delete (path) {
+    return fetch(this.baseUrl + path, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('userToken')
       }
     }).then(response => response.json())
   }

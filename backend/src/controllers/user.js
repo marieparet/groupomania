@@ -1,24 +1,29 @@
 const db = require('../../src/models')
 const jwt = require('jsonwebtoken')
+const user = require('../models/user')
 const { User } = db.sequelize.models
 
-const newToken = userId => {
-  token = jwt.sign({ userId }, 'RANDOM_TOKEN_SECRET', {
+const newToken = user => {
+  token = jwt.sign({ userId: user.id }, 'RANDOM_TOKEN_SECRET', {
     expiresIn: '24h'
   })
-  return { userId, token }
+  return { user, token }
 }
 
 exports.signup = (req, res, next) => {
   User.create({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     password: req.body.password
-  }).then(user =>
-    res
-      .status(201)
-      .json(newToken(user.id))
-      .catch(error => res.status(400).json({ error }))
-  )
+  })
+    .then(user =>
+      res
+        .status(201)
+        .json(newToken(user))
+        .catch(error => res.status(400).json({ error }))
+    )
+    .catch(error => res.status(401).json({ error: error }))
 }
 
 exports.login = async (req, res, next) => {
@@ -26,7 +31,7 @@ exports.login = async (req, res, next) => {
     const response = await User.authenticate(req.body.email, req.body.password)
 
     if (response.valid) {
-      res.status(200).json(newToken(response.user.id))
+      res.status(200).json(newToken(response.user))
     } else {
       res.status(401).json({ error: response.message })
     }

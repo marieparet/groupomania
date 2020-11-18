@@ -25,7 +25,6 @@
                 </b-form-group>
 
                 <b-button
-                  type="button"
                   v-on:click="login()"
                   variant="danger"
                   id="login-button"
@@ -33,7 +32,7 @@
                 >
                   Connexion
                 </b-button>
-                <p class="mx-2">{{ errorMessage }}</p>
+                <p class="my-3 text-danger">{{ errorMessage }}</p>
               </b-form>
             </div>
 
@@ -78,7 +77,8 @@ export default {
             if (!data.token) {
               this.errorMessage = 'Mot de passe incorrect'
             } else {
-              localStorage.setItem('Usertoken', data.token)
+              localStorage.setItem('userToken', data.token)
+              localStorage.setItem('userData', JSON.stringify(data.user))
               router.push('/posts')
             }
           })

@@ -8,17 +8,20 @@
             <div class="card-body pt-sm-3 pt-md-0">
               <b-form>
                 <b-form-group>
-                  <b-form-input id="email" type="email" placeholder="Email" v-model="input.email"
+                  <b-form-input id="firstName" type="text" placeholder="Prénom" v-model="input.firstName"
                     class="text-dark mb-2 mt-4 pl-3 w-100"></b-form-input>
+                  <b-form-input id="lastName" type="text" placeholder="Nom" v-model="input.lastName"
+                    class="text-dark mb-2 pl-3 w-100"></b-form-input>
+                  <b-form-input id="email" type="email" placeholder="Email" v-model="input.email"
+                    class="text-dark mb-2 pl-3 w-100"></b-form-input>
                   <b-form-input id="password" type="password" placeholder="Mot de passe" v-model="input.password"
                     class="text-dark mb-2 pl-3 w-100"></b-form-input>
                 </b-form-group>
 
-                <b-button type="button" v-on:click="signup()" variant="danger" id="login-button"
-                  class="font-weight-bold">
+                <b-button v-on:click="signup()" variant="danger" id="login-button" class="font-weight-bold">
                   Inscription
                 </b-button>
-                <p class="mx-2">{{ errorMessage }}</p>
+                <p class="mx-2 text-danger">{{ errorMessage }}</p>
               </b-form>
             </div>
           </b-card>
@@ -38,6 +41,8 @@
       return {
         errorMessage: '',
         input: {
+          firstName: '',
+          lastName: '',
           email: '',
           password: ''
         }
@@ -45,12 +50,17 @@
     },
     methods: {
       signup() {
-        if (this.input.email != '' && this.input.password != '') {
+        if (this.input.firstName != '' && this.input.lastName != '' && this.input.email != '' && this.input.password != '') {
           apiClient
             .post('api/auth/signup', this.input)
             .then(data => {
-              localStorage.setItem('Usertoken', data.token)
-              router.push('/posts')
+              if (!data.token) {
+                this.errorMessage = data.error.errors[0].message
+              } else {
+                localStorage.setItem('userToken', data.token)
+                localStorage.setItem('userData', JSON.stringify(data.user))
+                router.push('/posts')
+              }
             })
             .catch(error => {
               console.log({ error: error })
@@ -70,6 +80,8 @@
     color: #2c3e50 !important;
   }
 
+  #firstName,
+  #lastName,
   #email,
   #password {
     &:-webkit-autofill {

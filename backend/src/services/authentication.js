@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt')
 
-module.exports = function addAuthenticationOn (User) {
-  const ensureStrongPassword = user => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z0-9\d@$!%*?&]{8,}$/
-    if (user.changed('password') && !user.password.match(regex)) {
-      throw new Error("Le mot de passe n'est pas assez sécurisé")
-    }
+function ensurePasswordIsStrongEnough (value) {
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z0-9\d@$!%*?&]{8,}$/
+  if (!value.match(regex)) {
+    throw new Error("Le mot de passe n'est pas assez sécurisé")
   }
+}
 
+function addAuthenticationOn (User) {
   const encryptPassword = user => {
     if (user.changed('password')) {
       return bcrypt.hash(user.password, 10).then(hash => {
@@ -29,8 +29,11 @@ module.exports = function addAuthenticationOn (User) {
     else return { valid: false, message: 'Mot de passe incorrect' }
   }
 
-  User.beforeCreate(ensureStrongPassword)
-  User.beforeUpdate(ensureStrongPassword)
   User.beforeCreate(encryptPassword)
   User.beforeUpdate(encryptPassword)
+}
+
+module.exports = {
+  ensurePasswordIsStrongEnough,
+  addAuthenticationOn
 }
