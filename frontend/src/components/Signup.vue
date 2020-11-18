@@ -21,7 +21,7 @@
                 <b-button v-on:click="signup()" variant="danger" id="login-button" class="font-weight-bold">
                   Inscription
                 </b-button>
-                <p class="mx-2 text-danger">{{ errorMessage }}</p>
+                <p class="my-3 text-danger">{{ errorMessage }}</p>
               </b-form>
             </div>
           </b-card>
