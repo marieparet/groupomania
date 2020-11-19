@@ -1,11 +1,11 @@
 <template>
   <div class="page-container">
-    <div class="container-fluid">
-      <div class="row text-center justify-content-center">
-        <div class="col-6 col-md-4">
+    <b-container fluid>
+      <b-row class="text-center justify-content-center">
+        <b-col cols="6" md="4">
           <b-card class="border-0 shadow p-3 mb-5 mt-3 bg-white rounded">
-            <b-card-text class="h4">Se connecter</b-card-text>
-            <div class="card-body pt-sm-3 pt-md-0">
+            <div class="pt-sm-3 pt-md-0">
+              <b-card-text class="h4">Se connecter</b-card-text>
               <b-form>
                 <b-form-group>
                   <b-form-input
@@ -25,7 +25,8 @@
                 </b-form-group>
 
                 <b-button
-                  v-on:click="login()"
+                  v-on:click.stop="login()"
+                  type="submit"
                   variant="danger"
                   id="login-button"
                   class="font-weight-bold"
@@ -43,9 +44,9 @@
               >
             </p>
           </b-card>
-        </div>
-      </div>
-    </div>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 

@@ -29,6 +29,10 @@
         </b-card>
       </b-col>
       <p class="mx-2 text-success">{{ messageAlert }}</p>
+
+      <b-button v-on:click="loadMore()" variant="danger" class="d-block">
+        <span>Charger plus</span>
+      </b-button>
     </b-row>
 
     <p class="mx-2">{{ errorMessage }}</p>
@@ -47,18 +51,35 @@ export default {
     return {
       errorMessage: '',
       messageAlert: '',
+      page: 1,
+      isOnLastPage: false,
+      observer: null,
       posts: [],
       userData: JSON.parse(localStorage.getItem('userData'))
     }
   },
-  beforeMount () {
+  mounted () {
     this.fetchPosts()
   },
   methods: {
+    async loadMore () {
+      if (this.isOnLastPage) return
+
+      this.page++
+      const initialLength = this.posts.length
+
+      await this.fetchPosts()
+
+      if (this.posts.length === initialLength) {
+        this.isOnLastPage = true
+      }
+    },
     fetchPosts () {
-      apiClient
-        .get('api/posts')
-        .then(response => (this.posts = response.posts))
+      return apiClient
+        .get(`api/posts?page=${this.page}`)
+        .then(response => {
+          this.posts = this.posts.concat(response.posts)
+        })
         .catch(error => {
           console.log({ error: error })
           this.errorMessage = 'Problème de connexion'
