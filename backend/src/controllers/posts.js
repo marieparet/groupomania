@@ -32,8 +32,7 @@ exports.getOnePost = (req, res, next) => {
 }
 
 exports.getAllPosts = (req, res, next) => {
-  const page = req.query.page || 1
-  console.log('page')
+  const page = parseInt(req.query.page) || 1
   const limit = 4
   Post.findAll({
     limit,
