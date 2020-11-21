@@ -34,6 +34,17 @@ class ApiClient {
       }
     }).then(response => response.json())
   }
+
+  modify (path, body) {
+    return fetch(this.baseUrl + path, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('userToken')
+      }
+    }).then(response => response.json())
+  }
 }
 
 export const apiClient = new ApiClient()
