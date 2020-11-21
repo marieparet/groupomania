@@ -2,16 +2,20 @@
   <div>
     <div>
       <b-button
-        v-b-toggle="`collapse-${post.id}`"
         pill
+        @click="toggleActions"
         variant="outline-secondary"
         v-if="post.userId == userData.id"
         id="post-button"
         class="close d-block position-absolute"
         >...</b-button
       >
-      <b-collapse v-bind:id="`collapse-${post.id}`" class="mt-2">
-        <b-card>
+      <b-collapse
+        v-bind:class="
+          `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
+        "
+      >
+        <b-card class="border-0">
           <p class="card-text">
             <b-button block v-on:click="onUpdate()"
               >Modifier la publication</b-button
@@ -22,10 +26,6 @@
               >Supprimer la publication</b-button
             >
           </p>
-
-          <b-toast id="deleted-post-toast" title="BootstrapVue" static>
-            Publication supprimé
-          </b-toast>
         </b-card>
       </b-collapse>
     </div>
@@ -45,15 +45,20 @@ export default {
   },
   data () {
     return {
-      userData: JSON.parse(localStorage.getItem('userData'))
+      userData: JSON.parse(localStorage.getItem('userData')),
+      areActionsVisible: false
     }
   },
   methods: {
     ...mapActions(['deletePost']),
 
+    toggleActions () {
+      this.areActionsVisible = !this.areActionsVisible
+    },
+
     async onDelete (postId) {
       await this.deletePost(postId)
-      this.$bvToast.show('deleted-post-toast')
+      this.$emit('displayNotification', 'Publication supprimée')
     }
   }
 }
@@ -61,11 +66,11 @@ export default {
 
 <style lang="scss">
 #post-button {
-  top: 0;
-  right: 0;
-  padding: 10px 18px;
+  top: 10px;
+  right: 10px;
+  padding: 1px 18px 10px;
   &:hover {
-    background-color: rgba(108, 117, 125, 0.3);
+    background-color: rgba(108, 117, 125, 0.2);
   }
 }
 .btn-secondary {
@@ -83,14 +88,31 @@ export default {
 .btn-outline-secondary {
   &:active,
   &:focus {
-    color: #000;
-    background-color: rgba(108, 117, 125, 0.3);
-    box-shadow: none;
+    color: #000 !important;
+    background-color: rgba(108, 117, 125, 0.2) !important;
+    box-shadow: none !important;
   }
 }
 
-.card-body {
-  top: 0;
-  right: 0;
+.collapsed {
+  top: 44px;
+  right: 11px;
+  visibility: hidden;
+  display: block !important;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.1s, opacity 0.5s ease-in-out;
+  opacity: 0;
+
+  .card-body {
+    padding: 1rem;
+    box-shadow: 0px 1px 5px 4px rgba(204, 204, 204, 0.2);
+  }
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transform: scaleY(1);
 }
 </style>

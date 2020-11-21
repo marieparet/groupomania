@@ -117,3 +117,14 @@ a {
   }
 }
 </style>
+
+<b-button
+  v-if="post.userId == userData.id"
+  v-on:click="deletePost(post.id)"
+  id="remove-button"
+  class="close d-block remove-button position-absolute"
+  data-dismiss="alert"
+  aria-label="Supprimer"
+>
+      <span>×</span>
+    </b-button>

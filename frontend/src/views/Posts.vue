@@ -8,7 +8,7 @@
         <b-card
           class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
         >
-          <PostButton :post="post" />
+          <PostButton @displayNotification="displayNotification" :post="post" />
 
           <span class="post justify-content-center">
             <img class="post__image" :src="post.imageUrl" />
@@ -51,7 +51,13 @@ export default {
     await this.fetchPosts()
   },
   methods: {
-    ...mapActions(['fetchPosts', 'loadMore'])
+    ...mapActions(['fetchPosts', 'loadMore']),
+    displayNotification (text) {
+      this.$bvToast.toast('Publication supprimée !', {
+        title: 'Notification',
+        autoHideDelay: 4000
+      })
+    }
   },
   computed: {
     ...mapState(['companyName', 'posts'])
