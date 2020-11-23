@@ -15,14 +15,39 @@
           `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
         "
       >
-        <b-card class="border-0">
+        <b-card class="border-0" @click="toggleActions">
           <p class="card-text">
-            <b-button block v-on:click="onUpdate()"
+            <b-button block v-b-modal="`modal-${post.id}`"
               >Modifier la publication</b-button
             >
+            <b-modal
+              :id="`modal-${post.id}`"
+              title="Modifier la publication"
+              ok-title="Enregistrer"
+              @ok="onUpload"
+              cancel-title="Annuler"
+            >
+              <b-form>
+                <b-form-group>
+                  <b-form-textarea
+                    v-model="content"
+                    id="content"
+                    type="text"
+                    placeholder="Description"
+                    class="text-dark mb-2 mt-4 pl-3 w-100"
+                  ></b-form-textarea>
+                </b-form-group>
+                <b-form-group>
+                  <b-form-file
+                    placeholder="Aucun fichier selectionné"
+                    @change="onFileSelected"
+                  ></b-form-file>
+                </b-form-group>
+              </b-form>
+            </b-modal>
           </p>
           <p class="card-text">
-            <b-button block v-on:click="onDelete(post.id)"
+            <b-button block v-on:click="onDelete"
               >Supprimer la publication</b-button
             >
           </p>
@@ -45,20 +70,35 @@ export default {
   },
   data () {
     return {
+      content: this.post.content,
       userData: JSON.parse(localStorage.getItem('userData')),
-      areActionsVisible: false
+      areActionsVisible: false,
+      selectedFile: null
     }
   },
   methods: {
-    ...mapActions(['deletePost']),
+    ...mapActions(['deletePost', 'modifyPost']),
 
     toggleActions () {
       this.areActionsVisible = !this.areActionsVisible
     },
 
-    async onDelete (postId) {
-      await this.deletePost(postId)
-      this.$emit('displayNotification', 'Publication supprimée')
+    async onDelete () {
+      await this.deletePost(this.post.id)
+      this.$emit('displayNotification', 'Publication supprimée !')
+    },
+
+    onFileSelected (event) {
+      this.selectedFile = event.target.files[0]
+    },
+
+    async onUpload () {
+      await this.modifyPost({
+        postId: this.post.id,
+        selectedFile: this.selectedFile,
+        content: this.content
+      })
+      this.$emit('displayNotification', 'Publication modifiée !')
     }
   }
 }
@@ -78,14 +118,11 @@ export default {
   color: #000;
   background-color: white;
   border: none;
-  &:hover,
-  &:focus {
-    color: #000;
-    background-color: rgba(108, 117, 125, 0.2);
-  }
 }
 
-.btn-outline-secondary {
+.btn-outline-secondary,
+.btn-secondary {
+  &:hover,
   &:active,
   &:focus {
     color: #000 !important;
@@ -114,5 +151,17 @@ export default {
   visibility: visible;
   opacity: 1;
   transform: scaleY(1);
+}
+
+.modal-content {
+  border: none;
+  box-shadow: 0px 1px 5px 4px rgba(204, 204, 204, 0.2);
+}
+.modal-backdrop {
+  background-color: rgba(108, 117, 125, 0.2);
+}
+
+.custom-file-input:lang(fr) ~ .custom-file-label::after {
+  content: 'Choisir un fichier';
 }
 </style>
