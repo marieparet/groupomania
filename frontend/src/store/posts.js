@@ -23,6 +23,13 @@ export default {
     },
     REMOVE_POST (state, postId) {
       state.list = state.list.filter(post => post.id !== postId)
+    },
+    UPDATE_ONE_POST (state, modifiedPost) {
+      const postIndex = state.list.findIndex(
+        post => post.id === modifiedPost.id
+      )
+      state.list[postIndex] = modifiedPost
+      state.list = [...state.list]
     }
   },
   actions: {
@@ -57,6 +64,24 @@ export default {
         .catch(error => {
           console.log({ error: error })
           commit('ERROR_MESSAGE', 'Problème de connexion')
+        })
+    },
+    modifyPost ({ state, commit }, { postId, selectedFile, content }) {
+      let body = {
+        content: content
+      }
+      const isFormData = !!selectedFile
+
+      if (isFormData) {
+        const formData = new FormData()
+        formData.append('image', selectedFile)
+        formData.append('post', JSON.stringify(body))
+        body = formData
+      }
+      apiClient
+        .put('api/posts/' + postId, body, { isFormData })
+        .then(response => {
+          commit('UPDATE_ONE_POST', response.post)
         })
     }
   },

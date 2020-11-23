@@ -51,16 +51,14 @@ exports.modifyPost = (req, res, next) => {
         }`
       }
     : { ...req.body }
-
+  console.log(postObject)
   Post.findOne({
     where: { id: req.params.id, userId: req.user.id }
   }).then(post => {
     if (!post) {
       res.status(400).json({ error: "Vous n'avez pas l'autorisation" })
     } else {
-      post
-        .update(postObject)
-        .then(() => res.status(200).json({ message: 'Publication modifiée !' }))
+      post.update(postObject).then(post => res.status(200).json({ post }))
     }
   })
 }
