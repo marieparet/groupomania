@@ -7,6 +7,7 @@
       </p>
       <b-form-group>
         <b-form-textarea
+          v-model="content"
           id="content"
           type="text"
           placeholder="Description"
@@ -30,35 +31,26 @@ import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'CreatePost',
-  props: {
-    post: {
-      type: Object
-    }
-  },
+  props: {},
   data () {
     return {
-      userData: JSON.parse(localStorage.getItem('userData'))
+      userData: JSON.parse(localStorage.getItem('userData')),
+      content: '',
+      selectedFile: null
     }
   },
   methods: {
+    ...mapActions(['createPost']),
     onFileSelected (event) {
       this.selectedFile = event.target.files[0]
     },
 
-    onSubmit () {
-      let body = null
-      if (this.selectedFile != null) {
-        body = new FormData()
-        body.append('image', this.selectedFile, this.selectedFile.name)
-      } else {
-        body = {
-          content: this.post.content
-        }
-      }
-
-      apiClient
-        .put('api/posts/' + postId, body, { isFormData: this.selectedFile })
-        .then(res => console.log(res))
+    async onSubmit () {
+      await this.createPost({
+        selectedFile: this.selectedFile,
+        content: this.content
+      })
+      this.$emit('displayNotification', 'Publication créée !')
     }
   }
 }

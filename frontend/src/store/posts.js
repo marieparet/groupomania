@@ -30,6 +30,10 @@ export default {
       )
       state.list[postIndex] = modifiedPost
       state.list = [...state.list]
+    },
+    CREATE_POST (state, newPost) {
+      state.list.unshift(newPost)
+      state.list = [...state.list]
     }
   },
   actions: {
@@ -70,6 +74,7 @@ export default {
       let body = {
         content: content
       }
+
       const isFormData = !!selectedFile
 
       if (isFormData) {
@@ -83,6 +88,23 @@ export default {
         .then(response => {
           commit('UPDATE_ONE_POST', response.post)
         })
+    },
+    createPost ({ state, commit }, { selectedFile, content }) {
+      let body = {
+        content: content
+      }
+      const isFormData = !!selectedFile
+
+      if (isFormData) {
+        const formData = new FormData()
+        formData.append('image', selectedFile)
+        formData.append('post', JSON.stringify(body))
+        body = formData
+      }
+      apiClient.post('api/posts/', body, { isFormData }).then(response => {
+        console.log(response)
+        commit('CREATE_POST', response.post)
+      })
     }
   },
   modules: {}
