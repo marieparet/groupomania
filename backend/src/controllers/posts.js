@@ -36,7 +36,8 @@ exports.getAllPosts = (req, res, next) => {
   const limit = 4
   Post.findAll({
     limit,
-    offset: limit * (page - 1)
+    offset: limit * (page - 1),
+    order: [['createdAt', 'DESC']]
   })
     .then(posts => res.status(200).json({ posts }))
     .catch(error => res.status(400).json({ error }))
@@ -51,7 +52,7 @@ exports.modifyPost = (req, res, next) => {
         }`
       }
     : { ...req.body }
-  console.log(postObject)
+
   Post.findOne({
     where: { id: req.params.id, userId: req.user.id }
   }).then(post => {

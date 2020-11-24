@@ -6,12 +6,12 @@
       <b-col cols="12">
         <b-card
           class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
-          ><CreatePost
+          ><CreatePost @displayNotification="displayNotification"
         /></b-card>
       </b-col>
     </b-row>
     <b-row class="text-center justify-content-center">
-      <b-col cols="12" v-for="post in posts.list">
+      <b-col cols="12" v-for="post in posts.list" :key="post.id">
         <b-card
           class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
         >
