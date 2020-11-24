@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import Signup from './Signup'
+import Signup from '../components/Signup'
 import { apiClient } from '../services/ApiClient'
 import router from '../router/index'
 
@@ -80,7 +80,7 @@ export default {
             } else {
               localStorage.setItem('userToken', data.token)
               localStorage.setItem('userData', JSON.stringify(data.user))
-              router.push('/posts')
+              router.push({ name: 'Posts' })
             }
           })
           .catch(error => {
@@ -117,14 +117,3 @@ a {
   }
 }
 </style>
-
-<b-button
-  v-if="post.userId == userData.id"
-  v-on:click="deletePost(post.id)"
-  id="remove-button"
-  class="close d-block remove-button position-absolute"
-  data-dismiss="alert"
-  aria-label="Supprimer"
->
-      <span>×</span>
-    </b-button>

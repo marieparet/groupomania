@@ -1,12 +1,15 @@
 <template>
   <div id="posts">
+    <ProfileButton />
+
     <h1 class="mb-4">Bienvenue sur {{ companyName }} !</h1>
 
     <b-row class="text-center justify-content-center">
       <b-col cols="12">
         <b-card
           class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
-          ><CreatePost @displayNotification="displayNotification"
+        >
+          <CreatePost @displayNotification="displayNotification"
         /></b-card>
       </b-col>
     </b-row>
@@ -21,9 +24,20 @@
             <img class="post__image" :src="post.imageUrl" />
           </span>
 
-          <b-card-body>
-            <b-card-text>{{ post.content }}</b-card-text>
-          </b-card-body>
+          <b-card-text>{{ post.content }}</b-card-text>
+
+          <div class="line mt-5"></div>
+          <div class="footer d-flex justify-content-around">
+            <b-button block class="footer-btn">
+              <b-icon icon="hand-thumbs-up"></b-icon>
+              <span class="ml-2">J'aime</span>
+            </b-button>
+            <b-button block class="footer-btn">
+              <b-icon icon="chat-left"></b-icon>
+              <span class="ml-2">Commenter</span>
+            </b-button>
+          </div>
+          <div class="line"></div>
         </b-card>
       </b-col>
       <p class="mx-2 text-success">{{ posts.messageAlert }}</p>
@@ -44,12 +58,14 @@ import router from '../router/index'
 import { mapState, mapActions } from 'vuex'
 import PostButton from '../components/PostButton'
 import CreatePost from '../components/CreatePost'
+import ProfileButton from '../components/ProfileButton'
 
 export default {
   name: 'Posts',
   components: {
     PostButton,
-    CreatePost
+    CreatePost,
+    ProfileButton
   },
   data () {
     return {
@@ -87,5 +103,23 @@ h1 {
   &__image {
     max-width: 200px;
   }
+}
+
+.footer-btn {
+  margin: 2px;
+  color: #747474;
+  &:hover {
+    color: #747474 !important;
+  }
+}
+.btn-block + .btn-block {
+  margin-top: 2px;
+}
+
+.line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #c0c0c0;
 }
 </style>

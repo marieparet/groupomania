@@ -11,6 +11,7 @@
         >...</b-button
       >
       <b-collapse
+        id="button-collapsed"
         v-bind:class="
           `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
         "
@@ -131,9 +132,11 @@ export default {
   }
 }
 
-.collapsed {
+#button-collapsed {
   top: 44px;
   right: 11px;
+}
+.collapsed {
   visibility: hidden;
   display: block !important;
   transform: scaleY(0);
