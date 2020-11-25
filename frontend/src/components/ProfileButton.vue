@@ -6,7 +6,7 @@
         class="account d-flex position-absolute justify-content-between align-items-center"
       >
         <span>{{ userData.firstName }}</span>
-        <img class="account__img" src="../../public/avatar-placeholder.jpg" />
+        <ProfileImage :src="userData.imageUrl" customClass="account__img" />
       </b-button>
       <b-collapse
         id="profile-collapsed"
@@ -32,9 +32,13 @@
 <script>
 import { apiClient } from '../services/ApiClient'
 import { mapState, mapActions } from 'vuex'
+import ProfileImage from './ProfileImage'
 
 export default {
   name: 'ProfileButton',
+  components: {
+    ProfileImage
+  },
   props: {},
   data () {
     return {

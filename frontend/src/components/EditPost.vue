@@ -29,21 +29,7 @@
               cancel-title="Annuler"
             >
               <b-form>
-                <b-form-group>
-                  <b-form-textarea
-                    v-model="content"
-                    id="content"
-                    type="text"
-                    placeholder="Description"
-                    class="text-dark mb-2 mt-4 pl-3 w-100"
-                  ></b-form-textarea>
-                </b-form-group>
-                <b-form-group>
-                  <b-form-file
-                    placeholder="Aucun fichier selectionné"
-                    @change="onFileSelected"
-                  ></b-form-file>
-                </b-form-group>
+                <PostForm @onFileSelected="onFileSelected" v-model="content" />
               </b-form>
             </b-modal>
           </p>
@@ -61,9 +47,13 @@
 <script>
 import { apiClient } from '../services/ApiClient'
 import { mapState, mapActions } from 'vuex'
+import PostForm from './PostForm'
 
 export default {
-  name: 'PostButton',
+  name: 'EditPost',
+  components: {
+    PostForm
+  },
   props: {
     post: {
       type: Object
@@ -89,8 +79,8 @@ export default {
       this.$emit('displayNotification', 'Publication supprimée !')
     },
 
-    onFileSelected (event) {
-      this.selectedFile = event.target.files[0]
+    onFileSelected (file) {
+      this.selectedFile = file
     },
 
     async onUpload () {

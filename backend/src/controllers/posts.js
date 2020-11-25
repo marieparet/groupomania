@@ -32,13 +32,22 @@ exports.getOnePost = (req, res, next) => {
 }
 
 exports.getAllPosts = (req, res, next) => {
-  const page = parseInt(req.query.page) || 1
   const limit = 4
-  Post.findAll({
+  const page = parseInt(req.query.page) || 1
+
+  const options = {
     limit,
     offset: limit * (page - 1),
     order: [['createdAt', 'DESC']]
-  })
+  }
+
+  if (req.query.userId) {
+    options.where = {
+      userId: req.query.userId
+    }
+  }
+
+  Post.findAll(options)
     .then(posts => res.status(200).json({ posts }))
     .catch(error => res.status(400).json({ error }))
 }
