@@ -39,3 +39,17 @@ exports.login = async (req, res, next) => {
     res.status(500).json({ error: error.message })
   }
 }
+
+exports.editUser = (req, res, next) => {
+  const userObject = req.file
+    ? {
+        ...JSON.parse(req.body.user),
+        imageUrl: `${req.protocol}://${req.get('host')}/public/${
+          req.file.filename
+        }`
+      }
+    : { ...req.body }
+
+  console.log(userObject)
+  req.user.update(userObject).then(user => res.status(200).json({ user }))
+}

@@ -5,7 +5,7 @@
         <b-card
           class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
         >
-          <b-form @submit="onSubmit">
+          <b-form @submit="editUser">
             <ProfileImage
               :src="userData.imageUrl"
               customClass="profile-picture"
@@ -80,6 +80,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { apiClient } from '../services/ApiClient'
 import ProfileImage from '../components/ProfileImage'
 
 export default {
@@ -103,8 +104,27 @@ export default {
   methods: {
     onFileSelected (event) {
       this.selectedFile = event.target.files[0]
+    },
+    editUser () {
+      let body = this.input
+
+      const isFormData = !!this.selectedFile
+
+      if (isFormData) {
+        const formData = new FormData()
+        formData.append('image', this.selectedFile)
+        formData.append('user', JSON.stringify(body))
+        body = formData
+      }
+      apiClient.put('api/auth/edit', body, { isFormData }).then(res => {
+        localStorage.setItem('userData', JSON.stringify(res.user))
+        this.userData = res.user
+        this.$bvToast.toast('Changements enregistrés', {
+          title: 'Notification',
+          autoHideDelay: 4000
+        })
+      })
     }
-    //onSubmit(){}
   }
 }
 </script>
