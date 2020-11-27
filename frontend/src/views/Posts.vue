@@ -73,6 +73,7 @@ export default {
     }
   },
   async mounted () {
+    if (this.posts.list.length) return
     await this.fetchPosts()
   },
   methods: {
