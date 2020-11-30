@@ -21,6 +21,11 @@
             >
           </p>
           <p class="card-text">
+            <b-button block @click="$router.push({ name: 'Posts' })"
+              >Aller sur la page d'accueil</b-button
+            >
+          </p>
+          <p class="card-text">
             <b-button block @click="logout">Se déconnecter</b-button>
           </p>
         </b-card>
@@ -79,5 +84,6 @@ export default {
 #profile-collapsed {
   top: 74px;
   right: 44px;
+  z-index: 1;
 }
 </style>

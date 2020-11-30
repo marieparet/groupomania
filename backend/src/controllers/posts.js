@@ -43,7 +43,7 @@ exports.getAllPosts = (req, res, next) => {
 
   if (req.query.userId) {
     options.where = {
-      userId: req.query.userId
+      userId: parseInt(req.query.userId)
     }
   }
 

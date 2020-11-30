@@ -1,5 +1,7 @@
 <template>
   <div>
+    <ProfileButton />
+
     <b-row class="text-center justify-content-center">
       <b-col cols="12">
         <b-card
@@ -75,20 +77,25 @@
         </b-card>
       </b-col>
     </b-row>
+
+    <PostsList :userId="userData.id" />
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
 import { apiClient } from '../services/ApiClient'
+import ProfileButton from '../components/ProfileButton'
 import ProfileImage from '../components/ProfileImage'
+import PostsList from '../components/PostsList'
 
 export default {
   name: 'Profile',
   components: {
-    ProfileImage
+    ProfileButton,
+    ProfileImage,
+    PostsList
   },
-  props: {},
   data () {
     const userData = JSON.parse(localStorage.getItem('userData'))
     return {

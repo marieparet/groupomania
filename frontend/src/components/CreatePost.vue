@@ -8,7 +8,11 @@
       </p>
     </div>
     <b-form @submit="onSubmit">
-      <PostForm @onFileSelected="onFileSelected" v-model="content" />
+      <PostForm
+        @onFileSelected="onFileSelected"
+        :imgUrl="resetUrl"
+        v-model="content"
+      />
       <b-button type="submit" variant="primary">Publier</b-button>
     </b-form>
   </div>
@@ -31,7 +35,8 @@ export default {
     return {
       userData: JSON.parse(localStorage.getItem('userData')),
       content: '',
-      selectedFile: null
+      selectedFile: null,
+      resetUrl: null
     }
   },
   methods: {
@@ -41,12 +46,13 @@ export default {
       this.selectedFile = file
     },
 
-    async onSubmit () {
+    async onSubmit (event) {
       await this.createPost({
         selectedFile: this.selectedFile,
         content: this.content
       })
       this.$emit('displayNotification', 'Publication créée !')
+      event.target.reset()
     }
   }
 }
@@ -57,8 +63,8 @@ export default {
   text-align: left;
 }
 .profile-picture {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
   margin-bottom: 1rem;
 }

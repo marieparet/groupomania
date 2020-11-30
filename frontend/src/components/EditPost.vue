@@ -29,7 +29,11 @@
               cancel-title="Annuler"
             >
               <b-form>
-                <PostForm @onFileSelected="onFileSelected" v-model="content" />
+                <PostForm
+                  :imgUrl="post.imageUrl"
+                  @onFileSelected="onFileSelected"
+                  v-model="content"
+                />
               </b-form>
             </b-modal>
           </p>

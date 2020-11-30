@@ -16,6 +16,9 @@
         placeholder="Aucun fichier selectionné"
         @change="onFileSelected"
       ></b-form-file>
+      <div id="preview">
+        <img v-if="url" :src="url" />
+      </div>
     </b-form-group>
   </div>
 </template>
@@ -25,14 +28,16 @@ import { apiClient } from '../services/ApiClient'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  name: 'EditPost',
-  props: {
-    value: {
-      type: String
+  name: 'PostForm',
+  props: ['value', 'imgUrl'],
+  data () {
+    return {
+      url: this.imgUrl
     }
   },
   methods: {
     onFileSelected (event) {
+      this.url = URL.createObjectURL(event.target.files[0])
       this.$emit('onFileSelected', event.target.files[0])
     },
     updateValue (value) {
@@ -103,5 +108,15 @@ export default {
 
 .custom-file-input:lang(fr) ~ .custom-file-label::after {
   content: 'Choisir un fichier';
+}
+
+#preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    max-width: 100%;
+    max-height: 500px;
+  }
 }
 </style>
