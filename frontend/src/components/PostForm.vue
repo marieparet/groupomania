@@ -29,10 +29,15 @@ import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'PostForm',
-  props: ['value', 'imgUrl'],
+  props: ['value', 'imgUrl', 'onFormSubmit'],
   data () {
     return {
       url: this.imgUrl
+    }
+  },
+  watch: {
+    onFormSubmit () {
+      this.url = null
     }
   },
   methods: {

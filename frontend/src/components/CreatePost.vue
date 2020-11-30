@@ -10,8 +10,8 @@
     <b-form @submit="onSubmit">
       <PostForm
         @onFileSelected="onFileSelected"
-        :imgUrl="resetUrl"
         v-model="content"
+        :onFormSubmit="didSubmitForm"
       />
       <b-button type="submit" variant="primary">Publier</b-button>
     </b-form>
@@ -36,7 +36,7 @@ export default {
       userData: JSON.parse(localStorage.getItem('userData')),
       content: '',
       selectedFile: null,
-      resetUrl: null
+      didSubmitForm: false
     }
   },
   methods: {
@@ -52,7 +52,12 @@ export default {
         content: this.content
       })
       this.$emit('displayNotification', 'Publication créée !')
+      this.resetForm(event)
+    },
+
+    resetForm (event) {
       event.target.reset()
+      this.didSubmitForm = !this.didSubmitForm
     }
   }
 }

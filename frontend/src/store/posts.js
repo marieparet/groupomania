@@ -3,7 +3,6 @@ import { apiClient } from '../services/ApiClient'
 export default {
   state: {
     errorMessage: '',
-    messageAlert: '',
     page: 1,
     isOnLastPage: false,
     list: []
@@ -34,9 +33,18 @@ export default {
     CREATE_POST (state, newPost) {
       state.list.unshift(newPost)
       state.list = [...state.list]
+    },
+    RESET_STORE (state) {
+      state.list = []
+      state.page = 1
+      state.isOnLastPage = false
     }
   },
   actions: {
+    initializePostStore ({ dispatch, commit }, params = {}) {
+      commit('RESET_STORE')
+      dispatch('fetchPosts', params)
+    },
     fetchPosts ({ state, commit }, params = {}) {
       let userIdParams = ''
       if (params.userId) {
@@ -66,7 +74,7 @@ export default {
         commit('REACHED_LAST_PAGE')
       }
     },
-    deletePost ({ state, commit }, postId) {
+    deletePost ({ commit }, postId) {
       apiClient
         .delete('api/posts/' + postId)
         .then(() => commit('REMOVE_POST', postId))
@@ -75,7 +83,7 @@ export default {
           commit('ERROR_MESSAGE', 'Problème de connexion')
         })
     },
-    modifyPost ({ state, commit }, { postId, selectedFile, content }) {
+    modifyPost ({ commit }, { postId, selectedFile, content }) {
       let body = {
         content: content
       }

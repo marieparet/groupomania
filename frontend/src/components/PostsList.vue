@@ -30,6 +30,7 @@
 
       <b-button
         v-on:click="loadMore(queryParams)"
+        v-if="!posts.isOnLastPage"
         variant="danger"
         class="d-block"
       >
@@ -62,12 +63,10 @@ export default {
     }
   },
   async mounted () {
-    if (this.posts.list.length) return
-    await this.fetchPosts(this.queryParams)
-    console.log(this.queryParams)
+    await this.initializePostStore(this.queryParams)
   },
   methods: {
-    ...mapActions(['fetchPosts', 'loadMore']),
+    ...mapActions(['initializePostStore', 'loadMore']),
     displayNotification (text) {
       this.$bvToast.toast(text, {
         title: 'Notification',
