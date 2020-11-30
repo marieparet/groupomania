@@ -9,45 +9,11 @@
         <b-card
           class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
         >
-          <CreatePost @displayNotification="displayNotification"
-        /></b-card>
-      </b-col>
-    </b-row>
-    <b-row class="text-center justify-content-center">
-      <b-col cols="12" v-for="post in posts.list" :key="post.id">
-        <b-card
-          class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
-        >
-          <EditPost @displayNotification="displayNotification" :post="post" />
-
-          <span class="post justify-content-center">
-            <img class="post__image" :src="post.imageUrl" />
-          </span>
-
-          <b-card-text>{{ post.content }}</b-card-text>
-
-          <div class="line mt-5"></div>
-          <div class="footer d-flex justify-content-around">
-            <b-button block class="footer-btn">
-              <b-icon icon="hand-thumbs-up"></b-icon>
-              <span class="ml-2">J'aime</span>
-            </b-button>
-            <b-button block class="footer-btn">
-              <b-icon icon="chat-left"></b-icon>
-              <span class="ml-2">Commenter</span>
-            </b-button>
-          </div>
-          <div class="line"></div>
+          <CreatePost @displayNotification="displayNotification" />
         </b-card>
       </b-col>
-      <p class="mx-2 text-success">{{ posts.messageAlert }}</p>
-
-      <b-button v-on:click="loadMore()" variant="danger" class="d-block">
-        <span>Charger plus</span>
-      </b-button>
     </b-row>
-
-    <p class="mx-2">{{ posts.errorMessage }}</p>
+    <PostsList />
   </div>
 </template>
 
@@ -58,13 +24,14 @@ import router from '../router/index'
 import { mapState, mapActions } from 'vuex'
 import EditPost from '../components/EditPost'
 import CreatePost from '../components/CreatePost'
+import PostsList from '../components/PostsList'
 import ProfileButton from '../components/ProfileButton'
 
 export default {
   name: 'Posts',
   components: {
-    EditPost,
     CreatePost,
+    PostsList,
     ProfileButton
   },
   data () {
@@ -72,12 +39,7 @@ export default {
       userData: JSON.parse(localStorage.getItem('userData'))
     }
   },
-  async mounted () {
-    if (this.posts.list.length) return
-    await this.fetchPosts()
-  },
   methods: {
-    ...mapActions(['fetchPosts', 'loadMore']),
     displayNotification (text) {
       this.$bvToast.toast(text, {
         title: 'Notification',
@@ -86,7 +48,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['companyName', 'posts'])
+    ...mapState(['companyName'])
   }
 }
 </script>

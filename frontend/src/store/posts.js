@@ -37,9 +37,14 @@ export default {
     }
   },
   actions: {
-    fetchPosts ({ state, commit }) {
+    fetchPosts ({ state, commit }, params = {}) {
+      let userIdParams = ''
+      if (params.userId) {
+        userIdParams = `&userId=${params.userId}`
+      }
+
       return apiClient
-        .get(`api/posts?page=${state.page}`)
+        .get(`api/posts?page=${state.page}${userIdParams}`)
         .then(response => {
           if (response.posts) {
             commit('UPDATE_POSTS_LIST', state.list.concat(response.posts))
@@ -49,13 +54,13 @@ export default {
           commit('ERROR_MESSAGE', 'Problème de connexion')
         })
     },
-    async loadMore ({ state, commit, dispatch }) {
+    async loadMore ({ state, commit, dispatch }, params) {
       if (state.isOnLastPage) return
 
       commit('INCREMENT_PAGE')
       const initialLength = state.list.length
 
-      await dispatch('fetchPosts')
+      await dispatch('fetchPosts', params)
 
       if (state.list.length === initialLength) {
         commit('REACHED_LAST_PAGE')
