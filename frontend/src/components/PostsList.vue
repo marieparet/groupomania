@@ -67,12 +67,14 @@ import router from '../router/index'
 import { mapState, mapActions } from 'vuex'
 import EditPost from '../components/EditPost'
 import PostsList from '../components/PostsList'
+import ProfileImage from './ProfileImage'
 
 export default {
   name: 'Posts',
   components: {
     EditPost,
-    PostsList
+    PostsList,
+    ProfileImage
   },
   props: ['userId'],
   data () {
