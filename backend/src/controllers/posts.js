@@ -36,6 +36,14 @@ exports.getAllPosts = (req, res, next) => {
   const page = parseInt(req.query.page) || 1
 
   const options = {
+    include: [
+      {
+        model: db.User
+      },
+      {
+        model: db.Comments
+      }
+    ],
     limit,
     offset: limit * (page - 1),
     order: [['createdAt', 'DESC']]
