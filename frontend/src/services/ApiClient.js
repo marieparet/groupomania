@@ -1,3 +1,5 @@
+import router from '../router/index'
+
 class ApiClient {
   constructor () {
     this.baseUrl = 'http://localhost:3000/'
@@ -20,7 +22,13 @@ class ApiClient {
     return fetch(this.baseUrl + path, {
       headers: this.headers()
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status === 401) {
+          localStorage.clear()
+          router.push({ name: 'Login' })
+        }
+        return response.json()
+      })
       .catch(() => alert("Impossible de récupérer les données de l'API"))
   }
 
