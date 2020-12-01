@@ -5,6 +5,10 @@
         <b-card
           class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
         >
+          <p>
+            {{ post.User.firstName }}
+          </p>
+          <ProfileImage :src="post.User.imageUrl" />
           <EditPost @displayNotification="displayNotification" :post="post" />
 
           <span class="post justify-content-center">
@@ -49,12 +53,14 @@ import router from '../router/index'
 import { mapState, mapActions } from 'vuex'
 import EditPost from '../components/EditPost'
 import PostsList from '../components/PostsList'
+import ProfileImage from './ProfileImage'
 
 export default {
   name: 'Posts',
   components: {
     EditPost,
-    PostsList
+    PostsList,
+    ProfileImage
   },
   props: ['userId'],
   data () {
