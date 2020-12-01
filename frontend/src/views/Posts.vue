@@ -57,32 +57,4 @@ export default {
 h1 {
   font-size: 1.7rem;
 }
-
-.post {
-  display: block;
-  overflow: hidden;
-  width: 100%;
-  height: 300px;
-  &__image {
-    max-width: 200px;
-  }
-}
-
-.footer-btn {
-  margin: 2px;
-  color: #747474;
-  &:hover {
-    color: #747474 !important;
-  }
-}
-.btn-block + .btn-block {
-  margin-top: 2px;
-}
-
-.line {
-  display: block;
-  width: 100%;
-  height: 1px;
-  background-color: #c0c0c0;
-}
 </style>

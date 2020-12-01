@@ -101,7 +101,7 @@ export default {
 
 <style lang="scss">
 #post-button {
-  top: 10px;
+  top: 20px;
   right: 10px;
   padding: 1px 18px 10px;
   &:hover {

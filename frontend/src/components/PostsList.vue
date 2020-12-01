@@ -1,17 +1,35 @@
 <template>
   <div>
-    <b-row class="text-center justify-content-center">
+    <b-row class="justify-content-center">
       <b-col cols="12" v-for="post in posts.list" :key="post.id">
         <b-card
           class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
         >
+          <div class="d-flex align-items-center">
+            <ProfileImage
+              :src="post.User.imageUrl"
+              customClass="profile-picture"
+            />
+            <div class="text-left">
+              <p class="font-weight-bold mb-0">
+                {{ post.User.firstName }} {{ post.User.lastName }}
+              </p>
+              <p class="text-secondary">
+                {{
+                  moment(post.createdAt)
+                    .locale('fr')
+                    .format('LL')
+                }}
+              </p>
+            </div>
+          </div>
           <EditPost @displayNotification="displayNotification" :post="post" />
+
+          <b-card-text class="text-left mt-3">{{ post.content }}</b-card-text>
 
           <span class="post justify-content-center">
             <img class="post__image" :src="post.imageUrl" />
           </span>
-
-          <b-card-text>{{ post.content }}</b-card-text>
 
           <div class="line mt-5"></div>
           <div class="footer d-flex justify-content-around">
@@ -96,6 +114,14 @@ export default {
   &__image {
     max-width: 200px;
   }
+}
+
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
 }
 
 .footer-btn {

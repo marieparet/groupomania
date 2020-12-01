@@ -53,68 +53,6 @@ export default {
 </script>
 
 <style lang="scss">
-#post-button {
-  top: 10px;
-  right: 10px;
-  padding: 1px 18px 10px;
-  &:hover {
-    background-color: rgba(108, 117, 125, 0.2);
-  }
-}
-.btn-secondary {
-  font-weight: bold;
-  color: #000;
-  background-color: white;
-  border: none;
-}
-
-.btn-outline-secondary,
-.btn-secondary {
-  &:hover,
-  &:active,
-  &:focus {
-    color: #000 !important;
-    background-color: rgba(108, 117, 125, 0.2) !important;
-    box-shadow: none !important;
-  }
-}
-
-#button-collapsed {
-  top: 44px;
-  right: 11px;
-}
-.collapsed {
-  visibility: hidden;
-  display: block !important;
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.1s, opacity 0.5s ease-in-out;
-  opacity: 0;
-
-  .card-body {
-    padding: 1rem;
-    box-shadow: 0px 1px 5px 4px rgba(204, 204, 204, 0.2);
-  }
-}
-
-.visible {
-  visibility: visible;
-  opacity: 1;
-  transform: scaleY(1);
-}
-
-.modal-content {
-  border: none;
-  box-shadow: 0px 1px 5px 4px rgba(204, 204, 204, 0.2);
-}
-.modal-backdrop {
-  background-color: rgba(108, 117, 125, 0.2);
-}
-
-.custom-file-input:lang(fr) ~ .custom-file-label::after {
-  content: 'Choisir un fichier';
-}
-
 #preview {
   display: flex;
   justify-content: center;
