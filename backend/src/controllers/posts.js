@@ -43,7 +43,12 @@ exports.getAllPosts = (req, res, next) => {
         model: db.User
       },
       {
-        model: db.Comments
+        model: db.Comments,
+        include: [
+          {
+            model: db.User
+          }
+        ]
       }
     ],
     limit,

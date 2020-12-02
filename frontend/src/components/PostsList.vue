@@ -43,28 +43,7 @@
             </b-button>
           </div>
           <div class="line mb-3"></div>
-          <div class="d-flex align-items-center">
-            <ProfileImage
-              :src="post.Comments.imageUrl"
-              customClass="profile-picture"
-            />
-            <div id="comments" class="mb-3 text-left">Ici les commentaires</div>
-          </div>
-          <div class="d-flex align-items-center">
-            <ProfileImage
-              :src="post.User.imageUrl"
-              customClass="profile-picture"
-            />
-            <b-form-group class="w-100">
-              <b-form-textarea
-                id="comment-area"
-                class=" border-0"
-                type="text"
-                placeholder="Écrivez un commentaire ici..."
-              >
-              </b-form-textarea
-            ></b-form-group>
-          </div>
+          <CommentsList :post="post" />
         </b-card>
       </b-col>
 
@@ -90,13 +69,15 @@ import { mapState, mapActions } from 'vuex'
 import EditPost from '../components/EditPost'
 import PostsList from '../components/PostsList'
 import ProfileImage from './ProfileImage'
+import CommentsList from '../components/CommentsList'
 
 export default {
-  name: 'Posts',
+  name: 'PostsList',
   components: {
     EditPost,
     PostsList,
-    ProfileImage
+    ProfileImage,
+    CommentsList
   },
   props: ['userId'],
   data () {
@@ -168,15 +149,5 @@ export default {
   width: 100%;
   height: 1px;
   background-color: #c0c0c0;
-}
-
-#comment-area,
-#comments {
-  background-color: rgba(108, 117, 125, 0.1);
-}
-
-#comments {
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.25rem;
 }
 </style>
