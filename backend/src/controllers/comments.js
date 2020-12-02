@@ -22,7 +22,7 @@ exports.createComment = async (req, res, next) => {
 }
 
 exports.getOneComment = (req, res, next) => {
-  Comments.findOne({ where: { id: req.params.id } })
+  Comments.findOne({ where: { id: req.params.id }, include: db.User })
     .then(comment => res.status(200).json({ comment }))
     .catch(error => res.status(404).json({ error }))
 }
