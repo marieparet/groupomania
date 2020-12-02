@@ -13,10 +13,12 @@ exports.createPost = async (req, res, next) => {
   }
 
   try {
-    const post = await Post.create({
+    let post = await Post.create({
       ...postObject,
       userId: req.user.id
     })
+
+    post = await Post.findOne({ where: { id: post.id }, include: db.User })
 
     res.status(201).json({ post })
   } catch (error) {
@@ -71,7 +73,8 @@ exports.modifyPost = (req, res, next) => {
     : { ...req.body }
 
   Post.findOne({
-    where: { id: req.params.id, userId: req.user.id }
+    where: { id: req.params.id, userId: req.user.id },
+    include: db.User
   }).then(post => {
     if (!post) {
       res.status(400).json({ error: "Vous n'avez pas l'autorisation" })

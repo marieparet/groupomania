@@ -26,6 +26,12 @@
                     placeholder="Aucun fichier selectionné"
                     @change="onFileSelected"
                   ></b-form-file>
+                  <div
+                    id="profile-preview"
+                    class="d-flex justify-content-start"
+                  >
+                    <img class="mt-2 mb-3" v-if="url" :src="url" />
+                  </div>
                 </b-col>
               </div>
               <div class="d-flex align-items-center">
@@ -105,14 +111,16 @@ export default {
         lastName: userData.lastName,
         email: userData.email
       },
-      selectedFile: null
+      selectedFile: null,
+      url: null
     }
   },
   methods: {
     onFileSelected (event) {
+      this.url = URL.createObjectURL(event.target.files[0])
       this.selectedFile = event.target.files[0]
     },
-    editUser () {
+    editUser (event) {
       let body = this.input
 
       const isFormData = !!this.selectedFile
@@ -131,13 +139,16 @@ export default {
           autoHideDelay: 4000
         })
       })
+      event.target.reset()
+      this.url = null
     }
   }
 }
 </script>
 
 <style lang="scss">
-.profile-picture {
+.profile-picture,
+#profile-preview img {
   width: 100px;
   height: 100px;
   border-radius: 100%;

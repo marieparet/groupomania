@@ -37,18 +37,40 @@
               <b-icon icon="hand-thumbs-up"></b-icon>
               <span class="ml-2">J'aime</span>
             </b-button>
-            <b-button block class="footer-btn">
+            <b-button block class="footer-btn" @click="focusInput()">
               <b-icon icon="chat-left"></b-icon>
               <span class="ml-2">Commenter</span>
             </b-button>
           </div>
-          <div class="line"></div>
+          <div class="line mb-3"></div>
+          <div class="d-flex align-items-center">
+            <ProfileImage
+              :src="post.Comments.imageUrl"
+              customClass="profile-picture"
+            />
+            <div id="comments" class="mb-3 text-left">Ici les commentaires</div>
+          </div>
+          <div class="d-flex align-items-center">
+            <ProfileImage
+              :src="post.User.imageUrl"
+              customClass="profile-picture"
+            />
+            <b-form-group class="w-100">
+              <b-form-textarea
+                id="comment-area"
+                class=" border-0"
+                type="text"
+                placeholder="Écrivez un commentaire ici..."
+              >
+              </b-form-textarea
+            ></b-form-group>
+          </div>
         </b-card>
       </b-col>
 
       <b-button
         v-on:click="loadMore(queryParams)"
-        v-if="!posts.isOnLastPage"
+        v-if="!posts.isOnLastPage || posts.list.length"
         variant="danger"
         class="d-block"
       >
@@ -92,6 +114,9 @@ export default {
         title: 'Notification',
         autoHideDelay: 4000
       })
+    },
+    focusInput () {
+      document.getElementById('comment-area').focus()
     }
   },
   computed: {
@@ -114,7 +139,8 @@ export default {
   width: 100%;
   height: 300px;
   &__image {
-    max-width: 200px;
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 
@@ -142,5 +168,15 @@ export default {
   width: 100%;
   height: 1px;
   background-color: #c0c0c0;
+}
+
+#comment-area,
+#comments {
+  background-color: rgba(108, 117, 125, 0.1);
+}
+
+#comments {
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
 }
 </style>

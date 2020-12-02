@@ -16,8 +16,11 @@
         placeholder="Aucun fichier selectionné"
         @change="onFileSelected"
       ></b-form-file>
-      <div id="preview">
-        <img v-if="url" :src="url" />
+      <div
+        id="preview"
+        class="d-flex justify-content-center align-items-center"
+      >
+        <img class="mt-3" v-if="url" :src="url" />
       </div>
     </b-form-group>
   </div>
@@ -53,13 +56,8 @@ export default {
 </script>
 
 <style lang="scss">
-#preview {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    max-width: 100%;
-    max-height: 500px;
-  }
+#preview img {
+  max-width: 100%;
+  max-height: 500px;
 }
 </style>
