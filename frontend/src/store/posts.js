@@ -119,6 +119,5 @@ export default {
         commit('CREATE_POST', response.post)
       })
     }
-  },
-  modules: {}
+  }
 }
