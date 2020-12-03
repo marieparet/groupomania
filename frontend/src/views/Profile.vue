@@ -9,7 +9,7 @@
         >
           <b-form @submit="editUser">
             <ProfileImage
-              :src="userData.imageUrl"
+              :src="url || userData.imageUrl"
               customClass="profile-main-picture"
             />
             <b-form-group>
@@ -27,12 +27,6 @@
                     placeholder="Aucun fichier selectionné"
                     @change="onFileSelected"
                   ></b-form-file>
-                  <div
-                    id="profile-preview"
-                    class="d-flex justify-content-start"
-                  >
-                    <img class="mt-2 mb-3" v-if="url" :src="url" />
-                  </div>
                 </b-col>
               </div>
               <div class="d-flex align-items-center">
@@ -139,17 +133,16 @@ export default {
           title: 'Notification',
           autoHideDelay: 4000
         })
+        window.location.reload()
       })
       this.$refs.fileupload.reset()
-      this.url = null
     }
   }
 }
 </script>
 
 <style lang="scss">
-.profile-main-picture,
-#profile-preview img {
+.profile-main-picture {
   width: 100px;
   height: 100px;
   border-radius: 100%;
