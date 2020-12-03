@@ -10,7 +10,7 @@
           <b-form @submit="editUser">
             <ProfileImage
               :src="userData.imageUrl"
-              customClass="profile-picture"
+              customClass="profile-main-picture"
             />
             <b-form-group>
               <div class="d-flex align-items-center">
@@ -21,6 +21,7 @@
                 </b-col>
                 <b-col sm="10">
                   <b-form-file
+                    ref="fileupload"
                     id="imageUrl"
                     class="text-dark mb-2 pl-3"
                     placeholder="Aucun fichier selectionné"
@@ -116,7 +117,7 @@ export default {
     }
   },
   methods: {
-    onFileSelected (event) {
+    onFileSelected () {
       this.url = URL.createObjectURL(event.target.files[0])
       this.selectedFile = event.target.files[0]
     },
@@ -139,7 +140,7 @@ export default {
           autoHideDelay: 4000
         })
       })
-      event.target.reset()
+      this.$refs.fileupload.reset()
       this.url = null
     }
   }
@@ -147,7 +148,7 @@ export default {
 </script>
 
 <style lang="scss">
-.profile-picture,
+.profile-main-picture,
 #profile-preview img {
   width: 100px;
   height: 100px;

@@ -1,18 +1,12 @@
 <template>
   <div>
     <div class="comment mb-2 text-left" v-for="comment in list">
-      <div class="d-flex align-items-center">
-        <ProfileImage
-          :src="comment.User.imageUrl"
-          customClass="profile-picture"
-        />
-        <div class="comment-box">
-          <p class="mb-0 font-weight-bold">
-            {{ comment.User.firstName }} {{ comment.User.lastName }}
-          </p>
-          <p class="mb-0">{{ comment.content }}</p>
-        </div>
-      </div>
+      <Comment
+        @commentDeleted="removeComment"
+        @displayNotification="displayNotification"
+        :comment="comment"
+        :post="post"
+      />
     </div>
     <CreateComment @commentCreated="appendComment" :post="post" />
   </div>
@@ -23,24 +17,33 @@ import { apiClient } from '../services/ApiClient'
 import router from '../router/index'
 import { mapState, mapActions } from 'vuex'
 import PostsList from '../components/PostsList'
-import ProfileImage from './ProfileImage'
 import CreateComment from './CreateComment'
+import Comment from './Comment'
 
 export default {
   name: 'CommentsList',
   components: {
-    ProfileImage,
-    CreateComment
+    CreateComment,
+    Comment
   },
   props: ['post'],
   data () {
     return {
-      list: this.post.Comments
+      list: this.post.Comments || []
     }
   },
   methods: {
     appendComment (comment) {
       this.list.push(comment)
+    },
+    removeComment (commentToDelete) {
+      this.list = this.list.filter(comment => comment.id !== commentToDelete.id)
+    },
+    displayNotification (text) {
+      this.$bvToast.toast(text, {
+        title: 'Notification',
+        autoHideDelay: 4000
+      })
     }
   },
   computed: {}
