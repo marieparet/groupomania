@@ -7,11 +7,13 @@
       </p>
       <input
         v-if="isEditing"
+        ref="inputContent"
         v-model="comment.content"
         @keydown.enter.exact.prevent
         @keyup.enter.exact="modifyComment"
         @keydown.enter.shift.exact="newline"
         type="text"
+        class="input-content border-0 my-2"
       />
       <p v-else class="mb-0">{{ comment.content }}</p>
     </div>
@@ -61,6 +63,9 @@ export default {
 
     startEditing () {
       this.isEditing = true
+      setTimeout(() => {
+        this.$refs.inputContent.focus()
+      }, 30)
     },
     newline () {
       this.comment.content = `${this.comment.content}\n`
@@ -88,5 +93,11 @@ export default {
 .collapse-button {
   right: 181px;
   top: 43px;
+}
+
+.input-content:focus {
+  border-radius: 0.25rem;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 </style>
