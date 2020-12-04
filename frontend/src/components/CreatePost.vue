@@ -57,6 +57,8 @@ export default {
 
     resetForm (event) {
       event.target.reset()
+      this.content = ''
+      this.selectedFile = null
       this.didSubmitForm = !this.didSubmitForm
     }
   }

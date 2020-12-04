@@ -5,6 +5,7 @@
       <b-form class="w-100" @submit="createComment">
         <b-form-group>
           <b-form-textarea
+            :id="`comment-area-${post.id}`"
             v-model="content"
             @keydown.enter.exact.prevent
             @keyup.enter.exact="createComment"
@@ -24,7 +25,6 @@
 import { apiClient } from '../services/ApiClient'
 import router from '../router/index'
 import { mapState, mapActions } from 'vuex'
-import PostsList from '../components/PostsList'
 import ProfileImage from './ProfileImage'
 
 export default {

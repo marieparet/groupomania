@@ -37,7 +37,7 @@
               <b-icon icon="hand-thumbs-up"></b-icon>
               <span class="ml-2">J'aime</span>
             </b-button>
-            <b-button block class="footer-btn" @click="focusInput()">
+            <b-button block class="footer-btn" @click="focusInput(post)">
               <b-icon icon="chat-left"></b-icon>
               <span class="ml-2">Commenter</span>
             </b-button>
@@ -96,8 +96,8 @@ export default {
         autoHideDelay: 4000
       })
     },
-    focusInput () {
-      document.getElementById('comment-area').focus()
+    focusInput (post) {
+      document.getElementById(`comment-area-${post.id}`).focus()
     }
   },
   computed: {

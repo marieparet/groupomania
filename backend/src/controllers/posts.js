@@ -4,9 +4,10 @@ const db = require('../models')
 const { Post } = db.sequelize.models
 
 exports.createPost = async (req, res, next) => {
-  const postObject = JSON.parse(req.body.post)
+  let postObject = req.body
 
   if (req.file) {
+    postObject = JSON.parse(req.body.post)
     postObject.imageUrl = `${req.protocol}://${req.get('host')}/public/${
       req.file.filename
     }`
