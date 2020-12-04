@@ -148,6 +148,6 @@ export default {
   display: block;
   width: 100%;
   height: 1px;
-  background-color: #c0c0c0;
+  background-color: rgba(192, 192, 192, 0.5);
 }
 </style>

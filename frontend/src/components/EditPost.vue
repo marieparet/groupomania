@@ -83,8 +83,4 @@ export default {
 .modal-backdrop {
   background-color: rgba(108, 117, 125, 0.2);
 }
-
-.custom-file-input:lang(fr) ~ .custom-file-label::after {
-  content: 'Choisir un fichier';
-}
 </style>

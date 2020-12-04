@@ -142,15 +142,16 @@ export default {
 </script>
 
 <style lang="scss">
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .profile-main-picture {
   width: 100px;
   height: 100px;
   border-radius: 100%;
   margin-bottom: 2rem;
-}
-
-.custom-file-input:lang(fr) ~ .custom-file-label::after {
-  content: 'Choisir un fichier';
 }
 
 .custom-file-label {

@@ -2,12 +2,10 @@
   <div id="posts">
     <ProfileButton />
 
-    <h1 class="mb-4">Bienvenue sur {{ companyName }} !</h1>
-
     <b-row class="text-center justify-content-center">
       <b-col cols="12">
         <b-card
-          class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
+          class="w-50 mx-auto mt-3 mb-5 border-0 shadow px-3 pt-4 bg-white rounded"
         >
           <CreatePost @displayNotification="displayNotification" />
         </b-card>
@@ -56,5 +54,10 @@ export default {
 <style lang="scss">
 h1 {
   font-size: 1.7rem;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
 }
 </style>
