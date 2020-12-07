@@ -2,13 +2,13 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    queryInterface.addColumn('Likes', 'likesCount', {
+    queryInterface.addColumn('Posts', 'likesCount', {
       type: Sequelize.INTEGER
     })
   },
 
   down: async (queryInterface, Sequelize) => {
-    queryInterface.removeColumn('Likes', 'likesCount', {
+    queryInterface.removeColumn('Posts', 'likesCount', {
       type: Sequelize.STRING
     })
   }

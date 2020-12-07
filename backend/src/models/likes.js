@@ -23,8 +23,21 @@ module.exports = (sequelize, DataTypes) => {
     }
   )
 
-  Likes.afterCreate((Likes.likesCount += 1))
-  Likes.afterDestroy((Likes.likesCount -= 1))
+  Likes.afterCreate(async like => {
+    console.log('like', like)
+    const post = await like.getPost()
+    console.log('post', post)
+    await post.update({
+      likesCount: post.likesCount + 1
+    })
+    console.log(post)
+  })
+  Likes.afterDestroy(async like => {
+    const post = await like.getPost()
+    post.update({
+      likesCount: post.likesCount - 1
+    })
+  })
 
   return Likes
 }
