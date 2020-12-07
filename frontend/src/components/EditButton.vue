@@ -18,16 +18,21 @@
     >
       <b-card class="border-0" @click="toggleActions">
         <p class="card-text">
-          <b-button v-if="editingPost" block v-b-modal="`modal-${elementId}`">{{
-            modifyText
-          }}</b-button>
-          <b-button v-else @click="clickedEditButton">{{
-            modifyText
-          }}</b-button>
+          <b-button v-if="editingPost" block v-b-modal="`modal-${elementId}`">
+            <b-icon icon="pencil" class="mr-3"></b-icon
+            ><span>{{ modifyText }}</span></b-button
+          >
+          <b-button v-else @click="clickedEditButton">
+            <b-icon icon="pencil" class="mr-3"></b-icon
+            ><span>{{ modifyText }}</span></b-button
+          >
           <slot></slot>
         </p>
         <p class="card-text">
-          <b-button block v-on:click="onDelete">{{ deleteText }}</b-button>
+          <b-button block v-on:click="onDelete"
+            ><b-icon icon="trash" class="mr-3"></b-icon>
+            <span>{{ deleteText }}</span></b-button
+          >
         </p>
       </b-card>
     </b-collapse>
@@ -85,7 +90,7 @@ export default {
   }
 }
 .btn-secondary {
-  font-weight: bold;
+  font-weight: 500;
   color: #000;
   background-color: white;
   border: none;
@@ -97,7 +102,7 @@ export default {
   &:active,
   &:focus {
     color: #000 !important;
-    background-color: rgba(108, 117, 125, 0.2) !important;
+    background-color: rgba(108, 117, 125, 0.1) !important;
     box-shadow: none !important;
   }
 }

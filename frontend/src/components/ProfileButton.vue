@@ -73,7 +73,7 @@ export default {
   right: 45px;
   height: 45px;
   padding: 5px 5px 5px 16px;
-  box-shadow: 0px 1px 2px 3px rgba(204, 204, 204, 0.2);
+  box-shadow: 0px 1px 1px 1px rgba(204, 204, 204, 0.2);
   background-color: rgba(108, 117, 125, 0.1);
   border-radius: 40px;
   &__img {
