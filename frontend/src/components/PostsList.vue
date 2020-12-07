@@ -8,8 +8,7 @@
       <b-button
         v-on:click="loadMore(queryParams)"
         v-if="!posts.isOnLastPage || posts.list.length"
-        variant="danger"
-        class="d-block"
+        class="load-btn d-block"
       >
         <span>Charger plus</span>
       </b-button>
@@ -59,6 +58,16 @@ export default {
   &__image {
     max-width: 100%;
     max-height: 100%;
+  }
+}
+
+.load-btn {
+  background-color: rgba(253, 45, 6, 0.8);
+  color: white;
+  border-radius: 1rem;
+  &:hover {
+    background-color: rgb(253, 45, 6) !important;
+    color: white !important;
   }
 }
 </style>

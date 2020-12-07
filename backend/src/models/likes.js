@@ -22,5 +22,9 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Likes'
     }
   )
+
+  Likes.afterCreate((Likes.likesCount += 1))
+  Likes.afterDestroy((Likes.likesCount -= 1))
+
   return Likes
 }
