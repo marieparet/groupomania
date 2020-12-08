@@ -3,7 +3,7 @@
     <b-button
       v-if="list.length === 1 && count > 1"
       @click="fetchAllComments"
-      class="display-comments mb-2 d-flex text-left"
+      class="display-comments mb-3 d-flex text-left"
       ><span v-if="count > 2"
         >Afficher {{ count - 1 }} autres commentaires</span
       >

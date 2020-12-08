@@ -1,32 +1,45 @@
 <template>
-  <div class="d-flex align-items-center position-relative">
-    <ProfileImage :src="comment.User.imageUrl" customClass="profile-picture" />
-    <div class="comment-box">
-      <p class="mb-0 font-weight-bold">
-        {{ comment.User.firstName }} {{ comment.User.lastName }}
-      </p>
-      <input
-        v-if="isEditing"
-        ref="inputContent"
-        v-model="comment.content"
-        @keydown.enter.exact.prevent
-        @keyup.enter.exact="modifyComment"
-        @keydown.enter.shift.exact="newline"
-        type="text"
-        class="input-content border-0 my-2"
+  <div>
+    <div class="d-flex align-items-center position-relative">
+      <ProfileImage
+        :src="comment.User.imageUrl"
+        customClass="profile-picture"
       />
-      <p v-else class="mb-0">{{ comment.content }}</p>
+      <div class="comment-box">
+        <p class="mb-0 font-weight-bold">
+          {{ comment.User.firstName }} {{ comment.User.lastName }}
+        </p>
+        <input
+          v-if="isEditing"
+          ref="inputContent"
+          v-model="comment.content"
+          @keydown.enter.exact.prevent
+          @keyup.enter.exact="modifyComment"
+          @keydown.enter.shift.exact="newline"
+          type="text"
+          class="input-content border-0 my-2"
+        />
+        <p v-else class="mb-0">{{ comment.content }}</p>
+      </div>
+
+      <EditButton
+        customClass="comment-button"
+        classCollapse="collapse-button"
+        :shouldDisplay="comment.User.id == userData.id"
+        @clickedEditButton="startEditing"
+        @onDelete="onDelete"
+        modifyText="Modifier le commentaire"
+        deleteText="Supprimer le commentaire"
+      >
+      </EditButton>
     </div>
-    <EditButton
-      customClass="comment-button"
-      classCollapse="collapse-button"
-      :shouldDisplay="comment.User.id == userData.id"
-      @clickedEditButton="startEditing"
-      @onDelete="onDelete"
-      modifyText="Modifier le commentaire"
-      deleteText="Supprimer le commentaire"
-    >
-    </EditButton>
+    <p class="text-secondary comment-date">
+      {{
+        moment(post.createdAt)
+          .locale('fr')
+          .format('LL')
+      }}
+    </p>
   </div>
 </template>
 
@@ -99,5 +112,10 @@ export default {
   border-radius: 0.25rem;
   outline: none;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.comment-date {
+  margin-left: 70px;
+  font-size: 0.8rem;
 }
 </style>
