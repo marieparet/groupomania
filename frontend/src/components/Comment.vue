@@ -35,9 +35,9 @@
     </div>
     <p class="text-secondary comment-date">
       {{
-        moment(post.createdAt)
+        moment(comment.createdAt)
           .locale('fr')
-          .format('LL')
+          .fromNow()
       }}
     </p>
   </div>

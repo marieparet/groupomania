@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-button
-      v-if="list.length === 1 && count > 1"
+      v-if="count > 1 && !allCommentsDisplayed"
       @click="fetchAllComments"
       class="display-comments mb-3 d-flex text-left"
       ><span v-if="count > 2"
@@ -17,6 +17,7 @@
         :post="post"
       />
     </div>
+
     <CreateComment @commentCreated="appendComment" :post="post" />
   </div>
 </template>
@@ -39,7 +40,8 @@ export default {
   data () {
     return {
       list: [],
-      count: null
+      count: null,
+      allCommentsDisplayed: false
     }
   },
   async mounted () {
@@ -53,6 +55,7 @@ export default {
     async fetchAllComments () {
       const res = await apiClient.get(`api/posts/${this.post.id}/comments/`)
       this.list = res.comments.rows
+      this.allCommentsDisplayed = true
     },
     appendComment (comment) {
       this.list.push(comment)
@@ -76,7 +79,7 @@ export default {
   background-color: rgba(108, 117, 125, 0.1);
   padding: 0.375rem 0.75rem;
   border-radius: 0.25rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
 }
 
 .display-comments {
