@@ -56,6 +56,10 @@ h1 {
   font-size: 1.7rem;
 }
 
+.card-body {
+  padding-bottom: 0;
+}
+
 .row {
   margin-left: 0;
   margin-right: 0;

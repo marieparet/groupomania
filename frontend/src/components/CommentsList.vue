@@ -1,5 +1,14 @@
 <template>
   <div>
+    <b-button
+      v-if="list.length === 1 && count > 1"
+      @click="fetchAllComments"
+      class="display-comments mb-2 d-flex text-left"
+      ><span v-if="count > 2"
+        >Afficher {{ count - 1 }} autres commentaires</span
+      >
+      <span v-else>Afficher {{ count - 1 }} autre commentaire</span></b-button
+    >
     <div class="comment mb-2 text-left" v-for="comment in list">
       <Comment
         @commentDeleted="removeComment"
@@ -29,10 +38,22 @@ export default {
   props: ['post'],
   data () {
     return {
-      list: this.post.Comments || []
+      list: [],
+      count: null
     }
   },
+  async mounted () {
+    const res = await apiClient.get(
+      `api/posts/${this.post.id}/comments/?limit=1`
+    )
+    this.list = res.comments.rows
+    this.count = res.comments.count
+  },
   methods: {
+    async fetchAllComments () {
+      const res = await apiClient.get(`api/posts/${this.post.id}/comments/`)
+      this.list = res.comments.rows
+    },
     appendComment (comment) {
       this.list.push(comment)
     },
@@ -55,6 +76,19 @@ export default {
   background-color: rgba(108, 117, 125, 0.1);
   padding: 0.375rem 0.75rem;
   border-radius: 0.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.display-comments {
+  color: #747474;
+  &:hover {
+    text-decoration: underline;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    color: #747474 !important;
+    background: none !important;
+  }
 }
 </style>

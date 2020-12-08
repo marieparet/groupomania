@@ -169,7 +169,9 @@ export default {
 .like-btn {
   color: #747474;
   font-weight: normal;
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     color: #747474 !important;
     font-weight: normal;
     background: none !important;

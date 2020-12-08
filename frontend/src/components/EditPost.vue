@@ -91,6 +91,7 @@ export default {
   font-weight: 500;
   display: block;
   width: 100%;
+  margin: 0 1rem 1rem 1rem;
 }
 
 .modal-content {

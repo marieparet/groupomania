@@ -29,13 +29,22 @@ exports.getOneComment = (req, res, next) => {
 
 exports.getAllComments = (req, res, next) => {
   const options = {
+    where: { postId: req.params.postId },
     include: db.User,
-
-    order: [['createdAt', 'DESC']]
+    order: [['createdAt', 'ASC']]
   }
 
-  Comments.findAll(options)
-    .then(comments => res.status(200).json({ comments }))
+  if (req.query.limit) {
+    options.order = [['createdAt', 'DESC']]
+    options.limit = parseInt(req.query.limit)
+  }
+
+  Comments.findAndCountAll(options)
+    .then(comments => {
+      console.log(comments.count)
+      console.log(comments.rows)
+      res.status(200).json({ comments })
+    })
     .catch(error => res.status(400).json({ error }))
 }
 

@@ -174,9 +174,14 @@ export default {
   background-color: rgba(253, 45, 6, 0.8);
   color: white;
   border-radius: 1rem;
+  margin-bottom: 1rem;
   &:hover {
     background-color: rgb(253, 45, 6) !important;
     color: white !important;
   }
+}
+
+.card-body {
+  padding-bottom: 0;
 }
 </style>
