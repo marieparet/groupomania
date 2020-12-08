@@ -18,18 +18,23 @@
     >
       <b-card class="border-0" @click="toggleActions">
         <p class="card-text">
-          <b-button v-if="editingPost" block v-b-modal="`modal-${elementId}`">
+          <b-button
+            class="text-left w-100"
+            v-if="editingPost"
+            block
+            v-b-modal="`modal-${elementId}`"
+          >
             <b-icon icon="pencil" class="mr-3"></b-icon
             ><span>{{ modifyText }}</span></b-button
           >
-          <b-button v-else @click="clickedEditButton">
+          <b-button class="text-left w-100" v-else @click="clickedEditButton">
             <b-icon icon="pencil" class="mr-3"></b-icon
             ><span>{{ modifyText }}</span></b-button
           >
           <slot></slot>
         </p>
         <p class="card-text">
-          <b-button block v-on:click="onDelete"
+          <b-button class="text-left w-100" block v-on:click="onDelete"
             ><b-icon icon="trash" class="mr-3"></b-icon>
             <span>{{ deleteText }}</span></b-button
           >

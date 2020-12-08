@@ -16,17 +16,28 @@
       >
         <b-card class="border-0">
           <p class="card-text">
-            <b-button block @click="changeOrReloadPage('Profile')"
-              >Voir mon profil</b-button
+            <b-button
+              class="text-left"
+              block
+              @click="changeOrReloadPage('Profile')"
+              ><b-icon icon="person" class="mr-2"></b-icon>Voir mon
+              profil</b-button
             >
           </p>
           <p class="card-text">
-            <b-button block @click="changeOrReloadPage('Posts')"
-              >Voir la page d'accueil</b-button
+            <b-button
+              class="text-left"
+              block
+              @click="changeOrReloadPage('Posts')"
+              ><b-icon icon="house" class="mr-2"></b-icon>Voir la page
+              d'accueil</b-button
             >
           </p>
           <p class="card-text">
-            <b-button block @click="logout">Se déconnecter</b-button>
+            <b-button class="text-left" block @click="logout">
+              <b-icon icon="box-arrow-right" class="mr-2"></b-icon>
+              Se déconnecter</b-button
+            >
           </p>
         </b-card>
       </b-collapse>

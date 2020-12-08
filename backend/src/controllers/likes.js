@@ -21,3 +21,11 @@ exports.getLikeOnOnePost = async (req, res, next) => {
   })
   res.status(200).json({ like: existingLike ? true : false })
 }
+
+exports.getAllLikesOfOnePost = async (req, res, next) => {
+  const allLikes = await Likes.findAll({
+    where: { postId: req.params.postId },
+    include: db.User
+  })
+  res.status(200).json({ allLikes })
+}
