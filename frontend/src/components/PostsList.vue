@@ -58,6 +58,9 @@ export default {
   &__image {
     max-width: 100%;
     max-height: 100%;
+    &:focus {
+      outline: none;
+    }
   }
 }
 

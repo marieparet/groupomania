@@ -23,7 +23,23 @@
       <b-card-text class="text-left mt-3">{{ post.content }}</b-card-text>
 
       <span class="post justify-content-center mb-4">
-        <img class="post__image" :src="post.imageUrl" />
+        <img
+          v-b-modal="`modal-photo-${post.id}`"
+          class="post__image"
+          :src="post.imageUrl"
+        />
+        <b-modal
+          :id="`modal-photo-${post.id}`"
+          size="xl"
+          class="modal-photo"
+          header-class="header-style"
+        >
+          <div slot="modal-title"></div>
+          <div class="d-flex align-items-center justify-content-center">
+            <img class="modal-photo__img" :src="post.imageUrl" alt="" />
+          </div>
+          <div slot="modal-footer"></div>
+        </b-modal>
       </span>
 
       <LikesList :post="post" :likesCount="likesCount" />
@@ -178,10 +194,15 @@ export default {
   }
 }
 
-.svg-container {
-  border-radius: 100%;
-  background-color: rgb(32, 120, 244);
-  width: 25px;
-  height: 25px;
+.modal-photo {
+  &__img {
+    max-width: 100%;
+    max-height: calc(100vh - 110px);
+  }
+}
+
+.header-style {
+  padding-bottom: 0;
+  border-bottom: none;
 }
 </style>
