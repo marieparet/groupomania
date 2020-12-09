@@ -4,7 +4,7 @@
       v-b-modal="`modal-likes-${post.id}`"
       @click="fetchLikesList"
       v-if="likesCount > 0"
-      class="like-btn d-flex mb-3 ml-2 text-left"
+      class="like-btn d-flex align-items-center mb-3 ml-2 text-left"
     >
       <div
         class="svg-container d-flex justify-content-center align-items-center"
@@ -16,7 +16,7 @@
           />
         </svg>
       </div>
-      <span class="ml-2">{{ likesCount }}</span>
+      <span class="likes-number ml-2">{{ likesCount }}</span>
     </b-button>
     <b-modal :id="`modal-likes-${post.id}`" :title="`${likesCount} J'aime`">
       <div class="d-flex align-items-center" v-for="like in likesList">
@@ -74,6 +74,17 @@ export default {
 .modal-footer {
   padding: 0;
   border-top: none;
+}
+
+.likes-number {
+  font-size: 14px;
+}
+
+.svg-container {
+  border-radius: 100%;
+  background-color: rgb(32, 120, 244);
+  width: 25px;
+  height: 25px;
 }
 
 .user-picture {

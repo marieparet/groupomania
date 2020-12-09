@@ -100,6 +100,9 @@ export default {
 
 .form-control {
   border: 1px solid rgba(192, 192, 192, 0.5);
+  &:focus {
+    border: none;
+  }
 }
 
 .profile-picture {

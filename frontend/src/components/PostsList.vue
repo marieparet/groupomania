@@ -54,7 +54,7 @@ export default {
   display: block;
   overflow: hidden;
   width: 100%;
-  height: 300px;
+  height: 350px;
   &__image {
     max-width: 100%;
     max-height: 100%;

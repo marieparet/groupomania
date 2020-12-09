@@ -3,7 +3,7 @@
     <nav>
       <b-button
         @click="toggleActions"
-        class="account d-flex position-absolute justify-content-between align-items-center"
+        class="account profile-btn d-flex position-absolute justify-content-between align-items-center"
       >
         <span>{{ userData.firstName }}</span>
         <ProfileImage :src="userData.imageUrl" customClass="account__img" />
@@ -94,6 +94,10 @@ export default {
     margin-left: 8px;
     border: none;
   }
+}
+
+.profile-btn:hover {
+  background-color: rgba(108, 117, 125, 0.2) !important;
 }
 
 #profile-collapsed {

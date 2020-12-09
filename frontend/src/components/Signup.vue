@@ -5,7 +5,7 @@
         <b-col cols="6" md="4">
           <b-card class="border-0 shadow p-3 mb-5 mt-3 bg-white rounded">
             <div class="pt-sm-3 pt-md-0">
-              <b-card-text class="h4 mt-2">S'inscrire</b-card-text>
+              <b-card-text class="h4">S'inscrire</b-card-text>
               <b-form>
                 <b-form-group>
                   <b-form-input
@@ -13,43 +13,50 @@
                     type="text"
                     placeholder="Prénom"
                     v-model="input.firstName"
-                    class="text-dark mb-2 mt-4 pl-3 w-100"
+                    class="account-input text-dark mb-2 mt-4 pl-3 w-100"
                   ></b-form-input>
                   <b-form-input
                     id="lastName"
                     type="text"
                     placeholder="Nom"
                     v-model="input.lastName"
-                    class="text-dark mb-2 pl-3 w-100"
+                    class="account-input text-dark mb-2 pl-3 w-100"
                   ></b-form-input>
                   <b-form-input
                     id="email"
                     type="email"
                     placeholder="Email"
                     v-model="input.email"
-                    class="text-dark mb-2 pl-3 w-100"
+                    class="account-input text-dark mb-2 pl-3 w-100"
                   ></b-form-input>
                   <b-form-input
                     id="password"
                     type="password"
                     placeholder="Mot de passe"
                     v-model="input.password"
-                    class="text-dark mb-2 pl-3 w-100"
+                    class="account-input text-dark mb-2 pl-3 w-100"
                   ></b-form-input>
                 </b-form-group>
 
                 <b-button
                   v-on:click.stop="signup()"
                   type="submit"
-                  variant="danger"
                   id="login-button"
-                  class="font-weight-bold"
+                  class="account-btn font-weight-bold"
                 >
                   Inscription
                 </b-button>
                 <p class="my-3 text-danger">{{ errorMessage }}</p>
               </b-form>
             </div>
+            <div class="line my-3"></div>
+
+            <p class="font-small grey-text d-flex justify-content-center mb-1">
+              Vous avez déjà un compte ?
+              <router-link to="/login" class="font-weight-bold ml-1">
+                Se connecter</router-link
+              >
+            </p>
           </b-card>
         </b-col>
       </b-row>
@@ -109,24 +116,5 @@ export default {
 a {
   text-decoration: none;
   color: #2c3e50 !important;
-}
-
-#firstName,
-#lastName,
-#email,
-#password {
-  &:-webkit-autofill {
-    border: 1px solid rgba(225, 83, 97, 0.5);
-    -webkit-text-fill-color: #212529;
-    -webkit-box-shadow: 0 0 0px 1000px rgba(225, 83, 97, 0.2) inset;
-    transition: background-color 5000s ease-in-out 0s;
-  }
-
-  &:focus {
-    border: 1px solid rgba(209, 37, 55, 0.5);
-    border-radius: 6px;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5);
-  }
 }
 </style>
