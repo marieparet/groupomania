@@ -2,7 +2,14 @@
   <div>
     <b-form-group>
       <div class="d-flex align-items-center">
-        <ProfileImage :src="userData.imageUrl" customClass="profile-picture" />
+        <div class="d-flex mr-3 mt-2">
+          <router-link :to="{ name: 'Profile' }">
+            <ProfileImage
+              :src="userData.imageUrl"
+              customClass="profile-picture"
+              divCustomClass="div-post-picture"
+          /></router-link>
+        </div>
         <b-form-textarea
           :value="value"
           @input="updateValue"
@@ -103,13 +110,6 @@ export default {
   &:focus {
     border: none;
   }
-}
-
-.profile-picture {
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-  margin-bottom: 1rem;
 }
 
 .line {

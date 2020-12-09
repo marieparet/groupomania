@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav" class="mb-3">
       <router-link to="/">
         <img
           id="logo"
@@ -26,15 +26,6 @@
 
   #logo {
     max-width: 300px;
-  }
-
-  a {
-    text-decoration: none;
-    font-weight: bold;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
 }
 </style>

@@ -1,14 +1,22 @@
 <template>
   <div>
     <div class="d-flex align-items-center position-relative">
-      <ProfileImage
-        :src="comment.User.imageUrl"
-        customClass="profile-picture"
-      />
+      <router-link
+        :to="{ name: 'UserProfile', params: { userId: comment.User.id } }"
+        ><div class="d-flex text-center mr-2 mt-2">
+          <ProfileImage
+            :src="comment.User.imageUrl"
+            customClass="comment-profile-picture"
+            divCustomClass="div-comment-picture"
+          /></div
+      ></router-link>
       <div class="comment-box">
-        <p class="mb-0 font-weight-bold">
-          {{ comment.User.firstName }} {{ comment.User.lastName }}
-        </p>
+        <router-link
+          :to="{ name: 'UserProfile', params: { userId: comment.User.id } }"
+          ><p class="mb-0 font-weight-bold">
+            {{ comment.User.firstName }} {{ comment.User.lastName }}
+          </p></router-link
+        >
         <input
           v-if="isEditing"
           ref="inputContent"
@@ -115,7 +123,7 @@ export default {
 }
 
 .comment-date {
-  margin-left: 70px;
+  margin-left: 58px;
   font-size: 0.8rem;
 }
 </style>

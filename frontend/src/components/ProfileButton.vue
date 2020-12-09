@@ -6,7 +6,11 @@
         class="account profile-btn d-flex position-absolute justify-content-between align-items-center"
       >
         <span>{{ userData.firstName }}</span>
-        <ProfileImage :src="userData.imageUrl" customClass="account__img" />
+        <ProfileImage
+          :src="userData.imageUrl"
+          customClass="account__img"
+          divCustomClass="div-account-img"
+        />
       </b-button>
       <b-collapse
         id="profile-collapsed"
@@ -88,12 +92,18 @@ export default {
   background-color: rgba(108, 117, 125, 0.1);
   border-radius: 40px;
   &__img {
-    width: 30px;
     height: 30px;
-    border-radius: 100%;
-    margin-left: 8px;
-    border: none;
+    transform: scale(1.3);
   }
+}
+
+.div-account-img {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 100%;
+  margin-left: 8px;
+  background: black;
 }
 
 .profile-btn:hover {

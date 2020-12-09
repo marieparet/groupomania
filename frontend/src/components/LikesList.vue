@@ -19,9 +19,20 @@
       <span class="likes-number ml-2">{{ likesCount }}</span>
     </b-button>
     <b-modal :id="`modal-likes-${post.id}`" :title="`${likesCount} J'aime`">
-      <div class="d-flex align-items-center" v-for="like in likesList">
-        <ProfileImage :src="like.User.imageUrl" customClass="user-picture" />
-        <p>{{ like.User.firstName }} {{ like.User.lastName }}</p>
+      <div v-for="like in likesList">
+        <router-link
+          :to="{ name: 'UserProfile', params: { userId: like.User.id } }"
+          ><div class="d-flex align-items-center">
+            <div class="d-flex text-center">
+              <ProfileImage
+                :src="like.User.imageUrl"
+                customClass="user-picture"
+                divCustomClass="div-user-picture"
+              />
+            </div>
+            <p>{{ like.User.firstName }} {{ like.User.lastName }}</p>
+          </div></router-link
+        >
       </div>
       <div slot="modal-footer"></div>
     </b-modal>
@@ -53,6 +64,16 @@ export default {
 </script>
 
 <style lang="scss">
+a {
+  text-decoration: none;
+  color: #212529;
+  &:hover,
+  &:visited {
+    color: #212529;
+    text-decoration: underline;
+  }
+}
+
 .modal-body {
   padding: 1rem 1rem 0 1rem;
 }
@@ -86,12 +107,18 @@ export default {
   width: 25px;
   height: 25px;
 }
-
-.user-picture {
+.div-user-picture {
   width: 30px;
   height: 30px;
+  overflow: hidden;
   border-radius: 100%;
   margin-bottom: 1rem;
-  margin-right: 1rem;
+  margin-right: 0.7rem;
+  background: black;
+}
+
+.user-picture {
+  height: 30px;
+  transform: scale(1.3);
 }
 </style>

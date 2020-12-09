@@ -8,10 +8,14 @@
           class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
         >
           <b-form @submit="editUser">
-            <ProfileImage
-              :src="url || userData.imageUrl"
-              customClass="profile-main-picture"
-            />
+            <div class="d-flex align-items-center flex-column">
+              <ProfileImage
+                @click="triggerInput"
+                :src="url || userData.imageUrl"
+                customClass="profile-main-picture"
+                divCustomClass="div-main-picture"
+              />
+            </div>
             <b-form-group>
               <b-button
                 class="btn-block w-50 mx-auto mb-3 justify-content-center"
@@ -159,11 +163,18 @@ export default {
   margin-right: 0;
 }
 
-.profile-main-picture {
+.div-main-picture {
   width: 100px;
   height: 100px;
+  overflow: hidden;
   border-radius: 100%;
   margin-bottom: 1rem;
+  background: black;
+}
+
+.profile-main-picture {
+  height: 100px;
+  transform: scale(1.3);
 }
 
 .custom-file-label {

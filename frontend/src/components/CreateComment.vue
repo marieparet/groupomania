@@ -1,7 +1,14 @@
 <template>
   <div>
     <div class="d-flex align-items-center mt-3">
-      <ProfileImage :src="userData.imageUrl" customClass="profile-picture" />
+      <div class="d-flex mr-2 mb-2">
+        <router-link :to="{ name: 'Profile' }">
+          <ProfileImage
+            :src="userData.imageUrl"
+            customClass="comment-profile-picture"
+            divCustomClass="div-comment-picture"
+        /></router-link>
+      </div>
       <b-form class="w-100" @submit="createComment">
         <b-form-group>
           <b-form-textarea
@@ -61,5 +68,18 @@ export default {
 <style lang="scss">
 .comment-area {
   background-color: rgba(108, 117, 125, 0.1);
+}
+.div-comment-picture {
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 100%;
+  margin-bottom: 0.5rem;
+  background: black;
+}
+
+.comment-profile-picture {
+  height: 45px;
+  transform: scale(1.3);
 }
 </style>

@@ -1,6 +1,5 @@
 const db = require('../../src/models')
 const jwt = require('jsonwebtoken')
-const user = require('../models/user')
 const { User } = db.sequelize.models
 
 const newToken = user => {
@@ -52,4 +51,10 @@ exports.editUser = (req, res, next) => {
 
   console.log(userObject)
   req.user.update(userObject).then(user => res.status(200).json({ user }))
+}
+
+exports.getOneUser = (req, res, next) => {
+  User.findOne({ where: { id: req.params.id } })
+    .then(user => res.status(200).json({ user }))
+    .catch(error => res.status(404).json({ error }))
 }

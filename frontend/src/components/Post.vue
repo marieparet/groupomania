@@ -4,11 +4,23 @@
       class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
     >
       <div class="d-flex align-items-center">
-        <ProfileImage :src="post.User.imageUrl" customClass="profile-picture" />
+        <div class="d-flex mr-3">
+          <router-link
+            :to="{ name: 'UserProfile', params: { userId: post.User.id } }"
+          >
+            <ProfileImage
+              :src="post.User.imageUrl"
+              customClass="profile-picture"
+              divCustomClass="div-post-picture"
+          /></router-link>
+        </div>
         <div class="text-left">
-          <p class="font-weight-bold mb-0">
-            {{ post.User.firstName }} {{ post.User.lastName }}
-          </p>
+          <router-link
+            :to="{ name: 'UserProfile', params: { userId: post.User.id } }"
+            ><p class="font-weight-bold mb-0">
+              {{ post.User.firstName }} {{ post.User.lastName }}
+            </p></router-link
+          >
           <p class="text-secondary">
             {{
               moment(post.createdAt)
@@ -142,12 +154,18 @@ export default {
 </script>
 
 <style lang="scss">
-.profile-picture {
+.div-post-picture {
   width: 50px;
   height: 50px;
+  overflow: hidden;
   border-radius: 100%;
   margin-bottom: 1rem;
-  margin-right: 1rem;
+  background: black;
+}
+
+.profile-picture {
+  height: 50px;
+  transform: scale(1.3);
 }
 
 .btn-block + .btn-block {

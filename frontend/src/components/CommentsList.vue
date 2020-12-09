@@ -3,7 +3,7 @@
     <b-button
       v-if="count > 1 && !allCommentsDisplayed"
       @click="fetchAllComments"
-      class="display-comments mb-3 d-flex text-left"
+      class="display-comments mb-2 pt-0 d-flex text-left"
       ><span v-if="count > 2"
         >Afficher {{ count - 1 }} autres commentaires</span
       >
@@ -79,7 +79,7 @@ export default {
   background-color: rgba(108, 117, 125, 0.1);
   padding: 0.375rem 0.75rem;
   border-radius: 0.25rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0;
 }
 
 .display-comments {
