@@ -42,7 +42,7 @@ export default {
       const remainingOffset = totalHeight - scrollHeight
 
       if (remainingOffset < 300) {
-        this.loadMore()
+        this.loadMore(this.queryParams)
       }
     }
   },
