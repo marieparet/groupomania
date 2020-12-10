@@ -80,6 +80,6 @@ export default {
 
 .comment-profile-picture {
   height: 45px;
-  transform: scale(1.3);
+  transform: scale(1.35);
 }
 </style>

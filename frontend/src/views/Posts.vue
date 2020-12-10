@@ -2,10 +2,10 @@
   <div id="posts">
     <ProfileButton />
 
-    <b-row class="text-center justify-content-center">
-      <b-col cols="12">
+    <b-row class="align-items-center text-center justify-content-center">
+      <b-col cols="12" lg="6">
         <b-card
-          class="w-50 mx-auto mt-3 mb-5 border-0 shadow px-3 pt-4 bg-white rounded"
+          class="mx-auto mt-3 mb-5 border-0 shadow px-lg-3 pt-lg-4 bg-white rounded"
         >
           <CreatePost @displayNotification="displayNotification" />
         </b-card>
@@ -52,12 +52,18 @@ export default {
 </script>
 
 <style lang="scss">
-h1 {
-  font-size: 1.7rem;
-}
-
 .card-body {
   padding-bottom: 0;
+}
+
+@media screen and (min-width: 280px) and (max-width: 769px) {
+  .card-body {
+    padding: 0.7rem;
+  }
+
+  .shadow {
+    box-shadow: 0rem 0.2rem 0.5rem rgba(0, 0, 0, 0.08) !important;
+  }
 }
 
 .row {

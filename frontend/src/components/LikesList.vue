@@ -101,6 +101,16 @@ a {
   font-size: 14px;
 }
 
+@media screen and (min-width: 280px) and (max-width: 767px) {
+  .modal-title {
+    font-size: 14px;
+  }
+
+  .likes-number {
+    font-size: 12px;
+  }
+}
+
 .svg-container {
   border-radius: 100%;
   background-color: rgb(32, 120, 244);
@@ -119,6 +129,6 @@ a {
 
 .user-picture {
   height: 30px;
-  transform: scale(1.3);
+  transform: scale(1.35);
 }
 </style>

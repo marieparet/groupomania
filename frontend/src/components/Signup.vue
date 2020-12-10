@@ -2,9 +2,9 @@
   <div class="page-container">
     <b-container fluid>
       <b-row class="text-center justify-content-center">
-        <b-col cols="6" md="4">
+        <b-col cols="6" lg="4">
           <b-card class="border-0 shadow p-3 mb-5 mt-3 bg-white rounded">
-            <div class="pt-sm-3 pt-md-0">
+            <div class="pt-sm-3 pt-lg-0">
               <b-card-text class="h4">S'inscrire</b-card-text>
               <b-form>
                 <b-form-group>

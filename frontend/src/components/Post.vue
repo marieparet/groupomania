@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-card
-      class="w-50 mx-auto my-3 border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
+      class="mx-auto my-3 border-0 shadow p-0 p-lg-3 mb-5 mt-3 bg-white rounded"
     >
       <div class="d-flex align-items-center">
         <div class="d-flex mr-3">
@@ -165,7 +165,7 @@ export default {
 
 .profile-picture {
   height: 50px;
-  transform: scale(1.3);
+  transform: scale(1.35);
 }
 
 .btn-block + .btn-block {

@@ -3,9 +3,9 @@
     <nav>
       <b-button
         @click="toggleActions"
-        class="account profile-btn d-flex position-absolute justify-content-between align-items-center"
+        class="account profile-btn d-flex position-absolute justify-content-center justify-content-lg-between align-items-center"
       >
-        <span>{{ userData.firstName }}</span>
+        <span class="d-none d-lg-block">{{ userData.firstName }}</span>
         <ProfileImage
           :src="userData.imageUrl"
           customClass="account__img"
@@ -84,7 +84,7 @@ export default {
 
 <style lang="scss">
 .account {
-  top: 30px;
+  top: 25px;
   right: 45px;
   height: 45px;
   padding: 5px 5px 5px 16px;
@@ -115,5 +115,28 @@ export default {
   top: 74px;
   right: 44px;
   z-index: 1;
+}
+
+@media screen and (min-width: 280px) and (max-width: 769px) {
+  .account {
+    top: 28px;
+    right: 20px;
+    height: 25px;
+    padding: 0;
+    &__img {
+      height: 35px;
+    }
+  }
+
+  .div-account-img {
+    width: 35px;
+    height: 35px;
+    margin-left: 0;
+  }
+
+  #profile-collapsed {
+    top: 52px;
+    right: 15px;
+  }
 }
 </style>

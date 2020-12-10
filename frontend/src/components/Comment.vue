@@ -126,4 +126,10 @@ export default {
   margin-left: 58px;
   font-size: 0.8rem;
 }
+
+@media screen and (min-width: 280px) and (max-width: 767px) {
+  .comment-date {
+    font-size: 0.6rem;
+  }
+}
 </style>

@@ -65,11 +65,17 @@ export default {
 }
 .profile-main-picture {
   height: 120px;
-  transform: scale(1.3);
+  transform: scale(1.35);
 }
 
 .user-name {
   font-size: 20px;
   font-weight: bold;
+}
+
+@media screen and (min-width: 280px) and (max-width: 767px) {
+  .user-name {
+    font-size: 17px;
+  }
 }
 </style>
