@@ -115,7 +115,9 @@ a {
   border-radius: 1rem;
   border: none;
   margin-bottom: 1rem;
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: rgb(253, 45, 6) !important;
     color: white !important;
   }

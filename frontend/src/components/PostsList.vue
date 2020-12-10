@@ -4,14 +4,6 @@
       <b-col cols="12" v-for="post in posts.list" :key="post.id">
         <Post :post="post" />
       </b-col>
-
-      <b-button
-        v-on:click="loadMore(queryParams)"
-        v-if="!posts.isOnLastPage || posts.list.length"
-        class="load-btn d-block"
-      >
-        <span>Charger plus</span>
-      </b-button>
     </b-row>
 
     <p class="mx-2">{{ posts.errorMessage }}</p>
@@ -33,8 +25,26 @@ export default {
   async mounted () {
     await this.initializePostStore(this.queryParams)
   },
+
+  created () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+
   methods: {
-    ...mapActions(['initializePostStore', 'loadMore'])
+    ...mapActions(['initializePostStore', 'loadMore']),
+
+    handleScroll (event) {
+      const totalHeight = document.documentElement.scrollHeight
+      const scrollHeight = window.scrollY + window.innerHeight
+      const remainingOffset = totalHeight - scrollHeight
+
+      if (remainingOffset < 300) {
+        this.loadMore()
+      }
+    }
   },
   computed: {
     ...mapState(['posts']),

@@ -115,7 +115,6 @@ export default {
         body = formData
       }
       apiClient.post('api/posts/', body, { isFormData }).then(response => {
-        console.log(response)
         commit('CREATE_POST', response.post)
       })
     }

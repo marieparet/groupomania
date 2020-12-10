@@ -41,8 +41,6 @@ exports.getAllComments = (req, res, next) => {
 
   Comments.findAndCountAll(options)
     .then(comments => {
-      console.log(comments.count)
-      console.log(comments.rows)
       res.status(200).json({ comments })
     })
     .catch(error => res.status(400).json({ error }))
