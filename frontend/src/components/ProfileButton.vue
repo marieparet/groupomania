@@ -1,51 +1,46 @@
 <template>
   <div>
-    <nav>
-      <b-button
-        @click="toggleActions"
-        class="account profile-btn d-flex position-absolute justify-content-center justify-content-lg-between align-items-center"
-      >
-        <span class="d-none d-lg-block">{{ userData.firstName }}</span>
-        <ProfileImage
-          :src="userData.imageUrl"
-          customClass="account__img"
-          divCustomClass="div-account-img"
-        />
-      </b-button>
-      <b-collapse
-        id="profile-collapsed"
-        v-bind:class="
-          `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
-        "
-      >
-        <b-card class="border-0">
-          <p class="card-text">
-            <b-button
-              class="text-left"
-              block
-              @click="changeOrReloadPage('Profile')"
-              ><b-icon icon="person" class="mr-2"></b-icon>Voir mon
-              profil</b-button
-            >
-          </p>
-          <p class="card-text">
-            <b-button
-              class="text-left"
-              block
-              @click="changeOrReloadPage('Posts')"
-              ><b-icon icon="house" class="mr-2"></b-icon>Voir la page
-              d'accueil</b-button
-            >
-          </p>
-          <p class="card-text">
-            <b-button class="text-left" block @click="logout">
-              <b-icon icon="box-arrow-right" class="mr-2"></b-icon>
-              Se déconnecter</b-button
-            >
-          </p>
-        </b-card>
-      </b-collapse>
-    </nav>
+    <b-button
+      @click="toggleActions"
+      class="account-btn d-flex position-absolute justify-content-center justify-content-lg-between align-items-center"
+    >
+      <span class="d-none d-lg-block">{{ userData.firstName }}</span>
+      <ProfileImage
+        :src="userData.imageUrl"
+        customClass="account-btn__img"
+        divCustomClass="div-account-img"
+      />
+    </b-button>
+    <b-collapse
+      id="profile-collapsed"
+      v-bind:class="
+        `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
+      "
+    >
+      <b-card class="border-0">
+        <p class="card-text">
+          <b-button
+            class="text-left"
+            block
+            @click="changeOrReloadPage('Profile')"
+            ><b-icon icon="person" class="mr-2"></b-icon>Voir mon
+            profil</b-button
+          >
+        </p>
+        <p class="card-text">
+          <b-button class="text-left" block @click="changeOrReloadPage('Posts')"
+            ><b-icon icon="house" class="mr-2"></b-icon>Voir la page
+            d'accueil</b-button
+          >
+        </p>
+        <p class="card-text">
+          <b-button class="text-left" block @click="logout">
+            <b-icon icon="box-arrow-right" class="mr-2"></b-icon>
+            Se déconnecter</b-button
+          >
+        </p>
+      </b-card>
+    </b-collapse>
   </div>
 </template>
 
@@ -83,7 +78,7 @@ export default {
 </script>
 
 <style lang="scss">
-.account {
+.account-btn {
   top: 25px;
   right: 45px;
   height: 45px;
@@ -91,6 +86,10 @@ export default {
   box-shadow: 0px 1px 1px 1px rgba(204, 204, 204, 0.2);
   background-color: rgba(108, 117, 125, 0.1) !important;
   border-radius: 40px;
+  &:hover,
+  &:visited {
+    background-color: rgba(108, 117, 125, 0.2) !important;
+  }
   &__img {
     height: 30px;
     transform: scale(1.3);
@@ -106,19 +105,14 @@ export default {
   background: black;
 }
 
-.profile-btn:hover,
-.profile-btn:visited {
-  background-color: rgba(108, 117, 125, 0.2) !important;
-}
-
 #profile-collapsed {
-  top: 74px;
+  top: 68px;
   right: 44px;
   z-index: 1;
 }
 
 @media screen and (min-width: 280px) and (max-width: 769px) {
-  .account {
+  .account-btn {
     top: 28px;
     right: 20px;
     height: 25px;
@@ -137,6 +131,11 @@ export default {
   #profile-collapsed {
     top: 52px;
     right: 15px;
+  }
+
+  .search-bar {
+    top: 69px;
+    left: 29px;
   }
 }
 </style>

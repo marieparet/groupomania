@@ -1,6 +1,9 @@
 <template>
   <div id="posts">
-    <ProfileButton />
+    <div>
+      <UserSearch />
+      <ProfileButton />
+    </div>
 
     <b-row class="align-items-center text-center justify-content-center">
       <b-col cols="12" lg="6">
@@ -17,20 +20,20 @@
 
 <script>
 import { apiClient } from '../services/ApiClient'
-import Signup from '../components/Signup'
 import router from '../router/index'
 import { mapState, mapActions } from 'vuex'
-import EditPost from '../components/EditPost'
 import CreatePost from '../components/CreatePost'
 import PostsList from '../components/PostsList'
 import ProfileButton from '../components/ProfileButton'
+import UserSearch from '../components/UserSearch'
 
 export default {
   name: 'Posts',
   components: {
     CreatePost,
     PostsList,
-    ProfileButton
+    ProfileButton,
+    UserSearch
   },
   data () {
     return {
