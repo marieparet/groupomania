@@ -24,18 +24,18 @@
             block
             v-b-modal="`modal-${elementId}`"
           >
-            <b-icon icon="pencil" class="mr-3"></b-icon
+            <b-icon icon="pencil" class="mr-2 mr-lg-3"></b-icon
             ><span>{{ modifyText }}</span></b-button
           >
           <b-button class="text-left w-100" v-else @click="clickedEditButton">
-            <b-icon icon="pencil" class="mr-3"></b-icon
+            <b-icon icon="pencil" class="mr-2 mr-lg-3"></b-icon
             ><span>{{ modifyText }}</span></b-button
           >
           <slot></slot>
         </p>
         <p class="card-text">
           <b-button class="text-left w-100" block v-on:click="onDelete"
-            ><b-icon icon="trash" class="mr-3"></b-icon>
+            ><b-icon icon="trash" class="mr-2 mr-lg-3"></b-icon>
             <span>{{ deleteText }}</span></b-button
           >
         </p>
@@ -131,5 +131,24 @@ export default {
   visibility: visible;
   opacity: 1;
   transform: scaleY(1);
+}
+
+@media screen and (min-width: 280px) and (max-width: 767px) {
+  .collapsed {
+    .card-body {
+      padding: 0.5rem;
+      box-shadow: 0px 1px 2px 2px rgba(204, 204, 204, 0.2);
+    }
+  }
+
+  .button-collapsed {
+    top: 37px;
+    right: 10px;
+  }
+
+  .post-button {
+    padding: 1px 10px 6px !important;
+    font-size: 15px !important;
+  }
 }
 </style>

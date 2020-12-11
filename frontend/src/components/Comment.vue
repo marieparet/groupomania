@@ -36,14 +36,14 @@
         :shouldDisplay="comment.User.id == userData.id"
         @clickedEditButton="startEditing"
         @onDelete="onDelete"
-        modifyText="Modifier le commentaire"
-        deleteText="Supprimer le commentaire"
+        modifyText="Modifier"
+        deleteText="Supprimer"
       >
       </EditButton>
     </div>
     <p class="text-secondary comment-date">
       {{
-        moment(comment.createdAt)
+        moment(comment.updatedAt)
           .locale('fr')
           .fromNow()
       }}
@@ -93,10 +93,11 @@ export default {
     },
 
     async modifyComment () {
-      await apiClient.put(
+      const res = await apiClient.put(
         `api/posts/${this.post.id}/comments/${this.comment.id}`,
         { content: this.comment.content }
       )
+      this.comment.updatedAt = res.comment.updatedAt
       this.isEditing = false
       this.$emit('displayNotification', 'Commentaire modifié !')
     }
@@ -108,12 +109,11 @@ export default {
 .comment-button {
   position: static !important;
   margin-left: 10px;
-  margin-bottom: 15px;
 }
 
 .collapse-button {
-  right: 181px;
-  top: 43px;
+  right: 232px;
+  top: 35px;
 }
 
 .input-content:focus {
@@ -133,7 +133,13 @@ export default {
   }
 
   .comment-button {
-    margin: 0;
+    margin-bottom: 0;
+    margin-left: 3px;
+  }
+
+  .collapse-button {
+    right: 22px;
+    top: 32px;
   }
 }
 </style>
