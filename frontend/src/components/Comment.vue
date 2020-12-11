@@ -131,5 +131,9 @@ export default {
   .comment-date {
     font-size: 0.6rem;
   }
+
+  .comment-button {
+    margin: 0;
+  }
 }
 </style>

@@ -75,7 +75,20 @@ export default {
 
 @media screen and (min-width: 280px) and (max-width: 767px) {
   .user-name {
-    font-size: 17px;
+    font-size: 16px;
+  }
+
+  .div-picture {
+    width: 95px;
+    height: 95px;
+    overflow: hidden;
+    border-radius: 100%;
+    margin-bottom: 1rem;
+    background: black;
+    box-shadow: 0px 1px 2px 2px rgba(204, 204, 204, 0.5);
+  }
+  .profile-main-picture {
+    height: 95px;
   }
 }
 </style>

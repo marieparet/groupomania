@@ -82,4 +82,15 @@ export default {
   height: 45px;
   transform: scale(1.35);
 }
+
+@media screen and (min-width: 280px) and (max-width: 769px) {
+  .div-comment-picture {
+    width: 38px;
+    height: 38px;
+  }
+
+  .comment-profile-picture {
+    height: 38px;
+  }
+}
 </style>

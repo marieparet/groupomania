@@ -2,7 +2,7 @@
   <div>
     <b-form-group>
       <div class="d-flex align-items-center">
-        <div class="d-flex mr-3 mt-2">
+        <div class="d-flex mr-2 mr-lg-3 mt-2">
           <router-link :to="{ name: 'Profile' }">
             <ProfileImage
               :src="userData.imageUrl"
@@ -16,7 +16,7 @@
           id="content"
           type="text"
           :placeholder="`Que voulez-vous partager, ${userData.firstName} ?`"
-          class="text-dark mb-2 pl-3 w-100"
+          class="text-dark mb-2 mr-2 w-100"
         ></b-form-textarea>
       </div>
       <div
@@ -30,11 +30,11 @@
     <b-form-group>
       <div class="d-flex justify-content-around">
         <button
-          class="create-button btn-block"
+          class="d-flex justify-content-center create-button btn-block"
           @click="triggerInput"
           type="button"
         >
-          <span class="mr-2">Choisir un fichier</span>
+          <span class="mr-2 d-none d-md-block">Choisir un fichier</span>
           <svg
             style="width:24px;height:24px;margin-bottom:5px"
             viewBox="0 0 24 24"
@@ -45,14 +45,12 @@
             />
           </svg>
         </button>
-        <input
-          ref="fileInput"
-          class="d-none"
-          type="file"
-          @change="onFileSelected"
-        />
-        <button v-if="isCreating" class="create-button btn-block" type="submit">
-          <span class="mr-2">Publier</span>
+        <button
+          v-if="isCreating"
+          class="d-flex justify-content-center create-button btn-block"
+          type="submit"
+        >
+          <span class="mr-2 d-none d-md-block">Publier</span>
           <svg
             style="width:24px;height:24px;margin-bottom:5px"
             viewBox="0 0 24 24"
@@ -63,6 +61,12 @@
             />
           </svg>
         </button>
+        <input
+          ref="fileInput"
+          class="d-none"
+          type="file"
+          @change="onFileSelected"
+        />
       </div>
     </b-form-group>
   </div>

@@ -4,7 +4,7 @@
       v-b-modal="`modal-likes-${post.id}`"
       @click="fetchLikesList"
       v-if="likesCount > 0"
-      class="like-btn d-flex align-items-center mb-3 ml-2 text-left"
+      class="like-btn d-flex align-items-center my-1 mt-lg-0 mb-lg-3 ml-2 text-left"
     >
       <div
         class="svg-container d-flex justify-content-center align-items-center"

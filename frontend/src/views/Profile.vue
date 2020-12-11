@@ -5,7 +5,7 @@
     <b-row class="text-center justify-content-center">
       <b-col cols="12" lg="6">
         <b-card
-          class="mx-auto my-3 border-0 shadow p-lg-3 mb-5 mt-3 bg-white rounded"
+          class="mx-auto border-0 shadow p-lg-3 mb-2 mb-lg-5 mt-lg-3 bg-white rounded"
         >
           <b-form @submit="editUser">
             <div class="d-flex align-items-center flex-column">
@@ -18,10 +18,16 @@
             </div>
             <b-form-group>
               <button
-                class="create-button btn-block w-50 mx-auto mb-3 justify-content-center"
+                class="create-button btn-block w-50 mx-auto mb-3 d-flex align-items-center justify-content-center"
                 @click="triggerInput"
+                type="button"
               >
-                <span class="button-text mr-2">Changer ma photo de profil</span>
+                <span class="button-text mr-2 d-none d-md-block"
+                  >Changer ma photo de profil</span
+                >
+                <span class="button-text mr-2 d-md-none d-lg-none d-xl-none"
+                  >Modifier</span
+                >
                 <svg
                   style="width:24px;height:24px;margin-bottom:5px"
                   viewBox="0 0 24 24"
@@ -43,7 +49,7 @@
                 </b-col>
               </div>
               <div class="d-flex align-items-center">
-                <b-col sm="2">
+                <b-col sm="2" class="d-none d-lg-block p-0">
                   <label for="firstName"> Prénom </label>
                 </b-col>
                 <b-col sm="10">
@@ -57,7 +63,7 @@
                 </b-col>
               </div>
               <div class="d-flex align-items-center">
-                <b-col sm="2">
+                <b-col sm="2" class="d-none d-lg-block p-0">
                   <label for="lastName"> Nom </label>
                 </b-col>
                 <b-col sm="10">
@@ -71,7 +77,7 @@
                 </b-col>
               </div>
               <div class="d-flex align-items-center">
-                <b-col sm="2">
+                <b-col sm="2" class="d-none d-lg-block p-0">
                   <label for="email"> Email </label>
                 </b-col>
                 <b-col sm="10">
@@ -200,6 +206,7 @@ export default {
 @media screen and (min-width: 280px) and (max-width: 769px) {
   .card-body {
     padding: 0.7rem;
+    padding-bottom: 0;
   }
 
   .shadow {
@@ -208,6 +215,15 @@ export default {
 
   .create-button {
     width: 100% !important;
+  }
+
+  .div-main-picture {
+    width: 75px;
+    height: 75px;
+  }
+
+  .profile-main-picture {
+    height: 75px;
   }
 }
 </style>

@@ -74,6 +74,12 @@ export default {
   }
 }
 
+@media screen and (min-width: 280px) and (max-width: 769px) {
+  .post {
+    height: 230px;
+  }
+}
+
 .load-btn {
   background-color: rgba(253, 45, 6, 0.8);
   color: white;

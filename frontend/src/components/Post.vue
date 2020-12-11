@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-card
-      class="mx-auto my-3 border-0 shadow p-0 p-lg-3 mb-5 mt-3 bg-white rounded"
+      class="mx-auto border-0 shadow p-0 p-lg-3 mb-2 mt-2 mb-lg-5 mt-lg-3 bg-white rounded"
     >
       <div class="d-flex align-items-center">
         <div class="d-flex mr-3">
@@ -34,7 +34,7 @@
 
       <b-card-text class="text-left mt-3">{{ post.content }}</b-card-text>
 
-      <span class="post justify-content-center mb-4">
+      <span class="post justify-content-center mb-1 mb-lg-4">
         <img
           v-b-modal="`modal-photo-${post.id}`"
           class="post__image"
@@ -166,6 +166,17 @@ export default {
 .profile-picture {
   height: 50px;
   transform: scale(1.35);
+}
+
+@media screen and (min-width: 280px) and (max-width: 769px) {
+  .div-post-picture {
+    width: 42px;
+    height: 42px;
+  }
+
+  .profile-picture {
+    height: 42px;
+  }
 }
 
 .btn-block + .btn-block {

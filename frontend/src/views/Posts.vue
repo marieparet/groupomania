@@ -5,7 +5,7 @@
     <b-row class="align-items-center text-center justify-content-center">
       <b-col cols="12" lg="6">
         <b-card
-          class="mx-auto mt-3 mb-5 border-0 shadow px-lg-3 pt-lg-4 bg-white rounded"
+          class="mx-auto mb-2 mt-lg-3 mb-lg-5 border-0 shadow px-lg-3 pt-lg-4 bg-white rounded"
         >
           <CreatePost @displayNotification="displayNotification" />
         </b-card>
@@ -59,6 +59,7 @@ export default {
 @media screen and (min-width: 280px) and (max-width: 769px) {
   .card-body {
     padding: 0.7rem;
+    padding-bottom: 0;
   }
 
   .shadow {
