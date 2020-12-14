@@ -1,4 +1,5 @@
 const db = require('../../src/models')
+const Sequelize = db.Sequelize
 const jwt = require('jsonwebtoken')
 const { User } = db.sequelize.models
 
@@ -57,4 +58,29 @@ exports.getOneUser = (req, res, next) => {
   User.findOne({ where: { id: req.params.id } })
     .then(user => res.status(200).json({ user }))
     .catch(error => res.status(404).json({ error }))
+}
+
+exports.getAllUsers = (req, res, next) => {
+  const options = {
+    where: Sequelize.where(
+      Sequelize.fn(
+        'concat',
+        Sequelize.col('firstName'),
+        ' ',
+        Sequelize.col('lastName')
+      ),
+      {
+        [Sequelize.Op.like]: `%${req.query.search}%`
+      }
+    )
+  }
+
+  User.findAll(options)
+    .then(users => {
+      res.status(200).json({ users })
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(400).json({ error })
+    })
 }

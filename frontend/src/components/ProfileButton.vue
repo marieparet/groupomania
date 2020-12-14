@@ -132,10 +132,5 @@ export default {
     top: 52px;
     right: 15px;
   }
-
-  .search-bar {
-    top: 69px;
-    left: 29px;
-  }
 }
 </style>
