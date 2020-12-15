@@ -2,6 +2,7 @@
   <div id="posts">
     <div>
       <UserSearch />
+      <Notifications />
       <ProfileButton />
     </div>
 
@@ -26,6 +27,7 @@ import CreatePost from '../components/CreatePost'
 import PostsList from '../components/PostsList'
 import ProfileButton from '../components/ProfileButton'
 import UserSearch from '../components/UserSearch'
+import Notifications from '../components/Notifications'
 
 export default {
   name: 'Posts',
@@ -33,7 +35,8 @@ export default {
     CreatePost,
     PostsList,
     ProfileButton,
-    UserSearch
+    UserSearch,
+    Notifications
   },
   data () {
     return {

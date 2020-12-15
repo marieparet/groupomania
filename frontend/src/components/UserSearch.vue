@@ -125,9 +125,9 @@ export default {
 
   .search-btn-mobile {
     top: 28px;
-    right: 68px;
+    right: 110px;
     color: #747474;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     &:focus {
       outline: none;
     }
