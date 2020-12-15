@@ -1,23 +1,31 @@
 <template>
   <div>
-    <b-button
+    <button
       @click="toggleActions"
       class="notification-btn d-flex position-absolute justify-content-center align-items-center p-0"
     >
       <span
+        v-if="notificationsList.length"
         class="notifications-number position-absolute d-flex justify-content-center align-items-center"
-        >4</span
+        >{{ notificationsList.length }}</span
       >
       <b-icon icon="bell-fill"></b-icon>
-    </b-button>
+    </button>
     <b-collapse
+      v-if="notificationsList.length"
       id="notification-collapsed"
       v-bind:class="
         `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
       "
     >
       <b-card class="border-0">
-        <p class="card-text">bonjour</p>
+        <div v-for="notification in notificationsList">
+          <router-link to="#" v-scroll-to="`#post-${notification.postId}`">
+            <p class="card-text text-left py-2">
+              {{ notification.content }}
+            </p></router-link
+          >
+        </div>
       </b-card>
     </b-collapse>
   </div>
@@ -36,9 +44,13 @@ export default {
   props: {},
   data () {
     return {
-      userData: JSON.parse(localStorage.getItem('userData')),
-      areActionsVisible: false
+      areActionsVisible: false,
+      notificationsList: []
     }
+  },
+  async mounted () {
+    const res = await apiClient.get(`api/notifications`)
+    this.notificationsList = res.notifications
   },
   methods: {
     toggleActions () {
@@ -50,7 +62,7 @@ export default {
 
 <style lang="scss">
 .notification-btn {
-  top: 26px;
+  top: 27px;
   right: 175px;
   box-shadow: 0px 1px 1px 1px rgba(204, 204, 204, 0.2);
   background-color: rgba(108, 117, 125, 0.1) !important;
@@ -60,6 +72,9 @@ export default {
   border: none;
   &:hover {
     background-color: rgba(108, 117, 125, 0.2) !important;
+  }
+  &:focus {
+    outline: none;
   }
   .notifications-number {
     top: -8px;
@@ -75,7 +90,7 @@ export default {
 
 #notification-collapsed {
   top: 68px;
-  right: 174px;
+  right: 177px;
   z-index: 1;
 }
 

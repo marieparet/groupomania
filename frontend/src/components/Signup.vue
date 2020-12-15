@@ -38,14 +38,14 @@
                   ></b-form-input>
                 </b-form-group>
 
-                <b-button
+                <button
                   v-on:click.stop="signup()"
                   type="submit"
                   id="signup-button"
                   class="account-btn font-weight-bold"
                 >
                   Inscription
-                </b-button>
+                </button>
                 <p class="my-3 text-danger">{{ errorMessage }}</p>
               </b-form>
             </div>
@@ -119,16 +119,18 @@ a {
 }
 
 .account-btn {
-  background-color: rgba(253, 45, 6, 0.8) !important;
-  color: white !important;
+  background-color: rgba(253, 45, 6, 0.8);
+  color: white;
   border-radius: 1rem;
   border: none;
   margin-bottom: 1rem;
+  padding: 0.375rem 0.75rem;
   &:hover,
   &:focus,
   &:active {
-    background-color: rgb(253, 45, 6) !important;
-    color: white !important;
+    background-color: rgb(253, 45, 6);
+    color: white;
+    outline: none;
   }
 }
 

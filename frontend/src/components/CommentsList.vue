@@ -1,14 +1,13 @@
 <template>
   <div>
-    <b-button
+    <button
       v-if="count > 1 && !allCommentsDisplayed"
       @click="fetchAllComments"
       class="display-comments mb-2 pt-0 d-flex text-left"
-      ><span v-if="count > 2"
-        >Afficher {{ count - 1 }} autres commentaires</span
-      >
-      <span v-else>Afficher {{ count - 1 }} autre commentaire</span></b-button
     >
+      <span v-if="count > 2">Afficher {{ count - 1 }} autres commentaires</span>
+      <span v-else>Afficher {{ count - 1 }} autre commentaire</span>
+    </button>
     <div class="comment mb-2 text-left" v-for="comment in list">
       <Comment
         @commentDeleted="removeComment"
@@ -84,14 +83,16 @@ export default {
 
 .display-comments {
   color: #747474;
+  background-color: transparent;
+  border: none;
+  font-weight: 500;
+  padding: 0.375rem 0.75rem;
   &:hover {
     text-decoration: underline;
   }
-  &:hover,
-  &:focus,
-  &:active {
-    color: #747474 !important;
-    background: none !important;
+  &:focus {
+    background: none;
+    outline: none;
   }
 }
 </style>

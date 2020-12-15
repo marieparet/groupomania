@@ -1,18 +1,17 @@
 <template>
   <div>
-    <b-button
-      pill
+    <button
       @click="toggleActions"
-      variant="outline-secondary"
       v-if="shouldDisplay"
       :class="customClass"
-      class="post-button close d-block position-absolute"
-      >...</b-button
+      class="post-button d-block position-absolute"
     >
+      ...
+    </button>
     <b-collapse
       v-bind:class="
         `${classCollapse ||
-          ''} button-collapsed collapsed mt-2 position-absolute ${areActionsVisible &&
+          ''} btn-collapsed collapsed mt-2 position-absolute ${areActionsVisible &&
           'visible'}`
       "
     >
@@ -84,10 +83,20 @@ export default {
 <style lang="scss">
 .post-button {
   top: 20px;
-  right: 10px;
-  padding: 1px 18px 10px !important;
+  right: 15px;
+  padding: 1px 15px 7px !important;
+  background-color: transparent;
+  border: 0;
+  border-radius: 50rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #747474;
   &:hover {
-    background-color: rgba(108, 117, 125, 0.2);
+    background-color: rgba(108, 117, 125, 0.1);
+    outline: none;
+  }
+  &:focus {
+    outline: none;
   }
 }
 .btn-secondary {
@@ -99,18 +108,16 @@ export default {
 
 .btn-outline-secondary,
 .btn-secondary {
-  &:hover,
-  &:active,
-  &:focus {
+  &:hover {
     color: #000 !important;
     background-color: rgba(108, 117, 125, 0.1) !important;
     box-shadow: none !important;
   }
 }
 
-.button-collapsed {
-  top: 50px;
-  right: 11px;
+.btn-collapsed {
+  top: 60px;
+  right: 15px;
   z-index: 2;
 }
 .collapsed {
@@ -141,13 +148,15 @@ export default {
     }
   }
 
-  .button-collapsed {
-    top: 37px;
-    right: 10px;
+  .btn-collapsed {
+    top: 28px;
+    right: 8px;
   }
 
   .post-button {
-    padding: 1px 10px 6px !important;
+    top: 5px;
+    right: 7px;
+    padding: 1px 9px 5px !important;
     font-size: 15px !important;
   }
 }

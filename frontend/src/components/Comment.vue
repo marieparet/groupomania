@@ -32,7 +32,7 @@
 
       <EditButton
         customClass="comment-button"
-        classCollapse="collapse-button"
+        classCollapse="comment-btn-collapsed"
         :shouldDisplay="comment.User.id == userData.id"
         @clickedEditButton="startEditing"
         @onDelete="onDelete"
@@ -111,9 +111,9 @@ export default {
   margin-left: 10px;
 }
 
-.collapse-button {
-  right: 232px;
-  top: 35px;
+.comment-btn-collapsed {
+  right: 272px;
+  top: 48px;
 }
 
 .input-content:focus {
@@ -137,9 +137,9 @@ export default {
     margin-left: 3px;
   }
 
-  .collapse-button {
-    right: 22px;
-    top: 32px;
+  .comment-btn-collapsed {
+    right: 49px;
+    top: 35px;
   }
 }
 </style>

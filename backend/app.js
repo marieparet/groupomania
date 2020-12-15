@@ -5,8 +5,10 @@ const app = express()
 
 const path = require('path')
 
-const userCtrl = require('./src/controllers/user')
 const auth = require('./src/middleware/auth')
+
+const userCtrl = require('./src/controllers/user')
+const notificationsCtrl = require('./src/controllers/notifications')
 
 const postsRoutes = require('./src/routes/posts')
 const userRoutes = require('./src/routes/user')
@@ -32,5 +34,6 @@ app.use('/api/posts', postsRoutes)
 app.use('/api/auth', userRoutes)
 app.get('/api/users/:id', auth, userCtrl.getOneUser)
 app.get('/api/users', auth, userCtrl.getAllUsers)
+app.get('/api/notifications', auth, notificationsCtrl.getNotificationsOfOneUser)
 
 module.exports = app

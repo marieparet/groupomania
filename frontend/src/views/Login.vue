@@ -25,14 +25,14 @@
                   ></b-form-input>
                 </b-form-group>
 
-                <b-button
+                <button
                   v-on:click.stop="login()"
                   type="submit"
                   id="login-button"
                   class="account-btn font-weight-bold"
                 >
                   Connexion
-                </b-button>
+                </button>
                 <p class="my-3 text-danger">{{ errorMessage }}</p>
               </b-form>
             </div>
@@ -107,20 +107,6 @@ a {
   width: 100%;
   height: 1px;
   background-color: rgba(192, 192, 192, 0.5);
-}
-
-.account-btn {
-  background-color: rgba(253, 45, 6, 0.8) !important;
-  color: white !important;
-  border-radius: 1rem;
-  border: none;
-  margin-bottom: 1rem;
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: rgb(253, 45, 6) !important;
-    color: white !important;
-  }
 }
 
 .account-input {

@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   Notification.init(
     {
       userId: DataTypes.INTEGER,
+      postId: DataTypes.INTEGER,
       content: DataTypes.TEXT,
       viewed: DataTypes.BOOLEAN
     },

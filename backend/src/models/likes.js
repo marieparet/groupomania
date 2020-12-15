@@ -40,11 +40,15 @@ module.exports = (sequelize, DataTypes) => {
   Likes.afterCreate(async like => {
     const post = await like.getPost()
     const user = await like.getUser()
+
+    if (user.id == post.userId) return
+
     const notification = await sequelize.models.Notification.create({
       content: `${user.firstName} ${
         user.lastName
       } a aimé votre publication du ${post.readableCreatedAt()}`,
-      userId: post.userId
+      userId: post.userId,
+      postId: post.id
     })
     console.log(notification)
   })

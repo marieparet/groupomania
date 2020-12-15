@@ -92,7 +92,7 @@
                 </b-col>
               </div>
             </b-form-group>
-            <b-button type="submit" class="save-btn">Enregistrer</b-button>
+            <button type="submit" class="save-btn">Enregistrer</button>
           </b-form>
         </b-card>
       </b-col>
@@ -192,10 +192,15 @@ export default {
   background-color: rgba(253, 45, 6, 0.8);
   color: white;
   border-radius: 1rem;
+  border: none;
   margin-bottom: 1rem;
-  &:hover {
-    background-color: rgb(253, 45, 6) !important;
-    color: white !important;
+  padding: 0.375rem 0.75rem;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: rgb(253, 45, 6);
+    color: white;
+    outline: none;
   }
 }
 

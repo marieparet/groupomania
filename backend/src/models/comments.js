@@ -36,7 +36,8 @@ module.exports = (sequelize, DataTypes) => {
       content: `${user.firstName} ${
         user.lastName
       } a commenté votre publication du ${post.readableCreatedAt()}`,
-      userId: post.userId
+      userId: post.userId,
+      postId: post.id
     })
     console.log(notification)
   })

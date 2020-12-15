@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button
+    <button
       v-b-modal="`modal-likes-${post.id}`"
       @click="fetchLikesList"
       v-if="likesCount > 0"
@@ -17,7 +17,7 @@
         </svg>
       </div>
       <span class="likes-number ml-2">{{ likesCount }}</span>
-    </b-button>
+    </button>
     <b-modal :id="`modal-likes-${post.id}`" :title="`${likesCount} J'aime`">
       <div v-for="like in likesList">
         <router-link
@@ -71,6 +71,14 @@ a {
   &:visited {
     color: #212529;
     text-decoration: underline;
+  }
+}
+
+.like-btn {
+  background-color: transparent;
+  border: none;
+  &:focus {
+    outline: none;
   }
 }
 
