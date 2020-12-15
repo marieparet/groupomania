@@ -1,5 +1,5 @@
 'use strict'
-const { Model, INTEGER, STRING } = require('sequelize')
+const { Model } = require('sequelize')
 const {
   ensurePasswordIsStrongEnough,
   addAuthenticationOn

@@ -1,38 +1,26 @@
 'use strict'
 const { Model } = require('sequelize')
-const moment = require('moment')
-
 module.exports = (sequelize, DataTypes) => {
-  class Post extends Model {
+  class Notification extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate (models) {
-      Post.belongsTo(models.User, { foreignKey: 'userId' })
-      Post.hasMany(models.Comments)
-      Post.hasMany(models.Likes)
-    }
-
-    readableCreatedAt () {
-      return moment(this.createdAt)
-        .locale('fr')
-        .format('LL')
+      Notification.belongsTo(models.User, { foreignKey: 'userId' })
     }
   }
-  Post.init(
+  Notification.init(
     {
       userId: DataTypes.INTEGER,
       content: DataTypes.TEXT,
-      imageUrl: DataTypes.STRING,
-      likesCount: DataTypes.INTEGER
+      viewed: DataTypes.BOOLEAN
     },
     {
       sequelize,
-      modelName: 'Post'
+      modelName: 'Notification'
     }
   )
-
-  return Post
+  return Notification
 }

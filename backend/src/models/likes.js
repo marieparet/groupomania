@@ -1,5 +1,6 @@
 'use strict'
 const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
   class Likes extends Model {
     /**
@@ -24,19 +25,28 @@ module.exports = (sequelize, DataTypes) => {
   )
 
   Likes.afterCreate(async like => {
-    console.log('like', like)
     const post = await like.getPost()
-    console.log('post', post)
     await post.update({
       likesCount: post.likesCount + 1
     })
-    console.log(post)
   })
   Likes.afterDestroy(async like => {
     const post = await like.getPost()
     post.update({
       likesCount: post.likesCount - 1
     })
+  })
+
+  Likes.afterCreate(async like => {
+    const post = await like.getPost()
+    const user = await like.getUser()
+    const notification = await sequelize.models.Notification.create({
+      content: `${user.firstName} ${
+        user.lastName
+      } a aimé votre publication du ${post.readableCreatedAt()}`,
+      userId: post.userId
+    })
+    console.log(notification)
   })
 
   return Likes
