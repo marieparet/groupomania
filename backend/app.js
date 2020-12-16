@@ -35,5 +35,6 @@ app.use('/api/auth', userRoutes)
 app.get('/api/users/:id', auth, userCtrl.getOneUser)
 app.get('/api/users', auth, userCtrl.getAllUsers)
 app.get('/api/notifications', auth, notificationsCtrl.getNotificationsOfOneUser)
+app.delete('/api/notifications/:id', auth, notificationsCtrl.deleteNotification)
 
 module.exports = app

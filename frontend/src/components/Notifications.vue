@@ -22,6 +22,7 @@
         <div v-for="notification in notificationsList">
           <router-link
             :to="{ name: 'OnePost', params: { postId: notification.postId } }"
+            @click.native="deleteNotification(notification)"
           >
             <div class="d-flex align-items-center">
               <div>
@@ -36,6 +37,22 @@
                 class="card-text text-left py-2 mb-3"
               ></p></div
           ></router-link>
+        </div>
+      </b-card>
+    </b-collapse>
+
+    <b-collapse
+      v-else
+      id="notification-collapsed"
+      v-bind:class="
+        `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
+      "
+    >
+      <b-card class="border-0" @click="toggleActions">
+        <div class="d-flex align-items-center">
+          <p class="card-text text-left py-2 mb-3">
+            Vous n'avez pas de nouvelles notifications
+          </p>
         </div>
       </b-card>
     </b-collapse>
@@ -66,6 +83,14 @@ export default {
   methods: {
     toggleActions () {
       this.areActionsVisible = !this.areActionsVisible
+    },
+    async deleteNotification (notificationToDelete) {
+      const res = await apiClient.delete(
+        `api/notifications/${notificationToDelete.id}`
+      )
+      this.notificationsList = this.notificationsList.filter(
+        notification => notification.id !== notificationToDelete.id
+      )
     }
   }
 }
