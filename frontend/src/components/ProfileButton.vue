@@ -4,7 +4,9 @@
       @click="toggleActions"
       class="profile-btn d-flex position-absolute justify-content-center justify-content-lg-between align-items-center"
     >
-      <span class="d-none d-lg-block">{{ userData.firstName }}</span>
+      <span class="name-profile-btn d-none d-lg-block">{{
+        userData.firstName
+      }}</span>
       <ProfileImage
         :src="userData.imageUrl"
         customClass="profile-btn__img"
@@ -157,6 +159,12 @@ export default {
   #profile-collapsed {
     top: 52px;
     right: 15px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .name-profile-btn {
+    display: block !important;
   }
 }
 </style>

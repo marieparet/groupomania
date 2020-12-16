@@ -48,7 +48,7 @@
         `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
       "
     >
-      <b-card class="border-0" @click="toggleActions">
+      <b-card class="border-0">
         <div class="d-flex align-items-center">
           <p class="card-text text-left py-2 mb-3">
             Vous n'avez pas de nouvelles notifications
@@ -77,12 +77,16 @@ export default {
     }
   },
   async mounted () {
-    const res = await apiClient.get(`api/notifications`)
-    this.notificationsList = res.notifications
+    this.fetchNotifications()
+    setInterval(() => this.fetchNotifications(), 10000)
   },
   methods: {
     toggleActions () {
       this.areActionsVisible = !this.areActionsVisible
+    },
+    async fetchNotifications () {
+      const res = await apiClient.get(`api/notifications`)
+      this.notificationsList = res.notifications
     },
     async deleteNotification (notificationToDelete) {
       const res = await apiClient.delete(

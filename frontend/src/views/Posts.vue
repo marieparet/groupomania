@@ -1,5 +1,7 @@
 <template>
   <div id="posts">
+    <Menu />
+
     <b-row class="align-items-center text-center justify-content-center">
       <b-col cols="12" lg="6">
         <b-card
@@ -19,12 +21,14 @@ import router from '../router/index'
 import { mapState, mapActions } from 'vuex'
 import CreatePost from '../components/CreatePost'
 import PostsList from '../components/PostsList'
+import Menu from '../components/Menu'
 
 export default {
   name: 'Posts',
   components: {
     CreatePost,
-    PostsList
+    PostsList,
+    Menu
   },
   data () {
     return {

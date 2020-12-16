@@ -34,7 +34,9 @@
 
       <b-card-text class="text-left mt-3">{{ post.content }}</b-card-text>
 
-      <span class="post justify-content-center mb-1 mb-lg-4">
+      <span
+        class="post d-flex align-items-center justify-content-center mb-1 mb-lg-4"
+      >
         <img
           v-b-modal="`modal-photo-${post.id}`"
           class="post__image"

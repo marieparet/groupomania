@@ -12,31 +12,9 @@
         />
       </router-link>
     </div>
-
-    <div>
-      <UserSearch />
-      <Notifications />
-      <ProfileButton />
-    </div>
-
     <router-view />
   </div>
 </template>
-
-<script>
-import ProfileButton from './components/ProfileButton'
-import UserSearch from './components/UserSearch'
-import Notifications from './components/Notifications'
-
-export default {
-  name: 'App',
-  components: {
-    ProfileButton,
-    UserSearch,
-    Notifications
-  }
-}
-</script>
 
 <style lang="scss">
 #app {
@@ -64,9 +42,9 @@ export default {
   }
 }
 
-@media screen and (min-width: 767px) and (max-width: 769px) {
+@media screen and (min-width: 767px) and (max-width: 991px) {
   #nav #logo {
-    max-width: 240px;
+    max-width: 200px;
   }
 }
 </style>

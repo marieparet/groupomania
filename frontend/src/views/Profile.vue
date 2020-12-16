@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Menu />
+
     <b-row class="text-center justify-content-center">
       <b-col cols="12" lg="6">
         <b-card
@@ -105,12 +107,14 @@ import { mapState, mapActions } from 'vuex'
 import { apiClient } from '../services/ApiClient'
 import ProfileImage from '../components/ProfileImage'
 import PostsList from '../components/PostsList'
+import Menu from '../components/Menu'
 
 export default {
   name: 'Profile',
   components: {
     ProfileImage,
-    PostsList
+    PostsList,
+    Menu
   },
   data () {
     const userData = JSON.parse(localStorage.getItem('userData'))

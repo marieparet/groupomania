@@ -29,17 +29,17 @@
         />
         <p v-else class="mb-0">{{ comment.content }}</p>
       </div>
-
-      <EditButton
-        customClass="comment-button"
-        classCollapse="comment-btn-collapsed"
-        :shouldDisplay="comment.User.id == userData.id"
-        @clickedEditButton="startEditing"
-        @onDelete="onDelete"
-        modifyText="Modifier"
-        deleteText="Supprimer"
-      >
-      </EditButton>
+      <div class="position-relative">
+        <EditButton
+          customClass="comment-button"
+          classCollapse="comment-btn-collapsed"
+          :shouldDisplay="comment.User.id == userData.id"
+          @clickedEditButton="startEditing"
+          @onDelete="onDelete"
+          modifyText="Modifier"
+          deleteText="Supprimer"
+        />
+      </div>
     </div>
     <p class="text-secondary comment-date">
       {{
@@ -112,8 +112,9 @@ export default {
 }
 
 .comment-btn-collapsed {
-  right: 272px;
-  top: 48px;
+  left: 14px;
+  top: 40px;
+  width: 200px;
 }
 
 .input-content:focus {
@@ -138,8 +139,9 @@ export default {
   }
 
   .comment-btn-collapsed {
-    right: 49px;
-    top: 35px;
+    left: 6px;
+    top: 23px;
+    width: 135px;
   }
 }
 </style>

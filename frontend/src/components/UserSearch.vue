@@ -19,7 +19,7 @@
       </div>
     </div>
     <button
-      class="search-btn-mobile position-absolute border-0 p-0 bg-transparent d-md-none d-lg-none d-xl-none"
+      class="search-btn-mobile position-absolute border-0 p-0 bg-transparent d-lg-none d-xl-none"
       type="button"
       @click="triggerInput"
     >
@@ -140,6 +140,12 @@ export default {
     z-index: 1;
     background: white;
     box-shadow: 0rem 0.2rem 0.5rem rgba(0, 0, 0, 0.08) !important;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .search-bar {
+    display: block !important;
   }
 }
 </style>

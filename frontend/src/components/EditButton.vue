@@ -26,7 +26,12 @@
             <b-icon icon="pencil" class="mr-2 mr-lg-3"></b-icon
             ><span>{{ modifyText }}</span></b-button
           >
-          <b-button class="text-left w-100" v-else @click="clickedEditButton">
+          <b-button
+            class="text-left w-100"
+            v-else
+            block
+            @click="clickedEditButton"
+          >
             <b-icon icon="pencil" class="mr-2 mr-lg-3"></b-icon
             ><span>{{ modifyText }}</span></b-button
           >
