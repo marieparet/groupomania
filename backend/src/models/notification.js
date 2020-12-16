@@ -8,12 +8,20 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate (models) {
-      Notification.belongsTo(models.User, { foreignKey: 'userId' })
+      Notification.belongsTo(models.User, {
+        foreignKey: 'recipientUserId',
+        as: 'Receptionist'
+      })
+      Notification.belongsTo(models.User, {
+        foreignKey: 'senderUserId',
+        as: 'Sender'
+      })
     }
   }
   Notification.init(
     {
-      userId: DataTypes.INTEGER,
+      recipientUserId: DataTypes.INTEGER,
+      senderUserId: DataTypes.INTEGER,
       postId: DataTypes.INTEGER,
       content: DataTypes.TEXT,
       viewed: DataTypes.BOOLEAN

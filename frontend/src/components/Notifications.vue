@@ -20,11 +20,20 @@
     >
       <b-card class="border-0">
         <div v-for="notification in notificationsList">
-          <router-link to="#" v-scroll-to="`#post-${notification.postId}`">
-            <p class="card-text text-left py-2">
-              {{ notification.content }}
-            </p></router-link
-          >
+          <router-link to="`#post-${notification.postId}`">
+            <div class="d-flex align-items-center">
+              <div>
+                <ProfileImage
+                  :src="notification.Sender.imageUrl"
+                  customClass="user-picture"
+                  divCustomClass="div-user-picture"
+                />
+              </div>
+              <p
+                v-html="notification.content"
+                class="card-text text-left py-2 mb-3"
+              ></p></div
+          ></router-link>
         </div>
       </b-card>
     </b-collapse>
@@ -92,6 +101,9 @@ export default {
   top: 68px;
   right: 177px;
   z-index: 1;
+  .card-body {
+    padding-bottom: 5px;
+  }
 }
 
 @media screen and (min-width: 280px) and (max-width: 769px) {

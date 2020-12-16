@@ -33,13 +33,13 @@ module.exports = (sequelize, DataTypes) => {
     if (user.id == post.userId) return
 
     const notification = await sequelize.models.Notification.create({
-      content: `${user.firstName} ${
+      content: `<b>${user.firstName} ${
         user.lastName
-      } a commenté votre publication du ${post.readableCreatedAt()}`,
-      userId: post.userId,
-      postId: post.id
+      }</b> a commenté votre publication du ${post.readableCreatedAt()}`,
+      recipientUserId: post.userId,
+      postId: post.id,
+      senderUserId: user.id
     })
-    console.log(notification)
   })
 
   return Comments

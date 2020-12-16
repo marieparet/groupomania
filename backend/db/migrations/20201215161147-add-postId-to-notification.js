@@ -9,7 +9,7 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     queryInterface.removeColumn('Notifications', 'postId', {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     })
   }
 }

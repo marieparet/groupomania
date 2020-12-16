@@ -3,7 +3,8 @@ const { Notification } = db.sequelize.models
 
 exports.getNotificationsOfOneUser = (req, res, next) => {
   const options = {
-    where: { userId: req.user.id },
+    where: { recipientUserId: req.user.id },
+    include: [{ model: db.User, as: 'Sender' }],
     order: [['createdAt', 'DESC']]
   }
 
@@ -12,6 +13,7 @@ exports.getNotificationsOfOneUser = (req, res, next) => {
       res.status(200).json({ notifications })
     })
     .catch(error => {
+      console.log(error)
       res.status(400).json({ error })
     })
 }
