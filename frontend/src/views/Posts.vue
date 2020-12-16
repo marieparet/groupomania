@@ -1,11 +1,5 @@
 <template>
   <div id="posts">
-    <div>
-      <UserSearch />
-      <Notifications />
-      <ProfileButton />
-    </div>
-
     <b-row class="align-items-center text-center justify-content-center">
       <b-col cols="12" lg="6">
         <b-card
@@ -25,18 +19,12 @@ import router from '../router/index'
 import { mapState, mapActions } from 'vuex'
 import CreatePost from '../components/CreatePost'
 import PostsList from '../components/PostsList'
-import ProfileButton from '../components/ProfileButton'
-import UserSearch from '../components/UserSearch'
-import Notifications from '../components/Notifications'
 
 export default {
   name: 'Posts',
   components: {
     CreatePost,
-    PostsList,
-    ProfileButton,
-    UserSearch,
-    Notifications
+    PostsList
   },
   data () {
     return {

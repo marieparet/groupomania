@@ -12,9 +12,31 @@
         />
       </router-link>
     </div>
+
+    <div>
+      <UserSearch />
+      <Notifications />
+      <ProfileButton />
+    </div>
+
     <router-view />
   </div>
 </template>
+
+<script>
+import ProfileButton from './components/ProfileButton'
+import UserSearch from './components/UserSearch'
+import Notifications from './components/Notifications'
+
+export default {
+  name: 'App',
+  components: {
+    ProfileButton,
+    UserSearch,
+    Notifications
+  }
+}
+</script>
 
 <style lang="scss">
 #app {

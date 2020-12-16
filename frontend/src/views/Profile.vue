@@ -1,11 +1,5 @@
 <template>
   <div>
-    <div>
-      <UserSearch />
-      <Notifications />
-      <ProfileButton />
-    </div>
-
     <b-row class="text-center justify-content-center">
       <b-col cols="12" lg="6">
         <b-card
@@ -111,18 +105,12 @@ import { mapState, mapActions } from 'vuex'
 import { apiClient } from '../services/ApiClient'
 import ProfileImage from '../components/ProfileImage'
 import PostsList from '../components/PostsList'
-import ProfileButton from '../components/ProfileButton'
-import UserSearch from '../components/UserSearch'
-import Notifications from '../components/Notifications'
 
 export default {
   name: 'Profile',
   components: {
-    ProfileButton,
     ProfileImage,
-    PostsList,
-    UserSearch,
-    Notifications
+    PostsList
   },
   data () {
     const userData = JSON.parse(localStorage.getItem('userData'))
