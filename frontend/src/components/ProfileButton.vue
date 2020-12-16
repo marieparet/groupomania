@@ -17,7 +17,7 @@
         `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
       "
     >
-      <b-card class="border-0">
+      <b-card class="border-0" @click="toggleActions">
         <p class="card-text">
           <button
             class="collapsed-btn btn-block text-left"

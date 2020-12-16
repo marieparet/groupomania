@@ -18,7 +18,7 @@
         `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
       "
     >
-      <b-card class="border-0">
+      <b-card class="border-0" @click="toggleActions">
         <div v-for="notification in notificationsList">
           <router-link
             :to="{ name: 'OnePost', params: { postId: notification.postId } }"
