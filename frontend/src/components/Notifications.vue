@@ -20,7 +20,9 @@
     >
       <b-card class="border-0">
         <div v-for="notification in notificationsList">
-          <router-link to="`#post-${notification.postId}`">
+          <router-link
+            :to="{ name: 'OnePost', params: { postId: notification.postId } }"
+          >
             <div class="d-flex align-items-center">
               <div>
                 <ProfileImage

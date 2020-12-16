@@ -1,6 +1,10 @@
 <template>
   <div>
-    <ProfileButton />
+    <div>
+      <UserSearch />
+      <Notifications />
+      <ProfileButton />
+    </div>
 
     <b-row class="text-center justify-content-center">
       <div class="d-flex align-items-center flex-column">
@@ -25,13 +29,17 @@ import { apiClient } from '../services/ApiClient'
 import ProfileButton from '../components/ProfileButton'
 import ProfileImage from '../components/ProfileImage'
 import PostsList from '../components/PostsList'
+import UserSearch from '../components/UserSearch'
+import Notifications from '../components/Notifications'
 
 export default {
   name: 'UserProfile',
   components: {
     ProfileButton,
     ProfileImage,
-    PostsList
+    PostsList,
+    UserSearch,
+    Notifications
   },
   watch: {
     $route (to, from) {

@@ -15,6 +15,14 @@ const routes = [
     }
   },
   {
+    path: '/posts/:postId',
+    name: 'OnePost',
+    component: () => import('../views/OnePost.vue'),
+    meta: {
+      middleware: auth
+    }
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
