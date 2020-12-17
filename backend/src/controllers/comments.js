@@ -62,11 +62,15 @@ exports.modifyComment = (req, res, next) => {
 }
 
 exports.deleteComment = async (req, res, next) => {
-  const user = req.user.admin
-    ? await User.findOne({ where: { id: req.params.id } })
-    : req.user
+  const where = {
+    id: req.params.id
+  }
 
-  Comments.findOne({ where: { id: req.params.id, userId: req.user.id } })
+  if (!req.user.admin) {
+    where.userId = req.user.id
+  }
+
+  Comments.findOne({ where })
     .then(comment => {
       if (!comment) {
         res.status(400).json({ error: "Vous n'avez pas l'autorisation" })
