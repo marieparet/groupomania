@@ -84,3 +84,15 @@ exports.getAllUsers = (req, res, next) => {
       res.status(400).json({ error })
     })
 }
+
+exports.deleteUserAccount = async (req, res, next) => {
+  try {
+    const user = req.user.admin
+      ? await User.findOne({ where: { id: req.params.id } })
+      : req.user
+    await user.softDestroy()
+    res.status(200).json({ message: 'Compte supprimé' })
+  } catch (error) {
+    res.status(400).json({ error })
+  }
+}

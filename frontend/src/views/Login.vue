@@ -77,7 +77,7 @@ export default {
           .post('api/auth/login', this.input)
           .then(data => {
             if (!data.token) {
-              this.errorMessage = 'Mot de passe incorrect'
+              this.errorMessage = 'Utilisateur introuvable'
             } else {
               localStorage.setItem('userToken', data.token)
               localStorage.setItem('userData', JSON.stringify(data.user))

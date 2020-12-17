@@ -17,7 +17,7 @@ function addAuthenticationOn (User) {
   }
 
   User.authenticate = async (email, password) => {
-    const user = await User.findOne({ where: { email } })
+    const user = await User.findOne({ where: { email, deleted: false } })
 
     if (!user) {
       return { valid: false, message: 'Utilisateur non trouvé' }

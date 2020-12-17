@@ -7,13 +7,18 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate (models) {
       User.hasMany(models.Post, { foreignKey: 'userId' })
+    }
+
+    softDestroy () {
+      return this.update({
+        deleted: true,
+        email: `deleted-user${this.id}@groupomania.com`,
+        imageUrl: null,
+        firstName: 'Utilisateur',
+        lastName: 'Supprimé'
+      })
     }
   }
   User.init(
@@ -45,7 +50,15 @@ module.exports = (sequelize, DataTypes) => {
           ensurePasswordIsStrongEnough
         }
       },
-      imageUrl: DataTypes.STRING
+      imageUrl: DataTypes.STRING,
+      deleted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      admin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      }
     },
     {
       sequelize,

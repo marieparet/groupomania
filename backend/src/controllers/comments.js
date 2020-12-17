@@ -61,7 +61,11 @@ exports.modifyComment = (req, res, next) => {
   })
 }
 
-exports.deleteComment = (req, res, next) => {
+exports.deleteComment = async (req, res, next) => {
+  const user = req.user.admin
+    ? await User.findOne({ where: { id: req.params.id } })
+    : req.user
+
   Comments.findOne({ where: { id: req.params.id, userId: req.user.id } })
     .then(comment => {
       if (!comment) {
