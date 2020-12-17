@@ -2,7 +2,8 @@
   <div>
     <EditButton
       :editingPost="true"
-      :shouldDisplay="post.userId == userData.id"
+      :isCreator="post.userId == userData.id"
+      :isAdmin="userData.admin"
       @onDelete="onDelete"
       :elementId="post.id"
       modifyText="Modifier la publication"

@@ -33,7 +33,8 @@
         <EditButton
           customClass="comment-button"
           classCollapse="comment-btn-collapsed"
-          :shouldDisplay="comment.User.id == userData.id"
+          :isCreator="comment.User.id == userData.id"
+          :isAdmin="userData.admin"
           @clickedEditButton="startEditing"
           @onDelete="onDelete"
           modifyText="Modifier"

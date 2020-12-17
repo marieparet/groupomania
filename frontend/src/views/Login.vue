@@ -61,6 +61,7 @@ export default {
   components: {
     Signup
   },
+  props: ['notification'],
   data () {
     return {
       errorMessage: '',
@@ -68,6 +69,15 @@ export default {
         email: '',
         password: ''
       }
+    }
+  },
+
+  mounted () {
+    if (this.$route.query.deletedAccount) {
+      this.$bvToast.toast('Votre compte a bien été supprimé', {
+        title: 'Notification',
+        autoHideDelay: 4000
+      })
     }
   },
   methods: {

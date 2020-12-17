@@ -78,7 +78,10 @@ export default {
   },
   async mounted () {
     this.fetchNotifications()
-    setInterval(() => this.fetchNotifications(), 10000)
+    this.interval = setInterval(() => this.fetchNotifications(), 10000)
+  },
+  destroyed () {
+    clearInterval(this.interval)
   },
   methods: {
     toggleActions () {

@@ -12,6 +12,11 @@
         <p class="user-name">
           {{ userProfile.firstName }} {{ userProfile.lastName }}
         </p>
+
+        <AdminDeleteAccount
+          v-if="userData.admin && !userProfile.deleted"
+          :userProfile="userProfile"
+        />
       </div>
     </b-row>
 
@@ -25,13 +30,15 @@ import { apiClient } from '../services/ApiClient'
 import ProfileImage from '../components/ProfileImage'
 import PostsList from '../components/PostsList'
 import Menu from '../components/Menu'
+import AdminDeleteAccount from '../components/AdminDeleteAccount'
 
 export default {
   name: 'UserProfile',
   components: {
     ProfileImage,
     PostsList,
-    Menu
+    Menu,
+    AdminDeleteAccount
   },
   watch: {
     $route (to, from) {

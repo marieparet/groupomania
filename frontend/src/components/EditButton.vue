@@ -2,7 +2,7 @@
   <div>
     <button
       @click="toggleActions"
-      v-if="shouldDisplay"
+      v-if="isAdmin || isCreator"
       :class="customClass"
       class="post-button d-block position-absolute"
     >
@@ -16,10 +16,10 @@
       "
     >
       <b-card class="border-0" @click="toggleActions">
-        <p class="card-text">
+        <p class="card-text" v-if="isCreator">
           <b-button
             class="text-left w-100"
-            v-if="editingPost"
+            v-if="editingPost && isCreator"
             block
             v-b-modal="`modal-${elementId}`"
           >
@@ -28,7 +28,7 @@
           >
           <b-button
             class="text-left w-100"
-            v-else
+            v-if="!editingPost && isCreator"
             block
             @click="clickedEditButton"
           >
@@ -38,7 +38,11 @@
           <slot></slot>
         </p>
         <p class="card-text">
-          <b-button class="text-left w-100" block v-on:click="onDelete"
+          <b-button
+            class="text-left w-100"
+            v-if="isAdmin || isCreator"
+            block
+            v-on:click="onDelete"
             ><b-icon icon="trash" class="mr-2 mr-lg-3"></b-icon>
             <span>{{ deleteText }}</span></b-button
           >
@@ -58,7 +62,8 @@ export default {
     'post',
     'customClass',
     'classCollapse',
-    'shouldDisplay',
+    'isAdmin',
+    'isCreator',
     'elementId',
     'modifyText',
     'deleteText',
