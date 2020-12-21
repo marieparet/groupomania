@@ -33,8 +33,8 @@
             <div class="d-flex text-center">
               <ProfileImage
                 :src="user.imageUrl"
-                customClass="user-picture"
-                divCustomClass="div-user-picture"
+                customClass="like-profile-picture"
+                divCustomClass="div-like-picture"
               />
             </div>
             <p>{{ user.firstName }} {{ user.lastName }}</p>

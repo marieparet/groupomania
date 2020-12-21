@@ -7,7 +7,7 @@
         <ProfileImage
           :src="userProfile.imageUrl"
           customClass="profile-main-picture"
-          divCustomClass="div-picture"
+          divCustomClass="div-user-profile-picture"
         />
         <p class="user-name">
           {{ userProfile.firstName }} {{ userProfile.lastName }}
@@ -61,18 +61,14 @@ export default {
 </script>
 
 <style lang="scss">
-.div-picture {
+.div-user-profile-picture {
   width: 120px;
   height: 120px;
-  overflow: hidden;
-  border-radius: 100%;
   margin-bottom: 1rem;
-  background: black;
   box-shadow: 0px 1px 2px 2px rgba(204, 204, 204, 0.5);
 }
 .profile-main-picture {
   height: 120px;
-  transform: scale(1.35);
 }
 
 .user-name {
@@ -85,14 +81,9 @@ export default {
     font-size: 16px;
   }
 
-  .div-picture {
+  .div-user-profile-picture {
     width: 95px;
     height: 95px;
-    overflow: hidden;
-    border-radius: 100%;
-    margin-bottom: 1rem;
-    background: black;
-    box-shadow: 0px 1px 2px 2px rgba(204, 204, 204, 0.5);
   }
   .profile-main-picture {
     height: 95px;

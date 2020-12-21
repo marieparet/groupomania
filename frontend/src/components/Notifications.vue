@@ -28,8 +28,8 @@
               <div>
                 <ProfileImage
                   :src="notification.Sender.imageUrl"
-                  customClass="user-picture"
-                  divCustomClass="div-user-picture"
+                  customClass="like-profile-picture"
+                  divCustomClass="div-like-picture"
                 />
               </div>
               <p

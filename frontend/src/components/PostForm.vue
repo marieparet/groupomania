@@ -6,7 +6,7 @@
           <router-link :to="{ name: 'Profile' }">
             <ProfileImage
               :src="userData.imageUrl"
-              customClass="profile-picture"
+              customClass="post-profile-picture"
               divCustomClass="div-post-picture"
           /></router-link>
         </div>

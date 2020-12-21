@@ -57,11 +57,6 @@ export default {
 @media screen and (min-width: 280px) and (max-width: 769px) {
   .card-body {
     padding: 0.7rem;
-    padding-bottom: 0;
-  }
-
-  .shadow {
-    box-shadow: 0rem 0.2rem 0.5rem rgba(0, 0, 0, 0.08) !important;
   }
 }
 

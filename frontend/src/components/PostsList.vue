@@ -2,7 +2,7 @@
   <div>
     <b-row class="row justify-content-center align-items-center flex-column">
       <b-col cols="12" lg="6" v-for="post in posts.list" :key="post.id">
-        <Post :post="post" />
+        <Post @displayNotification="displayNotification" :post="post" />
       </b-col>
     </b-row>
 
@@ -35,6 +35,13 @@ export default {
 
   methods: {
     ...mapActions(['initializePostStore', 'loadMore']),
+
+    displayNotification (text) {
+      this.$bvToast.toast(text, {
+        title: 'Notification',
+        autoHideDelay: 4000
+      })
+    },
 
     handleScroll (event) {
       const totalHeight = document.documentElement.scrollHeight
@@ -77,18 +84,6 @@ export default {
 @media screen and (min-width: 280px) and (max-width: 769px) {
   .post {
     height: 230px;
-  }
-}
-
-.load-btn {
-  background-color: rgba(253, 45, 6, 0.8);
-  color: white;
-  border-radius: 1rem;
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: rgb(253, 45, 6) !important;
-    color: white !important;
   }
 }
 </style>

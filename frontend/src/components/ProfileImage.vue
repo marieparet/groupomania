@@ -1,6 +1,10 @@
 <template>
-  <div :class="divCustomClass">
-    <img :class="customClass" :src="src || 'avatar-placeholder.jpg'" />
+  <div class="profile-picture" :class="divCustomClass">
+    <img
+      class="profile-picture__img"
+      :class="customClass"
+      :src="src || 'avatar-placeholder.jpg'"
+    />
   </div>
 </template>
 
@@ -11,4 +15,13 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.profile-picture {
+  overflow: hidden;
+  border-radius: 100%;
+  background: black;
+  &__img {
+    transform: scale(1.35);
+  }
+}
+</style>

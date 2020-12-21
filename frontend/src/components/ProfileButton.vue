@@ -10,7 +10,7 @@
       <ProfileImage
         :src="userData.imageUrl"
         customClass="profile-btn__img"
-        divCustomClass="div-account-img"
+        divCustomClass="div-profile-btn-img"
       />
     </button>
     <b-collapse
@@ -101,7 +101,6 @@ export default {
   }
   &__img {
     height: 30px;
-    transform: scale(1.3);
   }
 }
 
@@ -124,13 +123,10 @@ export default {
   }
 }
 
-.div-account-img {
+.div-profile-btn-img {
   width: 30px;
   height: 30px;
-  overflow: hidden;
-  border-radius: 100%;
   margin-left: 8px;
-  background: black;
 }
 
 #profile-collapsed {
@@ -150,7 +146,7 @@ export default {
     }
   }
 
-  .div-account-img {
+  .div-profile-btn-img {
     width: 35px;
     height: 35px;
     margin-left: 0;

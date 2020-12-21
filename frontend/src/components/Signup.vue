@@ -3,7 +3,9 @@
     <b-container fluid>
       <b-row class="text-center justify-content-center">
         <b-col cols="12" lg="4">
-          <b-card class="border-0 shadow p-3 mb-5 mt-3 bg-white rounded">
+          <b-card
+            class="account-card border-0 shadow p-3 mb-5 mt-3 bg-white rounded"
+          >
             <div class="pt-sm-3 pt-lg-0">
               <b-card-text class="login-text h4">S'inscrire</b-card-text>
               <b-form>
@@ -135,8 +137,10 @@ a {
 }
 
 @media screen and (min-width: 280px) and (max-width: 769px) {
-  .card-body {
-    padding: 0.7rem;
+  .account-card {
+    .card-body {
+      padding: 0.7rem;
+    }
   }
 
   .shadow {

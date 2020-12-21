@@ -10,7 +10,7 @@
           >
             <ProfileImage
               :src="post.User.imageUrl"
-              customClass="profile-picture"
+              customClass="post-profile-picture"
               divCustomClass="div-post-picture"
           /></router-link>
         </div>
@@ -143,10 +143,7 @@ export default {
     },
 
     displayNotification (text) {
-      this.$bvToast.toast(text, {
-        title: 'Notification',
-        autoHideDelay: 4000
-      })
+      this.$emit('displayNotification', text)
     },
     focusInput () {
       document.getElementById(`comment-area-${this.post.id}`).focus()
@@ -159,15 +156,11 @@ export default {
 .div-post-picture {
   width: 50px;
   height: 50px;
-  overflow: hidden;
-  border-radius: 100%;
   margin-bottom: 1rem;
-  background: black;
 }
 
-.profile-picture {
+.post-profile-picture {
   height: 50px;
-  transform: scale(1.35);
 }
 
 @media screen and (min-width: 280px) and (max-width: 769px) {
@@ -176,7 +169,7 @@ export default {
     height: 42px;
   }
 
-  .profile-picture {
+  .post-profile-picture {
     height: 42px;
   }
 }

@@ -90,12 +90,21 @@ exports.modifyPost = (req, res, next) => {
 }
 
 exports.deletePost = (req, res, next) => {
-  Post.findOne({ where: { id: req.params.id, userId: req.user.id } })
+  const where = {
+    id: req.params.id
+  }
+
+  if (!req.user.admin) {
+    where.userId = req.user.id
+  }
+
+  Post.findOne({ where })
     .then(post => {
       if (!post) {
         res.status(400).json({ error: "Vous n'avez pas l'autorisation" })
       } else if (post.imageUrl) {
         const filename = post.imageUrl.split('/public/')[1]
+        console.log(filename)
         fs.unlink(`public/${filename}`, () => {})
       }
       post

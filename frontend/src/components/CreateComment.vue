@@ -72,15 +72,11 @@ export default {
 .div-comment-picture {
   width: 45px;
   height: 45px;
-  overflow: hidden;
-  border-radius: 100%;
   margin-bottom: 0.5rem;
-  background: black;
 }
 
 .comment-profile-picture {
   height: 45px;
-  transform: scale(1.35);
 }
 
 @media screen and (min-width: 280px) and (max-width: 769px) {

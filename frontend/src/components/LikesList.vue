@@ -26,8 +26,8 @@
             <div class="d-flex text-center">
               <ProfileImage
                 :src="like.User.imageUrl"
-                customClass="user-picture"
-                divCustomClass="div-user-picture"
+                customClass="like-profile-picture"
+                divCustomClass="div-like-picture"
               />
             </div>
             <p>{{ like.User.firstName }} {{ like.User.lastName }}</p>
@@ -125,18 +125,14 @@ a {
   width: 25px;
   height: 25px;
 }
-.div-user-picture {
+.div-like-picture {
   width: 30px;
   height: 30px;
-  overflow: hidden;
-  border-radius: 100%;
   margin-bottom: 1rem;
   margin-right: 0.7rem;
-  background: black;
 }
 
-.user-picture {
+.like-profile-picture {
   height: 30px;
-  transform: scale(1.35);
 }
 </style>
