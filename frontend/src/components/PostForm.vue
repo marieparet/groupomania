@@ -23,7 +23,7 @@
         id="preview"
         class="d-flex justify-content-center align-items-center"
       >
-        <img class="mt-3" v-if="url" :src="url" />
+        <img class="mt-3" v-if="url" :src="url" alt="" />
       </div>
     </b-form-group>
     <div class="line mb-3"></div>

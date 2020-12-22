@@ -32,15 +32,19 @@
       </div>
       <EditPost @displayNotification="displayNotification" :post="post" />
 
-      <b-card-text class="text-left mt-3">{{ post.content }}</b-card-text>
+      <b-card-text class="text-left mt-3" v-if="post.content">
+        {{ post.content }}
+      </b-card-text>
 
-      <span
-        class="post d-flex align-items-center justify-content-center mb-1 mb-lg-4"
+      <div
+        class="post d-flex align-items-center justify-content-center my-1 mb-lg-4"
+        v-if="post.imageUrl"
       >
         <img
           v-b-modal="`modal-photo-${post.id}`"
           class="post__image"
           :src="post.imageUrl"
+          alt=""
         />
         <b-modal
           :id="`modal-photo-${post.id}`"
@@ -54,7 +58,7 @@
           </div>
           <div slot="modal-footer"></div>
         </b-modal>
-      </span>
+      </div>
 
       <LikesList :post="post" :likesCount="likesCount" />
 

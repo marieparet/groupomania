@@ -4,6 +4,7 @@
       class="profile-picture__img"
       :class="customClass"
       :src="src || 'avatar-placeholder.jpg'"
+      alt=""
     />
   </div>
 </template>
