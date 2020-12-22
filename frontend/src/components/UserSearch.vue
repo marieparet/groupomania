@@ -1,9 +1,7 @@
 <template>
   <div>
     <div
-      :class="
-        `search-bar ${visible ? '' : 'position-absolute d-none'} d-lg-block`
-      "
+      :class="`search-bar ${visible ? '' : 'position-fixed d-none'} d-lg-block`"
     >
       <div class="search-bar__content input-group d-flex align-items-center">
         <span class="search-btn input-group-append bg-transparent border-0 p-0">
@@ -19,14 +17,17 @@
       </div>
     </div>
     <button
-      class="search-btn-mobile position-absolute border-0 p-0 bg-transparent d-lg-none d-xl-none"
+      class="search-btn-mobile position-fixed border-0 p-0 bg-transparent d-lg-none d-xl-none"
       type="button"
       @click="triggerInput"
     >
       <b-icon icon="search"></b-icon>
     </button>
 
-    <div v-if="usersList.length" class="users-list position-absolute">
+    <div
+      v-if="usersList.length"
+      class="users-list card border-0 position-fixed"
+    >
       <div v-for="user in usersList">
         <router-link :to="{ name: 'UserProfile', params: { userId: user.id } }"
           ><div class="d-flex align-items-center">
@@ -84,8 +85,9 @@ export default {
 
 <style lang="scss">
 .search-bar {
-  top: 25px;
+  top: 20px;
   left: 45px;
+  z-index: 2;
   .input-group {
     flex-wrap: nowrap;
   }
@@ -108,8 +110,14 @@ export default {
 }
 
 .users-list {
-  margin-left: 55px;
-  top: 90px;
+  background: white;
+  top: 73px;
+  left: 47px;
+  width: 236px;
+  padding: 1rem;
+  padding-bottom: 0.2rem;
+  z-index: 1;
+  box-shadow: 0px 1px 5px 4px rgba(204, 204, 204, 0.2);
 }
 
 @media screen and (min-width: 280px) and (max-width: 769px) {
@@ -124,20 +132,19 @@ export default {
   }
 
   .search-btn-mobile {
-    top: 28px;
+    top: 20px;
     right: 110px;
     color: #747474;
     font-size: 1.1rem;
+    z-index: 2;
     &:focus {
       outline: none;
     }
   }
 
   .users-list {
-    margin-left: 15px;
-    top: 140px;
-    padding: 10px 20px 0 10px;
-    z-index: 1;
+    top: 119px;
+    left: 15px;
     background: white;
     box-shadow: 0rem 0.2rem 0.5rem rgba(0, 0, 0, 0.08) !important;
   }

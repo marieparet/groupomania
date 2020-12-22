@@ -2,7 +2,7 @@
   <div id="app">
     <div
       id="nav"
-      class="d-flex justify-content-start justify-content-sm-center mb-3 p-4"
+      class="d-flex sticky-top justify-content-start justify-content-sm-center mb-3 p-3"
     >
       <router-link to="/">
         <img
@@ -25,6 +25,9 @@
 }
 
 #nav {
+  background: white;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  z-index: 1;
   #logo {
     max-width: 300px;
   }

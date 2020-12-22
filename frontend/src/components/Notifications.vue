@@ -2,7 +2,7 @@
   <div>
     <button
       @click="toggleActions"
-      class="notification-btn d-flex position-absolute justify-content-center align-items-center p-0"
+      class="notification-btn d-flex position-fixed justify-content-center align-items-center p-0"
     >
       <span
         v-if="notificationsList.length"
@@ -15,7 +15,7 @@
       v-if="notificationsList.length"
       id="notification-collapsed"
       v-bind:class="
-        `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
+        `collapsed mt-2 position-fixed ${areActionsVisible && 'visible'}`
       "
     >
       <b-card class="border-0" @click="toggleActions">
@@ -105,7 +105,7 @@ export default {
 
 <style lang="scss">
 .notification-btn {
-  top: 27px;
+  top: 22px;
   right: 175px;
   box-shadow: 0px 1px 1px 1px rgba(204, 204, 204, 0.2);
   background-color: rgba(108, 117, 125, 0.1) !important;
@@ -113,6 +113,7 @@ export default {
   width: 42px;
   height: 42px;
   border: none;
+  z-index: 2;
   &:hover {
     background-color: rgba(108, 117, 125, 0.2) !important;
   }
@@ -132,7 +133,7 @@ export default {
 }
 
 #notification-collapsed {
-  top: 68px;
+  top: 62px;
   right: 177px;
   z-index: 1;
   .card-body {
@@ -142,7 +143,7 @@ export default {
 
 @media screen and (min-width: 280px) and (max-width: 769px) {
   .notification-btn {
-    top: 25px;
+    top: 17px;
     right: 65px;
     width: 32px;
     height: 32px;
@@ -155,8 +156,9 @@ export default {
   }
 
   #notification-collapsed {
-    top: 52px;
+    top: 45px;
     right: 64px;
+    margin-left: 15px;
   }
 }
 </style>

@@ -2,7 +2,7 @@
   <div>
     <button
       @click="toggleActions"
-      class="profile-btn d-flex position-absolute justify-content-center justify-content-lg-between align-items-center"
+      class="profile-btn d-flex position-fixed justify-content-center justify-content-lg-between align-items-center"
     >
       <span class="name-profile-btn d-none d-lg-block">{{
         userData.firstName
@@ -16,7 +16,7 @@
     <b-collapse
       id="profile-collapsed"
       v-bind:class="
-        `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
+        `collapsed mt-2 position-fixed ${areActionsVisible && 'visible'}`
       "
     >
       <b-card class="border-0" @click="toggleActions">
@@ -85,13 +85,14 @@ export default {
   font-weight: 500;
   border: none;
   color: #000;
-  top: 25px;
+  top: 20px;
   right: 45px;
   height: 45px;
   padding: 5px 5px 5px 16px;
   box-shadow: 0px 1px 1px 1px rgba(204, 204, 204, 0.2);
   background-color: rgba(108, 117, 125, 0.1) !important;
   border-radius: 40px;
+  z-index: 2;
   &:focus {
     outline: none;
   }
@@ -130,14 +131,14 @@ export default {
 }
 
 #profile-collapsed {
-  top: 68px;
+  top: 62px;
   right: 44px;
   z-index: 1;
 }
 
 @media screen and (min-width: 280px) and (max-width: 769px) {
   .profile-btn {
-    top: 28px;
+    top: 20px;
     right: 20px;
     height: 25px;
     padding: 0;
@@ -153,7 +154,7 @@ export default {
   }
 
   #profile-collapsed {
-    top: 52px;
+    top: 45px;
     right: 15px;
   }
 }

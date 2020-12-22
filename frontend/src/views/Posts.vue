@@ -58,6 +58,10 @@ export default {
   .card-body {
     padding: 0.7rem;
   }
+
+  .shadow {
+    box-shadow: 0rem 0.2rem 0.5rem rgba(0, 0, 0, 0.08) !important;
+  }
 }
 
 .row {

@@ -86,7 +86,21 @@
                     type="email"
                     placeholder="Email"
                     v-model="input.email"
-                    class="text-dark mb-2 pl-lg-3"
+                    class="mb-2 pl-lg-3"
+                    disabled
+                  ></b-form-input>
+                </b-col>
+              </div>
+              <div v-if="userData.admin" class="d-flex align-items-center">
+                <b-col sm="2" class="d-none d-lg-block p-0">
+                  <label for="admin"> Statut </label>
+                </b-col>
+                <b-col sm="10">
+                  <b-form-input
+                    id="admin"
+                    type="text"
+                    placeholder="Admin"
+                    class="mb-2 pl-lg-3"
                     disabled
                   ></b-form-input>
                 </b-col>
@@ -220,6 +234,10 @@ export default {
 
   .profile-main-picture {
     height: 75px;
+  }
+
+  .shadow {
+    box-shadow: 0rem 0.2rem 0.5rem rgba(0, 0, 0, 0.08) !important;
   }
 }
 </style>
