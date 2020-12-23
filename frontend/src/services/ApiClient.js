@@ -38,8 +38,7 @@ class ApiClient {
       body: options.isFormData ? body : JSON.stringify(body),
       headers: this.headers(options)
     }).then(response => {
-      if (response.status !== 201) throw new Error('Création impossible')
-      return response.json()
+      return this.handleResponse(response, 'Création impossible')
     })
   }
 
@@ -48,8 +47,7 @@ class ApiClient {
       method: 'DELETE',
       headers: this.headers()
     }).then(response => {
-      if (response.status !== 200) throw new Error('Suppression impossible')
-      return response.json()
+      return this.handleResponse(response, 'Suppression impossible')
     })
   }
 
@@ -59,9 +57,13 @@ class ApiClient {
       body: options.isFormData ? body : JSON.stringify(body),
       headers: this.headers(options)
     }).then(response => {
-      if (response.status !== 200) throw new Error('Modification impossible')
-      return response.json()
+      return this.handleResponse(response, 'Modification impossible')
     })
+  }
+
+  handleResponse (response, message) {
+    if (!response.status.toString().match(/20[01]/)) throw new Error(message)
+    return response.json()
   }
 }
 
