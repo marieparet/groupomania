@@ -37,14 +37,20 @@ class ApiClient {
       method: 'POST',
       body: options.isFormData ? body : JSON.stringify(body),
       headers: this.headers(options)
-    }).then(response => response.json())
+    }).then(response => {
+      if (response.status !== 201) throw new Error('Création impossible')
+      return response.json()
+    })
   }
 
   delete (path) {
     return fetch(this.baseUrl + path, {
       method: 'DELETE',
       headers: this.headers()
-    }).then(response => response.json())
+    }).then(response => {
+      if (response.status !== 200) throw new Error('Suppression impossible')
+      return response.json()
+    })
   }
 
   put (path, body, options = {}) {
@@ -52,7 +58,10 @@ class ApiClient {
       method: 'PUT',
       body: options.isFormData ? body : JSON.stringify(body),
       headers: this.headers(options)
-    }).then(response => response.json())
+    }).then(response => {
+      if (response.status !== 200) throw new Error('Modification impossible')
+      return response.json()
+    })
   }
 }
 

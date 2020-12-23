@@ -31,7 +31,7 @@ exports.login = async (req, res, next) => {
     const response = await User.authenticate(req.body.email, req.body.password)
 
     if (response.valid) {
-      res.status(200).json(newToken(response.user))
+      res.status(201).json(newToken(response.user))
     } else {
       res.status(401).json({ error: response.message })
     }
@@ -72,7 +72,8 @@ exports.getAllUsers = (req, res, next) => {
       {
         [Sequelize.Op.like]: `%${req.query.search}%`
       }
-    )
+    ),
+    limit: 10
   }
 
   User.findAll(options)

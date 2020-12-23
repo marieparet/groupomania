@@ -76,7 +76,7 @@ export default {
     },
 
     async onDelete () {
-      await apiClient.delete(
+      const res = await apiClient.delete(
         `api/posts/${this.post.id}/comments/${this.comment.id}`
       )
       this.$emit('commentDeleted', this.comment)
