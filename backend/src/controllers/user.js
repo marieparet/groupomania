@@ -41,17 +41,21 @@ exports.login = async (req, res, next) => {
 }
 
 exports.editUser = (req, res, next) => {
-  const userObject = req.file
-    ? {
-        ...JSON.parse(req.body.user),
-        imageUrl: `${req.protocol}://${req.get('host')}/public/${
-          req.file.filename
-        }`
-      }
-    : { ...req.body }
+  try {
+    const userObject = req.file
+      ? {
+          ...JSON.parse(req.body.user),
+          imageUrl: `${req.protocol}://${req.get('host')}/public/${
+            req.file.filename
+          }`
+        }
+      : { ...req.body }
 
-  console.log(userObject)
-  req.user.update(userObject).then(user => res.status(200).json({ user }))
+    console.log(userObject)
+    req.user.update(userObject).then(user => res.status(200).json({ user }))
+  } catch (error) {
+    res.status(400).json({ error })
+  }
 }
 
 exports.getOneUser = (req, res, next) => {
