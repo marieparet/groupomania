@@ -102,10 +102,6 @@ exports.deletePost = (req, res, next) => {
     .then(post => {
       if (!post) {
         res.status(400).json({ error: "Vous n'avez pas l'autorisation" })
-      } else if (post.imageUrl) {
-        const filename = post.imageUrl.split('/public/')[1]
-        console.log(filename)
-        fs.unlink(`public/${filename}`, () => {})
       }
       post
         .destroy()

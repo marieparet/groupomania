@@ -1,6 +1,9 @@
 'use strict'
 const { Model } = require('sequelize')
+
 const moment = require('moment')
+
+const { deleteFile } = require('../services/file-removal')
 
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
@@ -33,6 +36,18 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Post'
     }
   )
+
+  Post.afterDestroy(async post => {
+    if (post.imageUrl) {
+      await deleteFile(post.imageUrl)
+    }
+  })
+
+  Post.afterUpdate(async post => {
+    if (post.dataValues.imageUrl !== post._previousDataValues.imageUrl) {
+      await deleteFile(post._previousDataValues.imageUrl)
+    }
+  })
 
   return Post
 }

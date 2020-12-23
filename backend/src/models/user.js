@@ -1,9 +1,12 @@
 'use strict'
 const { Model } = require('sequelize')
+
 const {
   ensurePasswordIsStrongEnough,
   addAuthenticationOn
 } = require('../services/authentication')
+
+const { deleteFile } = require('../services/file-removal')
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -67,6 +70,12 @@ module.exports = (sequelize, DataTypes) => {
   )
 
   addAuthenticationOn(User)
+
+  User.afterUpdate(async user => {
+    if (user.dataValues.imageUrl !== user._previousDataValues.imageUrl) {
+      await deleteFile(user._previousDataValues.imageUrl)
+    }
+  })
 
   return User
 }

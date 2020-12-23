@@ -45,6 +45,7 @@ export default {
       commit('RESET_STORE')
       dispatch('fetchPosts', params)
     },
+
     fetchPosts ({ state, commit }, params = {}) {
       let userIdParams = ''
       if (params.userId) {
@@ -62,6 +63,7 @@ export default {
           commit('ERROR_MESSAGE', 'Problème de connexion')
         })
     },
+
     async loadMore ({ state, commit, dispatch }, params) {
       if (state.isOnLastPage) return
 
@@ -74,6 +76,7 @@ export default {
         commit('REACHED_LAST_PAGE')
       }
     },
+
     deletePost ({ commit }, postId) {
       apiClient
         .delete('api/posts/' + postId)
@@ -83,6 +86,7 @@ export default {
           commit('ERROR_MESSAGE', 'Problème de connexion')
         })
     },
+
     modifyPost ({ commit }, { postId, selectedFile, content }) {
       let body = {
         content: content
@@ -96,13 +100,15 @@ export default {
         formData.append('post', JSON.stringify(body))
         body = formData
       }
+
       apiClient
         .put('api/posts/' + postId, body, { isFormData })
         .then(response => {
           commit('UPDATE_ONE_POST', response.post)
         })
     },
-    createPost ({ state, commit }, { selectedFile, content }) {
+
+    createPost ({ commit }, { selectedFile, content }) {
       let body = {
         content: content
       }
