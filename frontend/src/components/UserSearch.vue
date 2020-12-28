@@ -48,7 +48,6 @@
 
 <script>
 import { apiClient } from '../services/ApiClient'
-import { mapState, mapActions } from 'vuex'
 import router from '../router/index'
 import ProfileImage from './ProfileImage'
 

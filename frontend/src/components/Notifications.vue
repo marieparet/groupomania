@@ -61,7 +61,6 @@
 
 <script>
 import { apiClient } from '../services/ApiClient'
-import { mapState, mapActions } from 'vuex'
 import ProfileImage from './ProfileImage'
 
 export default {

@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 import { apiClient } from '../services/ApiClient'
 import EditButton from './EditButton'
 import ProfileImage from './ProfileImage'

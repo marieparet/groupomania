@@ -6,7 +6,6 @@
 
 <script>
 import { apiClient } from '../services/ApiClient'
-import { mapState, mapActions } from 'vuex'
 import DeleteAccountButton from '../components/DeleteAccountButton'
 
 export default {

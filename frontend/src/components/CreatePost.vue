@@ -13,7 +13,7 @@
 
 <script>
 import { apiClient } from '../services/ApiClient'
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 import PostForm from './PostForm'
 
 export default {

@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
 import { apiClient } from '../services/ApiClient'
 import ProfileImage from '../components/ProfileImage'
 import PostsList from '../components/PostsList'

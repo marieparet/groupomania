@@ -110,7 +110,6 @@
 <script>
 import { apiClient } from '../services/ApiClient'
 import router from '../router/index'
-import { mapState, mapActions } from 'vuex'
 import EditPost from '../components/EditPost'
 import ProfileImage from './ProfileImage'
 import CommentsList from '../components/CommentsList'

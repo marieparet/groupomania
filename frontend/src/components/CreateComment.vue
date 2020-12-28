@@ -31,7 +31,6 @@
 <script>
 import { apiClient } from '../services/ApiClient'
 import router from '../router/index'
-import { mapState, mapActions } from 'vuex'
 import ProfileImage from './ProfileImage'
 
 export default {
@@ -60,8 +59,7 @@ export default {
     newline () {
       this.content = `${this.content}\n`
     }
-  },
-  computed: {}
+  }
 }
 </script>
 
