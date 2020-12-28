@@ -7,7 +7,7 @@
         <b-card
           class="mx-auto mb-2 mt-lg-3 mb-lg-5 border-0 shadow px-lg-3 pt-lg-4 bg-white rounded"
         >
-          <CreatePost @displayNotification="displayNotification" />
+          <CreatePost />
         </b-card>
       </b-col>
     </b-row>
@@ -35,14 +35,7 @@ export default {
       userData: JSON.parse(localStorage.getItem('userData'))
     }
   },
-  methods: {
-    displayNotification (text) {
-      this.$bvToast.toast(text, {
-        title: 'Notification',
-        autoHideDelay: 4000
-      })
-    }
-  },
+
   computed: {
     ...mapState(['companyName'])
   }

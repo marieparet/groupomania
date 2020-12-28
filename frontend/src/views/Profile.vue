@@ -171,10 +171,6 @@ export default {
       apiClient.put('api/auth/edit', body, { isFormData }).then(res => {
         localStorage.setItem('userData', JSON.stringify(res.user))
         this.userData = res.user
-        this.$bvToast.toast('Changements enregistrés', {
-          title: 'Notification',
-          autoHideDelay: 4000
-        })
         window.location.reload()
       })
     }

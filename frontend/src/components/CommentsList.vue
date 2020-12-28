@@ -11,7 +11,6 @@
     <div class="comment mb-2 text-left" v-for="comment in list">
       <Comment
         @commentDeleted="removeComment"
-        @displayNotification="displayNotification"
         :comment="comment"
         :post="post"
       />
@@ -61,12 +60,6 @@ export default {
     },
     removeComment (commentToDelete) {
       this.list = this.list.filter(comment => comment.id !== commentToDelete.id)
-    },
-    displayNotification (text) {
-      this.$bvToast.toast(text, {
-        title: 'Notification',
-        autoHideDelay: 4000
-      })
     }
   },
   computed: {}

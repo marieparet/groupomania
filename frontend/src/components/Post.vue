@@ -30,7 +30,7 @@
           </p>
         </div>
       </div>
-      <EditPost @displayNotification="displayNotification" :post="post" />
+      <EditPost :post="post" />
 
       <b-card-text class="text-left mt-3" v-if="post.content">
         {{ post.content }}
@@ -146,9 +146,6 @@ export default {
       this.likesThisPost = res.like
     },
 
-    displayNotification (text) {
-      this.$emit('displayNotification', text)
-    },
     focusInput () {
       document.getElementById(`comment-area-${this.post.id}`).focus()
     }

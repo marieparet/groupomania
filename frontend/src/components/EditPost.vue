@@ -50,7 +50,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['deletePost', 'modifyPost']),
+    ...mapActions(['deletePost', 'modifyPost', 'displayNotification']),
 
     toggleActions () {
       this.areActionsVisible = !this.areActionsVisible
@@ -58,7 +58,7 @@ export default {
 
     async onDelete () {
       await this.deletePost(this.post.id)
-      this.$emit('displayNotification', 'Publication supprimée !')
+      this.displayNotification('Publication supprimée !')
     },
 
     onFileSelected (file) {
@@ -71,7 +71,7 @@ export default {
         selectedFile: this.selectedFile,
         content: this.content
       })
-      this.$emit('displayNotification', 'Publication modifiée !')
+      this.displayNotification('Publication modifiée !')
     }
   }
 }

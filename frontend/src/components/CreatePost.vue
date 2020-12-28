@@ -30,7 +30,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['createPost']),
+    ...mapActions(['createPost', 'displayNotification']),
 
     onFileSelected (file) {
       this.selectedFile = file
@@ -41,7 +41,7 @@ export default {
         selectedFile: this.selectedFile,
         content: this.content
       })
-      this.$emit('displayNotification', 'Publication créée !')
+      this.displayNotification('Publication créée !')
       this.resetForm(event)
     },
 

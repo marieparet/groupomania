@@ -2,7 +2,7 @@
   <div>
     <b-row class="row justify-content-center align-items-center flex-column">
       <b-col cols="12" lg="6" v-for="post in posts.list" :key="post.id">
-        <Post @displayNotification="displayNotification" :post="post" />
+        <Post :post="post" />
       </b-col>
     </b-row>
 
@@ -35,13 +35,6 @@ export default {
 
   methods: {
     ...mapActions(['initializePostStore', 'loadMore']),
-
-    displayNotification (text) {
-      this.$bvToast.toast(text, {
-        title: 'Notification',
-        autoHideDelay: 4000
-      })
-    },
 
     handleScroll (event) {
       const totalHeight = document.documentElement.scrollHeight

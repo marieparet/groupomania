@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import { apiClient } from '../services/ApiClient'
 import EditButton from './EditButton'
 import ProfileImage from './ProfileImage'
@@ -71,6 +72,8 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['displayNotification']),
+
     toggleActions () {
       this.areActionsVisible = !this.areActionsVisible
     },
@@ -80,7 +83,7 @@ export default {
         `api/posts/${this.post.id}/comments/${this.comment.id}`
       )
       this.$emit('commentDeleted', this.comment)
-      this.$emit('displayNotification', 'Commentaire supprimé !')
+      this.displayNotification('Commentaire supprimé !')
     },
 
     startEditing () {
@@ -100,7 +103,7 @@ export default {
       )
       this.comment.updatedAt = res.comment.updatedAt
       this.isEditing = false
-      this.$emit('displayNotification', 'Commentaire modifié !')
+      this.displayNotification('Commentaire modifié !')
     }
   }
 }
