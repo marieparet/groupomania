@@ -2,7 +2,7 @@
 
 ## Getting started
 
-git clone git@github.com:marieparet/groupomania.git
+git clone `git@github.com:marieparet/groupomania.git
 
 ### Frontend :
 
