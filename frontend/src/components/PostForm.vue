@@ -30,7 +30,7 @@
     <b-form-group>
       <div class="d-flex justify-content-around">
         <button
-          class="d-flex justify-content-center create-button btn-block"
+          class="d-flex align-items-center justify-content-center create-button btn-block"
           @click="triggerInput"
           type="button"
         >
@@ -47,7 +47,7 @@
         </button>
         <button
           v-if="isCreating"
-          class="d-flex justify-content-center create-button btn-block"
+          class="d-flex align-items-center justify-content-center create-button btn-block"
           type="submit"
         >
           <span class="mr-2 d-none d-md-block">Publier</span>

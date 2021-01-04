@@ -10,6 +10,7 @@ export default {
 
   watch: {
     message (newMessage) {
+      if (!newMessage) return
       this.$bvToast.toast(newMessage, {
         title: 'Notification',
         autoHideDelay: 4000

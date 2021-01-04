@@ -32,7 +32,7 @@
       </div>
       <EditPost :post="post" />
 
-      <b-card-text class="text-left mt-3" v-if="post.content">
+      <b-card-text class="text-left mt-3 mb-0 mb-lg-3" v-if="post.content">
         {{ post.content }}
       </b-card-text>
 
