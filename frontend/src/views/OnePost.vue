@@ -27,12 +27,21 @@ export default {
       post: null
     }
   },
-  async mounted () {
-    const res = await apiClient.get(`api/posts/${this.$route.params.postId}`)
-    this.post = res.post
-    console.log(this.post)
+  watch: {
+    $route (to, from) {
+      this.loadPost()
+    }
   },
-  methods: {}
+  async mounted () {
+    this.loadPost()
+  },
+
+  methods: {
+    async loadPost () {
+      const res = await apiClient.get(`api/posts/${this.$route.params.postId}`)
+      this.post = res.post
+    }
+  }
 }
 </script>
 
