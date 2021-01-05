@@ -5,6 +5,7 @@
       @click="fetchLikesList"
       v-if="likesCount > 0"
       class="like-btn d-flex align-items-center my-2 mt-lg-0 mb-lg-3 ml-2 text-left"
+      aria-label="Afficher les likes"
     >
       <div
         class="svg-container d-flex justify-content-center align-items-center"

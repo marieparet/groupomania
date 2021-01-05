@@ -13,6 +13,7 @@
           v-model="search"
           placeholder="Chercher un utilisateur..."
           ref="searchInput"
+          aria-label="Chercher un utilisateur"
         />
       </div>
     </div>
@@ -20,6 +21,7 @@
       class="search-btn-mobile position-fixed border-0 p-0 bg-transparent d-lg-none d-xl-none"
       type="button"
       @click="triggerInput"
+      aria-label="Chercher"
     >
       <b-icon icon="search"></b-icon>
     </button>

@@ -3,6 +3,7 @@
     <button
       @click="toggleActions"
       class="notification-btn d-flex position-fixed justify-content-center align-items-center p-0"
+      aria-label="Afficher les notifications"
     >
       <span
         v-if="notificationsList.length"

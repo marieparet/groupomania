@@ -3,6 +3,7 @@
     <button
       @click="toggleActions"
       class="profile-btn d-flex position-fixed justify-content-center justify-content-lg-between align-items-center"
+      aria-label="Afficher les actions"
     >
       <span class="name-profile-btn d-none d-lg-block">{{
         userData.firstName
@@ -24,6 +25,7 @@
           <button
             class="collapsed-btn btn-block text-left"
             @click="changeOrReloadPage('Profile')"
+            aria-label="Voir mon profil"
           >
             <b-icon icon="person" class="mr-2"></b-icon>Voir mon profil
           </button>
@@ -32,12 +34,17 @@
           <button
             class="collapsed-btn btn-block text-left"
             @click="changeOrReloadPage('Posts')"
+            aria-label="Voir la page d'accueil"
           >
             <b-icon icon="house" class="mr-2"></b-icon>Voir la page d'accueil
           </button>
         </p>
         <p class="card-text">
-          <button class="collapsed-btn btn-block text-left" @click="logout">
+          <button
+            class="collapsed-btn btn-block text-left"
+            @click="logout"
+            aria-label="Se déconnecter"
+          >
             <b-icon icon="box-arrow-right" class="mr-2"></b-icon>
             Se déconnecter
           </button>

@@ -16,6 +16,7 @@
           id="content"
           type="text"
           :placeholder="`Que voulez-vous partager, ${userData.firstName} ?`"
+          aria-label="Écrire une publication"
           class="text-dark mb-2 mr-2 w-100"
         ></b-form-textarea>
       </div>
@@ -33,6 +34,7 @@
           class="d-flex align-items-center justify-content-center create-button btn-block"
           @click="triggerInput"
           type="button"
+          aria-label="Choisir un fichier"
         >
           <span class="mr-2 d-none d-md-block">Choisir un fichier</span>
           <svg
@@ -49,6 +51,7 @@
           v-if="isCreating"
           class="d-flex align-items-center justify-content-center create-button btn-block"
           type="submit"
+          aria-label="Publier"
         >
           <span class="mr-2 d-none d-md-block">Publier</span>
           <svg

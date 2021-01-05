@@ -16,6 +16,7 @@
                     placeholder="Prénom"
                     v-model="input.firstName"
                     class="account-input text-dark mb-2 mt-4 pl-3 w-100"
+                    aria-label="Écrire votre prénom"
                   ></b-form-input>
                   <b-form-input
                     id="lastName"
@@ -23,6 +24,7 @@
                     placeholder="Nom"
                     v-model="input.lastName"
                     class="account-input text-dark mb-2 pl-3 w-100"
+                    aria-label="Écrire votre nom"
                   ></b-form-input>
                   <b-form-input
                     id="email"
@@ -30,6 +32,7 @@
                     placeholder="Email"
                     v-model="input.email"
                     class="account-input text-dark mb-2 pl-3 w-100"
+                    aria-label="Écrire votre adresse mail"
                   ></b-form-input>
                   <b-form-input
                     id="password"
@@ -37,6 +40,7 @@
                     placeholder="Mot de passe"
                     v-model="input.password"
                     class="account-input text-dark mb-2 pl-3 w-100"
+                    aria-label="Écrire votre mot de passe"
                   ></b-form-input>
                 </b-form-group>
 
@@ -45,6 +49,7 @@
                   type="submit"
                   id="signup-button"
                   class="account-btn font-weight-bold"
+                  aria-label="S'inscrire"
                 >
                   Inscription
                 </button>
@@ -103,7 +108,11 @@ export default {
             }
           })
           .catch(error => {
-            console.log({ error: error })
+            console.log(error)
+            if (error.error) {
+              return (this.errorMessage = error.error.errors[0].message)
+            }
+
             this.errorMessage = 'Problème de connexion'
           })
       } else {

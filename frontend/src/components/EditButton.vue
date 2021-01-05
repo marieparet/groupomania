@@ -5,6 +5,7 @@
       v-if="isAdmin || isCreator"
       :class="customClass"
       class="post-button d-block position-absolute"
+      aria-label="Afficher les actions"
     >
       ...
     </button>
@@ -22,6 +23,7 @@
             v-if="editingPost && isCreator"
             block
             v-b-modal="`modal-${elementId}`"
+            aria-label="Modifier"
           >
             <b-icon icon="pencil" class="mr-2 mr-lg-3"></b-icon
             ><span>{{ modifyText }}</span></b-button
@@ -31,6 +33,7 @@
             v-if="!editingPost && isCreator"
             block
             @click="clickedEditButton"
+            aria-label="Modifier"
           >
             <b-icon icon="pencil" class="mr-2 mr-lg-3"></b-icon
             ><span>{{ modifyText }}</span></b-button
@@ -43,6 +46,7 @@
             v-if="isAdmin || isCreator"
             block
             v-on:click="onDelete"
+            aria-label="Supprimer"
             ><b-icon icon="trash" class="mr-2 mr-lg-3"></b-icon>
             <span>{{ deleteText }}</span></b-button
           >

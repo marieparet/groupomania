@@ -20,6 +20,7 @@
             class="comment-area border-0"
             type="text"
             placeholder="Écrivez un commentaire ici..."
+            aria-label="Écrire un commentaire"
           >
           </b-form-textarea
         ></b-form-group>

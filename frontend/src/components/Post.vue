@@ -68,6 +68,7 @@
         <button
           @click="likeOrUnlikePost"
           class="react-btn footer-btn btn-block"
+          aria-label="Liker ou disliker"
         >
           <svg
             v-if="likesThisPost"
@@ -91,6 +92,7 @@
         <button
           class="react-btn footer-btn btn-block"
           @click="focusInput(post)"
+          aria-label="Commenter"
         >
           <svg style="width:24px;height:24px" viewBox="0 0 24 24">
             <path

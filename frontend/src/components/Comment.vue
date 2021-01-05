@@ -26,6 +26,7 @@
           @keydown.enter.shift.exact="newline"
           type="text"
           class="input-content border-0 my-2"
+          aria-label="Modifier le commentaire"
         />
         <p v-else class="mb-0">{{ comment.content }}</p>
       </div>

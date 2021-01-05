@@ -21,6 +21,7 @@
                 class="create-button btn-block w-50 mx-auto mb-3 d-flex align-items-center justify-content-center"
                 @click="triggerInput"
                 type="button"
+                aria-label="Changer ma photo de profil"
               >
                 <span class="button-text mr-2 d-none d-md-block"
                   >Changer ma photo de profil</span
@@ -106,7 +107,9 @@
                 </b-col>
               </div>
             </b-form-group>
-            <button type="submit" class="save-btn">Enregistrer</button>
+            <button type="submit" class="save-btn" aria-label="Enregistrer">
+              Enregistrer
+            </button>
           </b-form>
 
           <UserDeleteAccount />

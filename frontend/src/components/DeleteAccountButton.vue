@@ -3,6 +3,7 @@
     <div class="d-flex justify-content-center">
       <button
         class="delete-account d-flex justify-content-center align-items-center"
+        aria-label="Supprimer le compte"
       >
         <p @click="onDeleteAccount" class="my-3 mr-1 mr-lg-2">
           Supprimer le compte

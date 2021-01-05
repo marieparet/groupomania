@@ -4,6 +4,7 @@
       v-if="count > 1 && !allCommentsDisplayed"
       @click="fetchAllComments"
       class="display-comments mb-2 pt-0 d-flex text-left"
+      aria-label="Afficher les autres commentaires"
     >
       <span v-if="count > 2">Afficher {{ count - 1 }} autres commentaires</span>
       <span v-else>Afficher {{ count - 1 }} autre commentaire</span>
