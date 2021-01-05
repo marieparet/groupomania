@@ -52,4 +52,4 @@ For this project, I used below techs :
 
 ## What did I learn ?
 
-Building a social network from scratch allowed me to apply all my backend and frontend knowledge to the development of an entire application. 
+This project allowed me to apply all my backend and frontend knowledge to the development of an entire application from scratch. 
