@@ -7,18 +7,17 @@ git clone `git@github.com:marieparet/groupomania.git`
 ### Frontend :
 
 ```
-cd front
+cd frontend
 npm install 
 npm run serve
 ```
-Make sure you have `node-sass` installed globally
 
 ### Backend :
 
 ```
-cd back
+cd backend
 npm install
-nodemon
+npm start
 ```
 
 ### Database :
@@ -26,7 +25,7 @@ nodemon
 Make sure you have `MySQL` installed globally
 
 ```
-cd back
+cd backend
 ```
 
 You'll need to verify that the username and password in the config database.json file, match your local MySQL credentials.
