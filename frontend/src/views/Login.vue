@@ -100,7 +100,9 @@ export default {
             }
           })
           .catch(error => {
-            console.log({ error: error })
+            if (error.error) {
+              return (this.errorMessage = error.error)
+            }
             this.errorMessage = 'Problème de connexion'
           })
       } else {

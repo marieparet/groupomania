@@ -77,7 +77,7 @@ export default {
     }
   },
   async mounted () {
-    this.fetchNotifications()
+    setTimeout(() => this.fetchNotifications(), 100)
     this.interval = setInterval(() => this.fetchNotifications(), 10000)
   },
   destroyed () {

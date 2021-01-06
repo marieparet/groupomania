@@ -108,7 +108,6 @@ export default {
             }
           })
           .catch(error => {
-            console.log(error)
             if (error.error) {
               return (this.errorMessage = error.error.errors[0].message)
             }
