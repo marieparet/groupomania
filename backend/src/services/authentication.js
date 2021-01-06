@@ -3,7 +3,9 @@ const bcrypt = require('bcrypt')
 function ensurePasswordIsStrongEnough (value) {
   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z0-9\d@$!%*?&]{8,}$/
   if (!value.match(regex)) {
-    throw new Error("Le mot de passe n'est pas assez sécurisé")
+    throw new Error(
+      'Le mot de passe doit contenir au moins 8 caractères (dont au moins une majuscule, une minuscule, un chiffre, un caractère spécial).'
+    )
   }
 }
 
