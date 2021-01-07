@@ -46,7 +46,7 @@
       v-else
       id="notification-collapsed"
       v-bind:class="
-        `collapsed mt-2 position-absolute ${areActionsVisible && 'visible'}`
+        `collapsed mt-2 position-fixed ${areActionsVisible && 'visible'}`
       "
     >
       <b-card class="border-0">
