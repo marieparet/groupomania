@@ -18,7 +18,6 @@
             @keyup.enter.exact="createComment"
             @keydown.enter.shift.exact="newline"
             class="comment-area border-0"
-            type="text"
             placeholder="Écrivez un commentaire ici..."
             aria-label="Écrire un commentaire"
           >
