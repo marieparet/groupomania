@@ -17,12 +17,7 @@ exports.signup = (req, res, next) => {
     email: req.body.email,
     password: req.body.password
   })
-    .then(user =>
-      res
-        .status(201)
-        .json(newToken(user))
-        .catch(error => res.status(400).json({ error }))
-    )
+    .then(user => res.status(201).json(newToken(user)))
     .catch(error => res.status(401).json({ error: error }))
 }
 
