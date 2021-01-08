@@ -107,7 +107,12 @@
                 </b-col>
               </div>
             </b-form-group>
-            <button type="submit" class="save-btn" aria-label="Enregistrer">
+            <button
+              type="submit"
+              :class="`save-btn ${emptyInput ? 'disabled' : ''}`"
+              :disabled="emptyInput"
+              aria-label="Enregistrer"
+            >
               Enregistrer
             </button>
           </b-form>
@@ -175,6 +180,14 @@ export default {
         this.userData = res.user
         window.location.reload()
       })
+    }
+  },
+  computed: {
+    emptyInput () {
+      return (
+        !this.input.firstName.trim().length ||
+        !this.input.lastName.trim().length
+      )
     }
   }
 }
