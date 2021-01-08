@@ -50,10 +50,10 @@
           v-if="isCreating"
           :class="
             `d-flex align-items-center justify-content-center create-button btn-block ${
-              !value && !url ? 'disabled' : ''
+              emptyField ? 'disabled' : ''
             }`
           "
-          :disabled="!value && !url"
+          :disabled="emptyField"
           type="submit"
           aria-label="Publier"
         >
@@ -110,6 +110,11 @@ export default {
     },
     triggerInput () {
       this.$refs.fileInput.click()
+    }
+  },
+  computed: {
+    emptyField () {
+      return !this.value.trim().length && !this.url
     }
   }
 }

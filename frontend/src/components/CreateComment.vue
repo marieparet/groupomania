@@ -47,6 +47,8 @@ export default {
   },
   methods: {
     async createComment (event) {
+      if (!this.content.trim().length) return
+
       const { comment } = await apiClient.post(
         `api/posts/${this.post.id}/comments`,
         {
