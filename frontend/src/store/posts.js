@@ -120,9 +120,11 @@ export default {
         formData.append('post', JSON.stringify(body))
         body = formData
       }
-      apiClient.post('api/posts/', body, { isFormData }).then(response => {
-        commit('CREATE_POST', response.post)
-      })
+      return apiClient
+        .post('api/posts/', body, { isFormData })
+        .then(response => {
+          commit('CREATE_POST', response.post)
+        })
     }
   }
 }

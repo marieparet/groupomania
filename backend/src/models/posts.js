@@ -33,6 +33,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
+      validate: {
+        eitherContentOrImageUrl () {
+          if (!this.content && !this.imageUrl) {
+            throw new Error('Vous ne pouvez pas créer de publication vide !')
+          }
+        }
+      },
       modelName: 'Post'
     }
   )

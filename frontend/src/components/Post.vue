@@ -177,7 +177,7 @@ export default {
 }
 
 .btn-block + .btn-block {
-  margin-top: 2px;
+  margin-top: 0px;
 }
 
 .line {

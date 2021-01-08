@@ -48,7 +48,12 @@
         </button>
         <button
           v-if="isCreating"
-          class="d-flex align-items-center justify-content-center create-button btn-block"
+          :class="
+            `d-flex align-items-center justify-content-center create-button btn-block ${
+              !value && !url ? 'disabled' : ''
+            }`
+          "
+          :disabled="!value && !url"
           type="submit"
           aria-label="Publier"
         >
@@ -114,6 +119,10 @@ export default {
 #preview img {
   max-width: 100%;
   max-height: 500px;
+}
+
+.disabled {
+  cursor: not-allowed;
 }
 
 .form-control {
