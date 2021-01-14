@@ -1,4 +1,4 @@
-# Create a corporate social network
+# Creation of a corporate social network
 
 ## Getting started
 
