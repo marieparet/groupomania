@@ -43,7 +43,7 @@ https://documenter.getpostman.com/view/13023621/TVt2e4h6
 
 ## What is this project ?
 
-This is the 7th and last Project of the OpenClassrooms' Web Developer course, in which I had to create a corporate social network, for a fictive company.
+I have created a corporate social network, for a fictive company.
 For this project, I used below techs :
 - For the server : Node.js and Express framework
 - For the database : MySQL language and Sequelize ORM
